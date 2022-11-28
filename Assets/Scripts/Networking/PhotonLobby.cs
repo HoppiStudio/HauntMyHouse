@@ -1,0 +1,170 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using TMPro;
+using UnityEngine.UI;
+using System.Text;
+using UnityEngine.SceneManagement;
+
+public class PhotonLobby : MonoBehaviourPunCallbacks
+{
+    public static PhotonLobby Instance { get; private set; }
+
+    [SerializeField] private Button createRoomButton;
+    [SerializeField] private Button joinRoomButton;
+
+    [SerializeField] private const byte MAXPLAYERCOUNT = 2;
+
+    private void Awake()
+    {
+        // If there is already an instance then destroy it and replace with the new one
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+            Debug.LogWarning("Another instance of PhotonLobby found, there should only be one in the scene");
+        }
+        Instance = this;
+        DontDestroyOnLoad(this);
+
+        SetUIByPlatform();
+    }
+
+    void Start()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
+    /// <summary>
+    /// Enables Photon functionality based off detected platform
+    /// </summary>
+    private void SetUIByPlatform()
+    {
+#if UNITY_ANDROID
+        joinRoomButton.gameObject.SetActive(true);
+        joinRoomButton.interactable = false;
+#else
+        createRoomButton.gameObject.SetActive(true);
+        createRoomButton.interactable = false;
+#endif
+
+#if UNITY_EDITOR
+        joinRoomButton.gameObject.SetActive(true);
+        joinRoomButton.interactable = false;
+
+        createRoomButton.gameObject.SetActive(true);
+        createRoomButton.interactable = false;
+#endif
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnConnectedToMaster() was called by PUN.");
+#if UNITY_ANDROID
+        joinRoomButton.interactable   = true;
+#else
+        createRoomButton.interactable = true;
+#endif
+
+#if UNITY_EDITOR
+        joinRoomButton.interactable = true;
+        createRoomButton.interactable = true;
+#endif
+    }
+
+    /// <summary>
+    /// Creates a room with a random code
+    /// </summary>
+    public void CreateNewRoom()
+    {
+        const string glyphs = "abcdefghijklmnopqrstuvwxyz";
+        int charAmount = 5;
+
+        string roomCode;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < charAmount; i++)
+        {
+            sb.Append(glyphs[Random.Range(0, glyphs.Length)]);
+        }
+
+        roomCode = sb.ToString().ToUpper();
+
+        RoomOptions roomOptions = new RoomOptions
+        {
+            IsOpen = true,
+            IsVisible = true,
+            MaxPlayers = MAXPLAYERCOUNT,
+        };
+
+        PhotonNetwork.CreateRoom(roomCode, roomOptions);
+    }
+
+    /// <summary>
+    /// Runs when a room has been sucessfully created
+    /// </summary>
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
+        Debug.Log($"New room created with code: {PhotonNetwork.CurrentRoom.Name}");
+    }
+
+    /// <summary>
+    /// Runs when a room fails to be created
+    /// </summary>
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        base.OnCreateRoomFailed(returnCode, message);
+        Debug.Log($"Creating new room failed, {message}");
+        CreateNewRoom();
+    }
+
+    /// <summary>
+    /// Join a random room
+    /// </summary>
+    public void JoinRandomRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    /// <summary>
+    /// Runs when this user fails to join random room and creates a new room
+    /// </summary>
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        base.OnJoinRandomFailed(returnCode, message);
+        Debug.Log($"Failed to join random room. {message}. Creating new room");
+        //CreateNewRoom();
+    }
+
+    /// <summary>
+    /// Runs when this user sucessfully joins a room
+    /// </summary>
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+
+        //SceneManager.LoadScene("Room");
+
+        Debug.Log($"Joined room {PhotonNetwork.CurrentRoom.Name}");
+    }
+
+    /// <summary>
+    /// Runs when this user fails to join a specified room
+    /// </summary>
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+        Debug.Log($"Failed to join room. {message}");
+    }
+
+    /// <summary>
+    /// Leaves the current room
+    /// </summary>
+    public void OnCancel()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("MainMenu");
+    }
+}
