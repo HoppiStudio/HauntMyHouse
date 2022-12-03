@@ -12,7 +12,7 @@ public class DirectorBuildUpState : IState
         _stateMachine = stateMachine;
     }
 
-    public void OnStateEnter() {}
+    public void OnStateEnter() => DirectorEventBus.Publish(DirectorEvent.EnteredBuildUpState);
 
     public void OnStateUpdate()
     {
@@ -24,8 +24,7 @@ public class DirectorBuildUpState : IState
             _stateMachine.ChangeState(typeof(DirectorPeakState));
         }
         Debug.Log($"Intensity State: <color=orange>BUILDUP</color>");
-        //Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
-    public void OnStateExit() {}
+    public void OnStateExit() => DirectorEventBus.Publish(DirectorEvent.ReachedPeakIntensity);
 }

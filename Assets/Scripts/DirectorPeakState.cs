@@ -12,7 +12,7 @@ public class DirectorPeakState : IState
         _stateMachine = stateMachine;
     }
 
-    public void OnStateEnter() {}
+    public void OnStateEnter() => DirectorEventBus.Publish(DirectorEvent.EnteredPeakState);
 
     public void OnStateUpdate()
     {
@@ -25,7 +25,6 @@ public class DirectorPeakState : IState
             _stateMachine.ChangeState(typeof(DirectorPeakFadeState));
         }
         Debug.Log($"Intensity State: <color=orange>PEAK</color>");
-        //Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
     public void OnStateExit() {}

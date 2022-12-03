@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class DirectorEventTest : MonoBehaviour
 {
-    private void OnEnable() => DirectorEventBus.Subscribe(DirectorEvent.EnteredRespiteState, SomeMethod);
-
-    private void OnDisable() => DirectorEventBus.UnSubscribe(DirectorEvent.EnteredRespiteState, SomeMethod);
+    private void OnEnable() => DirectorEventBus.Subscribe(DirectorEvent.ReachedPeakIntensity, SomeMethod);
+    private void OnDisable() => DirectorEventBus.UnSubscribe(DirectorEvent.ReachedPeakIntensity, SomeMethod);
 
     private void SomeMethod()
     {
-        Debug.Log("Director has entered <color=magenta>RESPITE</color> state");
+        Debug.Log("Perceived intensity has reached the maximum threshold. <color=red>You Are Dead</color>.");
     }
 }

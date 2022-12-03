@@ -12,19 +12,18 @@ public class DirectorPeakFadeState : IState
         _stateMachine = stateMachine;
     }
 
-    public void OnStateEnter() {}
+    public void OnStateEnter() => DirectorEventBus.Publish(DirectorEvent.EnteredPeakFadeState);
 
     public void OnStateUpdate()
     {
         _director.DecreasePerceivedIntensity();
         
-        if (_director.GetEnemyPopulationCount() == 0)
+        if (_director.GetEnemyPopulationCount() == 0 && _director.GetPerceivedIntensity() == 0)
         {
             _director.MaxPopulationCount = _director.GetMaxRespitePopulation();
             _stateMachine.ChangeState(typeof(DirectorRespiteState));
         }
         Debug.Log($"Intensity State: <color=orange>PEAKFADE</color>");
-        //Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
     public void OnStateExit() {}

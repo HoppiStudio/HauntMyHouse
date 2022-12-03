@@ -6,6 +6,7 @@ public class StateMachine
 {
     private IState _currentState;
     private Dictionary<Type, IState> _availableStatesDict;
+    public event Action OnStateChanged;
 
     public void Update()
     {
@@ -28,5 +29,11 @@ public class StateMachine
 
         _currentState = _availableStatesDict[newState];
         _currentState.OnStateEnter();
+        OnStateChanged?.Invoke();
+    }
+
+    public IState GetCurrentState()
+    {
+        return _currentState;
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9105262865657800590}
   - component: {fileID: 9105262865657800689}
+  - component: {fileID: 1973168193}
   m_Layer: 7
   m_Name: Director
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9105262865657800689
 MonoBehaviour:
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: 0
   intensityCalculationRate: 1
-  peakIntensityThreshold: 70
+  peakIntensityThreshold: 100
   defaultPeakDuration: 15
   defaultRespiteDuration: 10
   maxBuildUpPopulation: 3
@@ -55,3 +56,16 @@ MonoBehaviour:
   activeEnemies: []
   maxPopulationCount: 0
   player: {fileID: 0}
+--- !u!114 &1973168193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105262865657800591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392625cc686bbbd41a37f726701cda83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directorIntensityText: {fileID: 0}

@@ -25,7 +25,6 @@ public class DirectorRespiteState : IState
             _stateMachine.ChangeState(typeof(DirectorBuildUpState));
         }
         Debug.Log($"Intensity State: <color=orange>RESPITE</color>");
-       // Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
     public void OnStateExit() {}

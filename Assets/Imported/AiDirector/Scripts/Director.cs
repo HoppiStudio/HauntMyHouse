@@ -36,7 +36,6 @@ namespace AiDirector.Scripts
 
         [Header("ENEMY DATA")] [SerializeField]
         private List<GameObject> activeEnemies = new();
-
         [SerializeField] private int maxPopulationCount;
 
         [Header("PLAYER DATA")] [SerializeField]
@@ -51,6 +50,9 @@ namespace AiDirector.Scripts
 
         private readonly DirectorIntensityCalculator _intensityCalculator = new();
         private float _perceivedIntensity;
+
+        private void OnEnable() => _stateMachine.OnStateChanged += StateMachineOnStateChangedEvent;
+        private void OnDisable() => _stateMachine.OnStateChanged -= StateMachineOnStateChangedEvent;
 
         private void Awake()
         {
@@ -130,8 +132,15 @@ namespace AiDirector.Scripts
         {
             activeEnemies.Remove(enemy);
         }
+        
+        private void StateMachineOnStateChangedEvent()
+        {
+            DirectorEventBus.Publish(DirectorEvent.EnteredNewState);
+        }
 
         public Player GetPlayer() => player;
+
+        public IState GetDirectorState() => _stateMachine.GetCurrentState();
 
         public float GetPeakIntensityThreshold() => peakIntensityThreshold;
         public float GetDefaultRespiteDuration() => defaultRespiteDuration;
@@ -149,10 +158,12 @@ namespace AiDirector.Scripts
     
     public enum DirectorEvent
     {
+        EnteredNewState,
         EnteredRespiteState,
         EnteredBuildUpState,
         EnteredPeakState,
-        EnteredPeakUpState
+        EnteredPeakFadeState,
+        ReachedPeakIntensity
     }
 }
 
