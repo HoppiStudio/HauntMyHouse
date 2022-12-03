@@ -1,30 +1,31 @@
 ﻿using AiDirector.Scripts;
+using UnityEngine;
 
 public class DirectorBuildUpState : IState
 {
     private Director _director;
-
-    public DirectorBuildUpState(Director director) => _director = director;
-
-    public void OnStateEnter()
+    private StateMachine _stateMachine;
+    
+    public DirectorBuildUpState(Director director, StateMachine stateMachine)
     {
-        
+        _director = director;
+        _stateMachine = stateMachine;
     }
+
+    public void OnStateEnter() {}
 
     public void OnStateUpdate()
     {
-        //_director.IncreasePerceivedIntensity();
+        _director.IncreasePerceivedIntensity();
         
-        // if BUILD-UP tempo and perceived intensity has reached the peak threshold, change state to PEAK 
-        /*if (_perceivedIntensity >= peakIntensityThreshold && _state.CurrentTempo == DirectorState.Tempo.BuildUp)
+        if (_director.GetPerceivedIntensity() >= _director.GetPeakIntensityThreshold())
         {
-            maxPopulationCount = maxPeakPopulation;
-            _state.CurrentTempo = DirectorState.Tempo.Peak;
-        }*/
+            _director.MaxPopulationCount = _director.GetMaxPeakPopulation();
+            _stateMachine.ChangeState(typeof(DirectorPeakState));
+        }
+        Debug.Log($"Intensity State: <color=orange>BUILDUP</color>");
+        //Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
-    public void OnStateExit()
-    {
-        
-    }
+    public void OnStateExit() {}
 }

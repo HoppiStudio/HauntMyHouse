@@ -1,31 +1,32 @@
 ﻿using AiDirector.Scripts;
+using UnityEngine;
 
 public class DirectorRespiteState : IState
 {
     private Director _director;
+    private StateMachine _stateMachine;
     
-    public DirectorRespiteState(Director director) => _director = director;
-    
-    public void OnStateEnter()
+    public DirectorRespiteState(Director director, StateMachine stateMachine)
     {
-        //_timeSpentInRespite = defaultRespiteDuration;
+        _director = director;
+        _stateMachine = stateMachine;
     }
+
+    public void OnStateEnter() {}
 
     public void OnStateUpdate()
     {
-        //_timeSpentInRespite -= Time.deltaTime;
+        _director.RespiteDuration -= Time.deltaTime;
         
-        // if RESPITE tempo and X amount of time has passed, change state to BUILD-UP
-        /*if (_timeSpentInRespite <= 0 && _state.CurrentTempo == DirectorState.Tempo.Respite)
+        if (_director.RespiteDuration <= 0)
         {
-            maxPopulationCount = maxBuildUpPopulation;
-            _timeSpentInRespite = defaultRespiteDuration;
-            _state.CurrentTempo = DirectorState.Tempo.BuildUp;
-        }*/
+            _director.MaxPopulationCount = _director.GetMaxBuildUpPopulation();
+            _director.RespiteDuration = _director.GetDefaultRespiteDuration(); 
+            _stateMachine.ChangeState(typeof(DirectorBuildUpState));
+        }
+        Debug.Log($"Intensity State: <color=orange>RESPITE</color>");
+       // Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
-    public void OnStateExit()
-    {
-        
-    }
+    public void OnStateExit() {}
 }

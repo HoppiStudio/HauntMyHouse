@@ -1,31 +1,32 @@
 ﻿using AiDirector.Scripts;
+using UnityEngine;
 
 public class DirectorPeakState : IState
 {
     private Director _director;
+    private StateMachine _stateMachine;
     
-    public DirectorPeakState(Director director) => _director = director;
-    
-    public void OnStateEnter()
+    public DirectorPeakState(Director director, StateMachine stateMachine)
     {
-        //_timeSpentInPeak = defaultPeakDuration;
+        _director = director;
+        _stateMachine = stateMachine;
     }
+
+    public void OnStateEnter() {}
 
     public void OnStateUpdate()
     {
-        //_timeSpentInPeak -= Time.deltaTime;
+        _director.PeakDuration -= Time.deltaTime;
         
-        // if PEAK tempo and X amount of time has passed, change state to PEAK-FADE
-        /*if(_timeSpentInPeak <= 0 && _state.CurrentTempo == DirectorState.Tempo.Peak)
+        if(_director.PeakDuration <= 0)
         {
-            maxPopulationCount = 0;
-            _timeSpentInPeak = defaultPeakDuration; 
-            _state.CurrentTempo = DirectorState.Tempo.PeakFade;
-        }*/
+            _director.MaxPopulationCount = 0;
+            _director.PeakDuration = _director.GetDefaultPeakDuration(); 
+            _stateMachine.ChangeState(typeof(DirectorPeakFadeState));
+        }
+        Debug.Log($"Intensity State: <color=orange>PEAK</color>");
+        //Debug.Log($"Intensity: <color=orange>{_director.GetPerceivedIntensity()}</color>");
     }
 
-    public void OnStateExit()
-    {
-        
-    }
+    public void OnStateExit() {}
 }

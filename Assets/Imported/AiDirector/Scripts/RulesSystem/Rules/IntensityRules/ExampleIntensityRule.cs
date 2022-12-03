@@ -11,7 +11,7 @@ namespace AiDirector.Scripts.RulesSystem.Rules.IntensityRules
     {
         public float CalculatePerceivedIntensity(Director director)
         {
-            return 0;
+            return 1;
         }
     }
 }

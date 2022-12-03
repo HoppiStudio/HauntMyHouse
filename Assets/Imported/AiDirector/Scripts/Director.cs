@@ -18,6 +18,7 @@ namespace AiDirector.Scripts
             Hard = 2
         }
         [SerializeField] private Difficulty difficulty;
+        private Dictionary<Difficulty, float> _intensityModifierDict;
 
         [Header("INTENSITY")]
         [SerializeField] private float intensityCalculationRate = 1.0f;
@@ -35,27 +36,21 @@ namespace AiDirector.Scripts
         [SerializeField] private int maxRespitePopulation;
 
         [Header("ENEMY DATA")]
-        [HideInInspector] public List<GameObject> activeEnemies = new List<GameObject>();
-        [HideInInspector] public int maxPopulationCount;
+        [SerializeField] private List<GameObject> activeEnemies = new();
+        [SerializeField] private int maxPopulationCount;
         
         [Header("PLAYER DATA")]
         [SerializeField] private Player player;
-        
-        private StateMachine _stateMachine = new StateMachine();
-        private Dictionary<Type, IState> _cachedIntensityStatesDict;
-        
-        private DirectorIntensityCalculator _intensityCalculator = new DirectorIntensityCalculator();
-        private DirectorBehaviourCalculator _behaviourCalculator = new DirectorBehaviourCalculator();
-        
-        private float _perceivedIntensity;
-        private float _timeSpentInPeak;
-        private float _timeSpentInRespite;
-        private int _intensityScaler;
 
-        /*private void TriggerGameEvent()
-        {
-            _behaviourCalculator.CalculateBehaviourOutput(this);
-        }*/
+        public float RespiteDuration { get; set; }
+        public float PeakDuration { get; set; }
+        public int MaxPopulationCount { get; set; }
+        
+        private readonly StateMachine _stateMachine = new();
+        private Dictionary<Type, IState> _cachedIntensityStatesDict;
+
+        private readonly DirectorIntensityCalculator _intensityCalculator = new();
+        private float _perceivedIntensity;
 
         private void Awake()
         {
@@ -65,52 +60,39 @@ namespace AiDirector.Scripts
 
         private void Start()
         {
+            RespiteDuration = defaultRespiteDuration;
+            PeakDuration = defaultPeakDuration;
+
             _cachedIntensityStatesDict = new Dictionary<Type, IState>
             {
-                { typeof(DirectorBuildUpState), new DirectorBuildUpState(this)},
-                { typeof(DirectorPeakState), new DirectorPeakState(this)},
-                { typeof(DirectorPeakState), new DirectorPeakFadeState(this)},
-                { typeof(DirectorRespiteState), new DirectorRespiteState(this)}
+                { typeof(DirectorRespiteState), new DirectorRespiteState(this, _stateMachine)},
+                { typeof(DirectorBuildUpState), new DirectorBuildUpState(this, _stateMachine)},
+                { typeof(DirectorPeakState), new DirectorPeakState(this, _stateMachine)},
+                { typeof(DirectorPeakFadeState), new DirectorPeakFadeState(this, _stateMachine)}
             };
-            _stateMachine.ChangeState(_cachedIntensityStatesDict[typeof(DirectorRespiteState)]);
+            _stateMachine.SetStates(_cachedIntensityStatesDict);
+            _stateMachine.ChangeState(typeof(DirectorRespiteState));
             
-            switch (difficulty)
+            _intensityModifierDict = new Dictionary<Difficulty, float>
             {
-                case Difficulty.Easy:
-                    _intensityScaler = 30;
-                    break;
-                case Difficulty.Normal:
-                    _intensityScaler = 60;
-                    break;
-                case Difficulty.Hard:
-                    _intensityScaler = 90;
-                    break;
-            }
+                {Difficulty.Easy, 30},
+                {Difficulty.Normal, 60},
+                {Difficulty.Hard, 90}
+            };
         }
 
         private void Update()
         {
             _stateMachine.Update();
         }
-
-        //public float GetEnemyPopulationCount() => _activeAreaSet.GetEnemyPopulationCount();
-
-        public float GetPerceivedIntensity() => _perceivedIntensity;
-
-        public Player GetPlayer() => player;
-
-        public float GetPeakDuration() => _timeSpentInPeak;
-
-        public float GetRespiteDuration() => _timeSpentInRespite;
         
-        public float GetIntensityCalculationRate() => intensityCalculationRate;
-
-        public int GetIntensityScalar() => _intensityScaler;
-
-        public IEnumerator IncreasePerceivedIntensity()
+        public void IncreasePerceivedIntensity() => StartCoroutine(IncreasePerceivedIntensityCoroutine());
+        public void DecreasePerceivedIntensity() => StartCoroutine(DecreasePerceivedIntensityCoroutine());
+        
+        private IEnumerator IncreasePerceivedIntensityCoroutine()
         {
             float intensity = _intensityCalculator.CalculatePerceivedIntensityOutput(this);
-            _perceivedIntensity += intensity * _intensityScaler * Time.deltaTime;
+            _perceivedIntensity += intensity * _intensityModifierDict[difficulty] * Time.deltaTime;
             
             if (_perceivedIntensity > 100)
             {
@@ -120,10 +102,10 @@ namespace AiDirector.Scripts
             yield return new WaitForSeconds(intensityCalculationRate);
         }
 
-        public IEnumerator DecreasePerceivedIntensity()
+        private IEnumerator DecreasePerceivedIntensityCoroutine()
         {
             float intensity = _intensityCalculator.CalculatePerceivedIntensityOutput(this);
-            _perceivedIntensity -= intensity * _intensityScaler * Time.deltaTime;
+            _perceivedIntensity -= intensity * _intensityModifierDict[difficulty] * Time.deltaTime;
             
             if (_perceivedIntensity < 0)
             {
@@ -142,6 +124,21 @@ namespace AiDirector.Scripts
         {
             activeEnemies.Remove(enemy);
         }
+
+        public Player GetPlayer() => player;
+        
+        public float GetPeakIntensityThreshold() => peakIntensityThreshold;
+        public float GetDefaultRespiteDuration() => defaultRespiteDuration;
+        public float GetDefaultPeakDuration() => defaultPeakDuration;
+        
+        public float GetEnemyPopulationCount() => activeEnemies.Count;
+        public int GetMaxRespitePopulation() => maxRespitePopulation;
+        public int GetMaxBuildUpPopulation() => maxBuildUpPopulation;
+        public int GetMaxPeakPopulation() => maxPeakPopulation;
+        
+        public float GetPerceivedIntensity() => _perceivedIntensity;
+        public float GetIntensityCalculationRate() => intensityCalculationRate;
+        public float GetIntensityScalar() => _intensityModifierDict[difficulty];
     }
 }
 
