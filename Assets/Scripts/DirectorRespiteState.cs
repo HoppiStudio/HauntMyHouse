@@ -12,7 +12,7 @@ public class DirectorRespiteState : IState
         _stateMachine = stateMachine;
     }
 
-    public void OnStateEnter() {}
+    public void OnStateEnter() => DirectorEventBus.Publish(DirectorEvent.EnteredRespiteState);
 
     public void OnStateUpdate()
     {
