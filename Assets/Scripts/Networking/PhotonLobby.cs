@@ -15,7 +15,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     [SerializeField] private Button createRoomButton;
     [SerializeField] private Button joinRoomButton;
 
-    [SerializeField] private const byte MAXPLAYERCOUNT = 2;
+    private const byte MAXPLAYERCOUNT = 2;
 
     private void Awake()
     {
@@ -28,6 +28,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Instance = this;
         DontDestroyOnLoad(this);
 
+        PhotonNetwork.AutomaticallySyncScene = true;
         SetUIByPlatform();
     }
 
@@ -36,28 +37,11 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    ////////////////////////// PHOTON ENGINE NETWORKING OVERRIDES ///////////////////////////
+
     /// <summary>
-    /// Enables Photon functionality based off detected platform
+    /// Runs when a user connects to the Photon server
     /// </summary>
-    private void SetUIByPlatform()
-    {
-#if UNITY_ANDROID
-        joinRoomButton.gameObject.SetActive(true);
-        joinRoomButton.interactable = false;
-#else
-        createRoomButton.gameObject.SetActive(true);
-        createRoomButton.interactable = false;
-#endif
-
-#if UNITY_EDITOR
-        joinRoomButton.gameObject.SetActive(true);
-        joinRoomButton.interactable = false;
-
-        createRoomButton.gameObject.SetActive(true);
-        createRoomButton.interactable = false;
-#endif
-    }
-
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster() was called by PUN.");
@@ -71,34 +55,6 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         joinRoomButton.interactable = true;
         createRoomButton.interactable = true;
 #endif
-    }
-
-    /// <summary>
-    /// Creates a room with a random code
-    /// </summary>
-    public void CreateNewRoom()
-    {
-        const string glyphs = "abcdefghijklmnopqrstuvwxyz";
-        int charAmount = 5;
-
-        string roomCode;
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < charAmount; i++)
-        {
-            sb.Append(glyphs[Random.Range(0, glyphs.Length)]);
-        }
-
-        roomCode = sb.ToString().ToUpper();
-
-        RoomOptions roomOptions = new RoomOptions
-        {
-            IsOpen = true,
-            IsVisible = true,
-            MaxPlayers = MAXPLAYERCOUNT,
-        };
-
-        PhotonNetwork.CreateRoom(roomCode, roomOptions);
     }
 
     /// <summary>
@@ -118,14 +74,6 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         base.OnCreateRoomFailed(returnCode, message);
         Debug.Log($"Creating new room failed, {message}");
         CreateNewRoom();
-    }
-
-    /// <summary>
-    /// Join a random room
-    /// </summary>
-    public void JoinRandomRoom()
-    {
-        PhotonNetwork.JoinRandomRoom();
     }
 
     /// <summary>
@@ -160,11 +108,87 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     }
 
     /// <summary>
+    /// Runs when this user is disconnected from the Photon server
+    /// </summary>
+    /// <param name="cause"> Reason for disconnection </param>
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogWarningFormat("OnDisconnected() was called by PUN with reason {0}", cause);
+    }
+
+    ////////////////////////// PRIVATE FUNCTIONS ///////////////////////////
+
+    /// <summary>
+    /// Enables Photon functionality based off detected platform
+    /// </summary>
+    private void SetUIByPlatform()
+    {
+#if UNITY_ANDROID
+        joinRoomButton.gameObject.SetActive(true);
+        joinRoomButton.interactable = false;
+#else
+        createRoomButton.gameObject.SetActive(true);
+        createRoomButton.interactable = false;
+#endif
+
+#if UNITY_EDITOR
+        joinRoomButton.gameObject.SetActive(true);
+        joinRoomButton.interactable = false;
+
+        createRoomButton.gameObject.SetActive(true);
+        createRoomButton.interactable = false;
+#endif
+    }
+
+    ////////////////////////// PUBLIC NETWORKING FUNCTION CALLS ///////////////////////////
+
+    /// <summary>
+    /// Creates a room with a random code
+    /// </summary>
+    public void CreateNewRoom()
+    {
+        const string glyphs = "abcdefghijklmnopqrstuvwxyz";
+        int charAmount = 5;
+
+        string roomCode;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < charAmount; i++)
+        {
+            sb.Append(glyphs[Random.Range(0, glyphs.Length)]);
+        }
+
+        roomCode = sb.ToString().ToUpper();
+
+        RoomOptions roomOptions = new RoomOptions
+        {
+            IsOpen = true,
+            IsVisible = true,
+            MaxPlayers = MAXPLAYERCOUNT,
+        };
+
+        PhotonNetwork.CreateRoom(roomCode, roomOptions);
+    } 
+    
+    /// <summary>
+    /// Join a random room
+    /// </summary>
+    public void JoinRandomRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    /// <summary>
     /// Leaves the current room
     /// </summary>
     public void OnCancel()
     {
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void StartGame()
+    {
+        PhotonNetwork.LoadLevel(1);
     }
 }
