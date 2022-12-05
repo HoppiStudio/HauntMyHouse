@@ -12,10 +12,22 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 {
     public static PhotonLobby Instance { get; private set; }
 
+    private const byte MAXPLAYERCOUNT = 2;
+
+    /// <summary>
+    /// Button gameobjects found in the Lobby scene under the button container
+    /// </summary>
+    [Header ("Button References")]
     [SerializeField] private Button createRoomButton;
     [SerializeField] private Button joinRoomButton;
+    [SerializeField] private Button startGameButton;
 
-    private const byte MAXPLAYERCOUNT = 2;
+    /// <summary>
+    /// Prefabs found in the Resources/Players folder
+    /// </summary>
+    [Header("Player Prefab References")]
+    [SerializeField] private GameObject vrPlayerPrefab;
+    [SerializeField] private GameObject screenPlayerPrefab;
 
     private void Awake()
     {
@@ -96,6 +108,19 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         //SceneManager.LoadScene("Room");
 
         Debug.Log($"Joined room {PhotonNetwork.CurrentRoom.Name}");
+
+        if(PhotonNetwork.CurrentRoom.PlayerCount == MAXPLAYERCOUNT)
+        {
+#if UNITY_ANDROID
+
+#else
+            startGameButton.interactable = true;
+#endif
+
+#if UNITY_EDITOR
+            startGameButton.interactable = true;
+#endif
+        }
     }
 
     /// <summary>
@@ -129,6 +154,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 #else
         createRoomButton.gameObject.SetActive(true);
         createRoomButton.interactable = false;
+
+        startGameButton.gameObject.SetActive(true);
+        startGameButton.interactable = false;
 #endif
 
 #if UNITY_EDITOR
@@ -137,6 +165,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
         createRoomButton.gameObject.SetActive(true);
         createRoomButton.interactable = false;
+
+        startGameButton.gameObject.SetActive(true);
+        startGameButton.interactable = false;
 #endif
     }
 
@@ -190,5 +221,17 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
+    }
+
+    public void SpawnPlayers()
+    {
+        if(PhotonNetwork.CurrentRoom.PlayerCount == 0)
+        {
+            PhotonNetwork.Instantiate(screenPlayerPrefab.name, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            PhotonNetwork.Instantiate(vrPlayerPrefab.name, Vector3.zero, Quaternion.identity);
+        }
     }
 }

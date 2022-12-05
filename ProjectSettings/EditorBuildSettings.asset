@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 5ab5f7b393c819149bfc9f21c7781b2c
   - enabled: 1
+    path: Assets/Scenes/DebugScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
     path: Assets/Plugins/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
     guid: 9afeada2bbd240b4981cfb6abb525418
   m_configObjects:
