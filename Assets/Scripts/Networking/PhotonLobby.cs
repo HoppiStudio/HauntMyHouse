@@ -111,15 +111,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
         if(PhotonNetwork.CurrentRoom.PlayerCount == MAXPLAYERCOUNT)
         {
-#if UNITY_ANDROID
-
-#else
-            startGameButton.interactable = true;
-#endif
-
-#if UNITY_EDITOR
-            startGameButton.interactable = true;
-#endif
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("RPCStartGameButton", RpcTarget.MasterClient);
         }
     }
 
@@ -221,6 +214,23 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
+        //PhotonView photonView = PhotonView.Get(this);
+        //photonView.RPC("RPCStartGame", RpcTarget.MasterClient);
+    }
+
+    //RPC call for host to start game button on max players reached OR RPC call to all clients to LoadLevel
+    [PunRPC]
+    private void RPCStartGameButton()
+    {
+#if UNITY_ANDROID
+
+#else
+        startGameButton.interactable = true;
+#endif
+
+#if UNITY_EDITOR
+        startGameButton.interactable = true;
+#endif
     }
 
     public void SpawnPlayers()
