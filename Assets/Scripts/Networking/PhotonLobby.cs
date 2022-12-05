@@ -29,6 +29,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject vrPlayerPrefab;
     [SerializeField] private GameObject screenPlayerPrefab;
 
+    [SerializeField] private int gameSeceneIndex = 1;
+
     private void Awake()
     {
         // If there is already an instance then destroy it and replace with the new one
@@ -64,7 +66,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 #endif
 
 #if UNITY_EDITOR
-        joinRoomButton.interactable = true;
+        joinRoomButton.interactable   = true;
         createRoomButton.interactable = true;
 #endif
     }
@@ -216,7 +218,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     /// </summary>
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(gameSeceneIndex);
     }
 
     /// <summary>
