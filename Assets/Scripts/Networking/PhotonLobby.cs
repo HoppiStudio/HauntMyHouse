@@ -211,28 +211,26 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("MainMenu");
     }
 
+    /// <summary>
+    /// Called by the host and synced between all clients
+    /// </summary>
     public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
-        //PhotonView photonView = PhotonView.Get(this);
-        //photonView.RPC("RPCStartGame", RpcTarget.MasterClient);
     }
 
-    //RPC call for host to start game button on max players reached OR RPC call to all clients to LoadLevel
+    /// <summary>
+    /// RPC call so that only the host can start the game
+    /// </summary>
     [PunRPC]
     private void RPCStartGameButton()
     {
-#if UNITY_ANDROID
-
-#else
         startGameButton.interactable = true;
-#endif
-
-#if UNITY_EDITOR
-        startGameButton.interactable = true;
-#endif
     }
 
+    /// <summary>
+    /// Function to spawn players based on if the player is the host or client
+    /// </summary>
     public void SpawnPlayers()
     {
         if(PhotonNetwork.LocalPlayer.IsMasterClient)

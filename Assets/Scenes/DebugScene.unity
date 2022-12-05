@@ -333,7 +333,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663358530 stripped
 GameObject:
@@ -785,7 +785,7 @@ Transform:
   - {fileID: 541096546}
   - {fileID: 1728657556}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1728657555
 GameObject:
@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 2002710406}
   - component: {fileID: 2002710405}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ===== MANAGERS =====
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,7 +1053,7 @@ PrefabInstance:
     - target: {fileID: 3728489033153441621, guid: 0f3cc035e09ca5e42b25c80894f28e6a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3728489033153441621, guid: 0f3cc035e09ca5e42b25c80894f28e6a,
         type: 3}
@@ -1109,6 +1109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DebugGuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728489033153441622, guid: 0f3cc035e09ca5e42b25c80894f28e6a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
