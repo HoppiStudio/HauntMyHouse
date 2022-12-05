@@ -235,7 +235,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public void SpawnPlayers()
     {
-        if(PhotonNetwork.CurrentRoom.PlayerCount == 0)
+        if(PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             PhotonNetwork.Instantiate(screenPlayerPrefab.name, Vector3.zero, Quaternion.identity);
         }
