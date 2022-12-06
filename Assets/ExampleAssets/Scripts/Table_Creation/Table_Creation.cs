@@ -1,6 +1,7 @@
 using Oculus.Interaction.Input;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(MeshRenderer))]
 public class Table_Creation : MonoBehaviour
 {
+    //Debug Text
+    [SerializeField] public TMP_Text Debug_Text;
+
     //3 cube verticies for table creation.
     private Vector3 _First_Corner_Coordinates;
     private Vector3 _Secound_Corner_Coordinates;
@@ -32,9 +36,9 @@ public class Table_Creation : MonoBehaviour
     {
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) && _Is_Busy == false)
         {
-            if(_Is_1th_corner_taken == false) { _First_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_1th_corner_taken = true; }
-            else if (_Is_2nd_corner_taken == false) { _Secound_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_2nd_corner_taken = true; }
-            else if (_Is_3rd_corner_taken == false) { _Third_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_3rd_corner_taken = true; }
+            if(_Is_1th_corner_taken == false) { _First_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_1th_corner_taken = true; Debug_Text.text = "First coordinates taken"; }
+            else if (_Is_2nd_corner_taken == false) { _Secound_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_2nd_corner_taken = true; ; Debug_Text.text = "Secound coordinates taken"; }
+            else if (_Is_3rd_corner_taken == false) { _Third_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_3rd_corner_taken = true; ; Debug_Text.text = "Third coordinates taken"; }
             _Is_Busy = true;
             StartCoroutine(Release_Busy_State());
         }
@@ -44,6 +48,7 @@ public class Table_Creation : MonoBehaviour
         {
             _Is_3rd_corner_taken = false;
             Create_Cube_With_Three_Coordinates(_First_Corner_Coordinates , _Secound_Corner_Coordinates , _Third_Corner_Coordinates);
+            Debug_Text.text = "Creating Cube with coordinates";
         }
     }
 
