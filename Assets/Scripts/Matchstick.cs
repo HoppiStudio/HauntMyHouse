@@ -28,7 +28,10 @@ public class Matchstick : MonoBehaviour
     private int _secondTime;
     public Vector3 Second_Coordinates;
 
-
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -47,20 +50,31 @@ public class Matchstick : MonoBehaviour
         }
     }
 
+    private int _TimeCountForSecound = 0;
     // Update is called once per frame
-    void Update()
+    void Update() //60 times in a secound
     {
-        //Global Game Time
-        timer += Time.deltaTime;
-        seconds = (int)(timer / 60);
 
-        Debug.Log("Gametime in secounds : " + seconds);
+        //Global Game Time
+        _TimeCountForSecound++;
+        if(_TimeCountForSecound > 60)
+        {
+            _TimeCountForSecound = 0;
+            seconds++;
+        }
+
+
 
         //On click
         if (OVRInput.Get(OVRInput.Button.One))
         {
+
+            Debug_Text.text = "";
+
             if (Is_Colliding_With_Match && _isFirstButtonPressed == false) //First press
             {
+                Debug_Text.text = "First Button Pressed";
+
                 //Take controller coordinates
                 First_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
 
@@ -72,7 +86,7 @@ public class Matchstick : MonoBehaviour
             }
             else if (Is_Colliding_With_Match && _isFirstButtonPressed == true) //Secound press
             {
-
+                Debug_Text.text += " \n First Button Pressed";
                 //Take controller coordinates
                 Second_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
 
@@ -87,17 +101,26 @@ public class Matchstick : MonoBehaviour
                 float Distance_Difference = Vector3.Distance(First_Coordinates, Second_Coordinates);
                 float Time_Differece = _secondTime - _firstTime;
 
-                Speed = Distance_Difference / Time_Differece;
-
+                Speed = (Distance_Difference / Time_Differece) * 1000;
+                Debug_Text.text += " \n Speed : " + Speed.ToString();
 
                 //If speed is enough
-                if (Speed > 5)
+                if (Speed < 11)
                 {
+                    Debug_Text.text += "Im on fire";
                     LightTheMatch();
                 }
           
             }
 
+        }
+
+        if(Is_Colliding_With_Match == false)
+        {
+            _firstTime = 0;
+            _secondTime = 0;
+            First_Coordinates = new Vector3(0,0,0);
+            Second_Coordinates = new Vector3(0, 0, 0);
         }
     }
 
