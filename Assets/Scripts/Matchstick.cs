@@ -41,12 +41,19 @@ public class Matchstick : MonoBehaviour
         {
             //There is a collision between matchstick and the matchbox
             Is_Colliding_With_Match = true;
+            Debug_Text.text = "There is COLLISION";
         }
-        else
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.name == "(!)Matchbox")
         {
             //There is no collision
             Is_Colliding_With_Match = false;
             _isFirstButtonPressed = false;
+
+            Debug_Text.text = "There is no collision";
         }
     }
 
@@ -69,11 +76,11 @@ public class Matchstick : MonoBehaviour
         if (OVRInput.Get(OVRInput.Button.One))
         {
 
-            Debug_Text.text = "";
+            //Debug_Text.text = "";
 
             if (Is_Colliding_With_Match && _isFirstButtonPressed == false) //First press
             {
-                Debug_Text.text = "First Button Pressed";
+                //Debug_Text.text = "First Button Pressed";
 
                 //Take controller coordinates
                 First_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
@@ -86,7 +93,7 @@ public class Matchstick : MonoBehaviour
             }
             else if (Is_Colliding_With_Match && _isFirstButtonPressed == true) //Secound press
             {
-                Debug_Text.text += " \n First Button Pressed";
+                //Debug_Text.text += " \n First Button Pressed";
                 //Take controller coordinates
                 Second_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
 
@@ -102,12 +109,12 @@ public class Matchstick : MonoBehaviour
                 float Time_Differece = _secondTime - _firstTime;
 
                 Speed = (Distance_Difference / Time_Differece) * 1000;
-                Debug_Text.text += " \n Speed : " + Speed.ToString();
+                //Debug_Text.text += " \n Speed : " + Speed.ToString();
 
                 //If speed is enough
                 if (Speed < 11)
                 {
-                    Debug_Text.text += "Im on fire";
+                    //Debug_Text.text += "Im on fire";
                     LightTheMatch();
                 }
           
