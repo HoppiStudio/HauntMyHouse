@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 public class Matchstick : MonoBehaviour
 {
+    [Header("Fire Animation")]
+    public GameObject Fire_Animation_Of_Match;
+    public GameObject Fire_Animation_Of_Candle;
     //Am i on fire 
     public bool AmIOnFire = false;
 
@@ -31,23 +34,33 @@ public class Matchstick : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+
+        //Match fire animation is deactivated at first
+        Fire_Animation_Of_Match.active = false;
+        Fire_Animation_Of_Candle.active = false;
     }
 
     void OnCollisionEnter(Collision collision)
     {
 
         //Check for a match with the specified name on any GameObject that collides with your GameObject
-        if (collision.gameObject.name == "(!)Matchbox")
+        if (collision.gameObject.name == "Matchbox")
         {
             //There is a collision between matchstick and the matchbox
             Is_Colliding_With_Match = true;
             Debug_Text.text = "There is COLLISION";
         }
-    }
 
+        if (collision.gameObject.name == "Candle" && AmIOnFire)
+        {
+
+            Second_Coordinates = collision.transform.position;
+            Fire_Animation_Of_Candle.active = true;
+        }
+    }
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name == "(!)Matchbox")
+        if (collision.gameObject.name == "Matchbox")
         {
             //There is no collision
             Is_Colliding_With_Match = false;
@@ -137,7 +150,9 @@ public class Matchstick : MonoBehaviour
         AmIOnFire = true;
 
         //Init fire animation
+        Fire_Animation_Of_Match.active = true;
 
     }
 }
+
 

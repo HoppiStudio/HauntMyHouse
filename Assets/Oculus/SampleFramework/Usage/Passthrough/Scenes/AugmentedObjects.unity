@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 67838748}
   - component: {fileID: 67838747}
   m_Layer: 0
-  m_Name: (!)Matchbox
+  m_Name: Matchbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,7 +743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558748094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.014839, y: 5.1503477, z: 0.69271696}
+  m_LocalPosition: {x: -1.84, y: 2.2, z: 0.69271696}
   m_LocalScale: {x: 0.26638, y: 0.20268552, z: 0.002726399}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11429,6 +11429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453cfce92d544444bc0085b39bb2b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fire_Animation_Of_Match: {fileID: 1692516903333932}
+  Fire_Animation_Of_Candle: {fileID: 558748094}
   AmIOnFire: 0
   Debug_Text: {fileID: 1490757741}
   Is_Colliding_With_Match: 0
@@ -16909,7 +16911,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6886792, g: 0.030232195, b: 0.01732521, a: 0.5019608}
+      maxColor: {r: 0.754717, g: 0.043050904, b: 0.026106475, a: 0.5019608}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
