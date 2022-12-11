@@ -307,7 +307,7 @@ public class OVRPassthroughLayer : MonoBehaviour
     ///   means that contrast is left unchanged.</param>
     /// <param name="saturation">Modify the saturation of Passthrough. Valid range: [-1, 1]. A value
     ///   of 0 means that saturation is left unchanged.</param>
-    public void SetBrightnessContrastSaturation(float brightness = 0.0f, float contrast = 0.0f, float saturation = 0.0f)
+    public void SetBrightnessContrastSaturation(float brightness = -0.5f, float contrast = 0.0f, float saturation = 0.0f)
     {
         colorMapType = ColorMapType.BrightnessContrastSaturation;
         colorMapEditorType = ColorMapEditorType.ColorAdjustment;
@@ -695,7 +695,7 @@ public class OVRPassthroughLayer : MonoBehaviour
             float value = i / 255.0f;
             // Constrast and brightness
             float contrastFactor = contrast + 1; // UI runs from -1 to 1
-            value = (value - 0.5f) * contrastFactor + 0.5f + brightness;
+            value = (value - 0.5f) * contrastFactor + -0.5f + brightness;
 
             // Posterization
             if (posterize > 0.0f)
