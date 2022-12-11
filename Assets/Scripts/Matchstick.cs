@@ -43,7 +43,7 @@ public class Matchstick : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        //Check for a match with the specified name on any GameObject that collides with your GameObject
+        //Check for a match with the specified name
         if (collision.gameObject.name == "Matchbox")
         {
             //There is a collision between matchstick and the matchbox
