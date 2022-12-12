@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
-    guid: 9afeada2bbd240b4981cfb6abb525418
+    path: Assets/Scenes/MainMenu.unity
+    guid: 25e9bb5baaab1894ea47e843f83eb873
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/AndroidLobby.unity
+    guid: c153b4850a967da4388ed00d0b323ff1
   - enabled: 0
-    path: Assets/Scenes/DirectorTesting.unity
-    guid: 8cf1db7952698e74697ac578d964edec
+    path: Assets/Scenes/WindowsLobby.unity
+    guid: 5ab5f7b393c819149bfc9f21c7781b2c
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
