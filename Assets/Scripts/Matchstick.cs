@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 public class Matchstick : MonoBehaviour
@@ -33,7 +31,7 @@ public class Matchstick : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
         //Match fire animation is deactivated at first
         Fire_Animation_Of_Match.active = false;
