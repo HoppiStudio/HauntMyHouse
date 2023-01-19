@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Candle : MonoBehaviour, IFlammable
 {
@@ -12,10 +13,16 @@ public class Candle : MonoBehaviour, IFlammable
         get => lightSource;
         set {}
     }
+    public List<GameObject> LightVolumes
+    {
+        get => lightVolumes; 
+        set {}
+    }
     public bool IsOnFire { get; set; }
 
     [SerializeField] private ParticleSystem firePS;
     [SerializeField] private Light lightSource;
+    [SerializeField] private List<GameObject> lightVolumes;
 
     private void Start() => Extinguish();
 
@@ -33,6 +40,7 @@ public class Candle : MonoBehaviour, IFlammable
     {
         FirePS.Play();
         LightSource.enabled = true;
+        LightVolumes.ForEach(ctx => ctx.SetActive(true));
         IsOnFire = true;
     }
 
@@ -40,6 +48,7 @@ public class Candle : MonoBehaviour, IFlammable
     {
         FirePS.Stop();
         LightSource.enabled = false;
+        LightVolumes.ForEach(ctx => ctx.SetActive(false));
         IsOnFire = false;
     }
 }

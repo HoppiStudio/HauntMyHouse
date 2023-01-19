@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Matchstick2 : MonoBehaviour, IFlammable
@@ -13,10 +14,17 @@ public class Matchstick2 : MonoBehaviour, IFlammable
         get => lightSource;
         set {}
     }
+
+    public List<GameObject> LightVolumes
+    {
+        get => lightVolumes;
+        set {}
+    }
     public bool IsOnFire { get; set; }
     
     [SerializeField] private ParticleSystem firePS;
     [SerializeField] private Light lightSource;
+    [SerializeField] private List<GameObject> lightVolumes;
     [Space]
     [SerializeField] private TMP_Text debugText;
     private bool _isCollidingWithMatchbox;
@@ -63,6 +71,7 @@ public class Matchstick2 : MonoBehaviour, IFlammable
     {
         FirePS.Play();
         LightSource.enabled = true;
+        LightVolumes.ForEach(ctx => ctx.SetActive(true));
         IsOnFire = true;
     }
 
@@ -70,6 +79,7 @@ public class Matchstick2 : MonoBehaviour, IFlammable
     {
         FirePS.Stop();
         LightSource.enabled = false;
+        LightVolumes.ForEach(ctx => ctx.SetActive(false));
         IsOnFire = false;
     }
 }

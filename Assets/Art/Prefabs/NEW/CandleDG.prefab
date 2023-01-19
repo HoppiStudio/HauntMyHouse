@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &122114418441644066
 Transform:
   m_ObjectHideFlags: 0
@@ -9637,7 +9637,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14fab0de6c54324468738e7b38a88207, type: 2}
+  - {fileID: -876546973899608171, guid: 97ae18f56456e864badd6796dec2d5a7, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9751,7 +9751,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 30b3672290e71d448be8a9a62aa58946, type: 3}
+  - {fileID: 2100000, guid: 766457cb64f72564bba352a521cae0a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9840,7 +9840,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e3b335670c0d09418a888d4b4cc3440, type: 2}
+  - {fileID: 2100000, guid: e7e437bbb291e8a40ab1865e61582d25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9905,6 +9905,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePS: {fileID: 122114418555035530}
   lightSource: {fileID: 8406128345426516121}
+  lightVolumes:
+  - {fileID: 8406128344437399931}
+  - {fileID: 8406128346231212765}
 --- !u!114 &2180394922679747917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10358,6 +10361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8406128345426516126}
   - component: {fileID: 8406128345426516121}
+  - component: {fileID: 8406128345280588103}
   m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
@@ -10442,6 +10446,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &8406128345280588103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406128345426516127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &8406128345988639418
 GameObject:
   m_ObjectHideFlags: 0
