@@ -5,11 +5,10 @@ using UnityEngine;
 public class BanishManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> candles = new List<GameObject>();
-
     [SerializeField] private int numberOfCandles = 0;
     [SerializeField] private int candlesOnPodiums = 0;
 
-    static public BanishManager Instance { get; private set; }
+    public static BanishManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -44,10 +43,5 @@ public class BanishManager : MonoBehaviour
     {
         candlesOnPodiums--;
         Debug.Log("Candle removed");
-    }
-
-    void Update()
-    {
-        
     }
 }

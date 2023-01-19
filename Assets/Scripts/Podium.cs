@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Podium : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Candle"))
+        if(other.GetComponent<Candle>())
         {
             BanishManager.Instance.OnCandlePlaced();
         }
@@ -14,7 +12,7 @@ public class Podium : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Candle"))
+        if(other.GetComponent<Candle>())
         {
             BanishManager.Instance.OnCandleRemoved();
         }

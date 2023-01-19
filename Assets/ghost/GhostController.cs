@@ -1,37 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum GhostState
 {
-    PASSIVE,
-    AGGRESIVE,
+    Passive,
+    Aggresive,
 }
 
 public class GhostController : MonoBehaviour
 {
     [SerializeField] private GhostState state;
-
     [SerializeField] private GameObject target;
-
     [SerializeField] private float speed = 10f;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
         //this.transform.LookAt(target.transform.position, Vector3.up);
 
-        if(state == GhostState.PASSIVE)
+        if(state == GhostState.Passive)
         {
-            this.transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime);
+            transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime);
         }
-        else if(state == GhostState.AGGRESIVE)
+        else if(state == GhostState.Aggresive)
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, speed / 10 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime);
         }
     }
 }
