@@ -1,15 +1,16 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BanishManager : MonoBehaviour
 {
+    public event Action OnGhostBanished; 
     public static BanishManager Instance { get; private set; }
     public int CandlesPlaced => _candlesOnPodiums;
     public int CandlesLit => _candlesLit;
 
     [SerializeField] private List<Podium> podiums;
     [SerializeField] private List<Candle> candles;
-    private int _numberOfCandles;
     private int _candlesOnPodiums;
     private int _candlesLit;
 
@@ -44,7 +45,6 @@ public class BanishManager : MonoBehaviour
 
     private void Start()
     {
-        _numberOfCandles = candles.Count;
         if (podiums.Count == 0)
         {
             Debug.LogError("BanishManager is missing podium references in it's inspector!");
@@ -63,10 +63,10 @@ public class BanishManager : MonoBehaviour
             _candlesOnPodiums++;
         }
 
-        if(_candlesOnPodiums == _numberOfCandles)
+        if(_candlesOnPodiums == candles.Count && _candlesLit == candles.Count)
         {
-            Debug.Log("All candles placed");
-            // banish ghost
+            OnGhostBanished?.Invoke();
+            Destroy(FindObjectOfType<GhostController>().gameObject);
         }
     }
     
@@ -83,6 +83,12 @@ public class BanishManager : MonoBehaviour
         if (_candlesLit >= 0)
         {
             _candlesLit++;
+        }
+        
+        if(_candlesOnPodiums == candles.Count && _candlesLit == candles.Count)
+        {
+            OnGhostBanished?.Invoke();
+            Destroy(FindObjectOfType<GhostController>().gameObject);
         }
     }
 

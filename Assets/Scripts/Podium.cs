@@ -5,8 +5,26 @@ public class Podium : MonoBehaviour
 {
     public event Action OnCandlePlaced;
     public event Action OnCandleRemoved;
-    
+
+    private Candle _candleInRange;
+    private bool _isCandleInRange;
     private bool _isOccupied;
+
+    private void Update()
+    {
+        if (_isCandleInRange && !_isOccupied)
+        {
+            if (OVRInput.GetUp(OVRInput.Button.Any))
+            {
+                _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.originalColour;
+                _candleInRange.transform.position = transform.position + Vector3.up * 1.04f;
+                _candleInRange.transform.rotation = transform.rotation * Quaternion.LookRotation(Vector3.up);
+                _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                OnCandlePlaced?.Invoke();
+                _isOccupied = true;
+            }
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -14,16 +32,8 @@ public class Podium : MonoBehaviour
         {
             var candle = other.GetComponent<Candle>();
             candle.GetComponent<MeshRenderer>().material.color = Color.green;
-            
-            if (OVRInput.GetUp(OVRInput.Button.Any))
-            {
-                candle.GetComponent<MeshRenderer>().material.color = candle.originalColour;
-                candle.transform.position = transform.position + Vector3.up * 1.04f;
-                candle.transform.rotation = transform.rotation * Quaternion.LookRotation(Vector3.up);
-                candle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                OnCandlePlaced?.Invoke();
-                _isOccupied = true;
-            }
+            _candleInRange = candle;
+            _isCandleInRange = true;
         }
     }
 
@@ -41,6 +51,7 @@ public class Podium : MonoBehaviour
                  OnCandleRemoved?.Invoke();
                  _isOccupied = false;*/
             }
+            _isCandleInRange = false;
         }
     }
 }
