@@ -29,13 +29,15 @@ public class Matchstick2 : MonoBehaviour, IFlammable
     [SerializeField] private TMP_Text debugText;
     private bool _isCollidingWithMatchbox;
 
-    private void Start() => Extinguish();
+    private void Start()
+    {
+        Extinguish();
+        debugText.text = "";
+    }
 
     private void Update()
     {
         if(!_isCollidingWithMatchbox) { return; }
-        
-        debugText.text = "Press A to light the match";
 
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
@@ -48,14 +50,18 @@ public class Matchstick2 : MonoBehaviour, IFlammable
     {
         if (other.GetComponent<Matchbox>() != null && !IsOnFire)
         {
+            debugText.text = "Press A to light the match";
             _isCollidingWithMatchbox = true;
         }
         
-        // Set fire to other flammable objects if this one is on fire
-        if (other.GetComponent<IFlammable>() != null && IsOnFire)
+        if (other.GetComponent<IFlammable>() != null)
         {
-            var flammable = other.GetComponent<IFlammable>();
-            flammable.Ignite();
+            // If this object is on fire, ignite other flammable objects (if not already on fire themselves)
+            if (!other.GetComponent<IFlammable>().IsOnFire && IsOnFire)
+            {
+                var flammable = other.GetComponent<IFlammable>();
+                flammable.Ignite();
+            }
         }
     }
 
@@ -63,6 +69,7 @@ public class Matchstick2 : MonoBehaviour, IFlammable
     {
         if (other.GetComponent<Matchbox>() != null)
         {
+            debugText.text = "";
             _isCollidingWithMatchbox = false;
         }
     }

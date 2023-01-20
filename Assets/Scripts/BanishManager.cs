@@ -1,14 +1,33 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BanishManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> candles = new List<GameObject>();
-    [SerializeField] private int numberOfCandles = 0;
-    [SerializeField] private int candlesOnPodiums = 0;
-
     public static BanishManager Instance { get; private set; }
+    public int CandlesPlaced => _candlesOnPodiums;
+    public int CandlesLit => _candlesLit;
+
+    [SerializeField] private List<Podium> podiums;
+    [SerializeField] private List<Candle> candles;
+    private int _numberOfCandles;
+    private int _candlesOnPodiums;
+    private int _candlesLit;
+
+    private void OnEnable()
+    {
+        podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlaced);
+        podiums.ForEach(podium => podium.OnCandleRemoved += OnCandleRemoved);
+        candles.ForEach(candle => candle.OnCandleLit += OnCandleLit);
+        candles.ForEach(candle => candle.OnCandleUnlit += OnCandleUnlit);
+    }
+
+    private void OnDisable()
+    { 
+        podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlaced);
+        podiums.ForEach(podium => podium.OnCandleRemoved -= OnCandleRemoved);
+        candles.ForEach(candle => candle.OnCandleLit -= OnCandleLit);
+        candles.ForEach(candle => candle.OnCandleUnlit -= OnCandleUnlit);
+    }
 
     private void Awake()
     {
@@ -19,29 +38,59 @@ public class BanishManager : MonoBehaviour
         else
         {
             Destroy(this);
-            Debug.LogWarning($"There should only be one instance of {this.GetType()} in the scene");
+            Debug.LogWarning($"There should only be one instance of {GetType()} in the scene");
         }
     }
 
-    void Start()
+    private void Start()
     {
-        numberOfCandles = candles.Count;
+        _numberOfCandles = candles.Count;
+        if (podiums.Count == 0)
+        {
+            Debug.LogError("BanishManager is missing podium references in it's inspector!");
+        }
+        if (candles.Count == 0)
+        {
+            Debug.LogError("BanishManager is missing candle references in it's inspector!");
+        }
     }
 
     public void OnCandlePlaced()
-    {
-        candlesOnPodiums++;
-        Debug.Log("Candle placed");
+    { 
+        if (_candlesOnPodiums >= 0)
+        {
+            Debug.Log("Candle placed");
+            _candlesOnPodiums++;
+        }
 
-        if(candlesOnPodiums == numberOfCandles)
+        if(_candlesOnPodiums == _numberOfCandles)
         {
             Debug.Log("All candles placed");
+            // banish ghost
+        }
+    }
+    
+    public void OnCandleRemoved()
+    {
+        if (_candlesOnPodiums > 0)
+        {
+            _candlesOnPodiums--;
+        }
+    }
+    
+    private void OnCandleLit()
+    {
+        if (_candlesLit >= 0)
+        {
+            _candlesLit++;
         }
     }
 
-    public void OnCandleRemoved()
+    private void OnCandleUnlit()
     {
-        candlesOnPodiums--;
-        Debug.Log("Candle removed");
+        if (_candlesLit > 0)
+        {
+            _candlesLit--;
+        }
     }
 }
