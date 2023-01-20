@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using AiDirector.RulesSystem.Rules.IntensityRules;
 using AiDirector.Scripts.RulesSystem.Interfaces;
 using AiDirector.Scripts.RulesSystem.RuleEngine;
-using AiDirector.Scripts.RulesSystem.Rules.IntensityRules;
 
 namespace AiDirector.Scripts.RulesSystem.RuleCalculators
 {
@@ -12,7 +12,7 @@ namespace AiDirector.Scripts.RulesSystem.RuleCalculators
      *
      * [Note]
      * After creating a rule, make sure to add it to the rules list in the constructor below
-     * so that it is utilised.
+     * so that it is utilised in the intensity calculation.
      */
     public class DirectorIntensityCalculator 
     {
@@ -22,7 +22,7 @@ namespace AiDirector.Scripts.RulesSystem.RuleCalculators
         {
             _rules = new List<IDirectorIntensityRule>
             {
-                new ExampleIntensityRule()
+                new PassiveHauntIncreaseRule()
             };
         }
         

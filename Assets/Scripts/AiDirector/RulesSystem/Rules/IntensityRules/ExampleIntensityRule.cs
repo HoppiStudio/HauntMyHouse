@@ -1,17 +1,18 @@
+using AiDirector.Scripts;
 using AiDirector.Scripts.RulesSystem.Interfaces;
-using UnityEngine;
 
-namespace AiDirector.Scripts.RulesSystem.Rules.IntensityRules
+namespace AiDirector.RulesSystem.Rules.IntensityRules
 {
     /*
      * Define your Intensity Rules like this
      * Each Intensity rule returns an intensity value
+     * Make sure to add your intensity rule to the DirectorIntensityCalculator script
      */
     public class ExampleIntensityRule : IDirectorIntensityRule
     {
         public float CalculatePerceivedIntensity(Director director)
         {
-            return 0.1f;
+            return 0; // Should return a value greater than zero. 
         }
     }
 }

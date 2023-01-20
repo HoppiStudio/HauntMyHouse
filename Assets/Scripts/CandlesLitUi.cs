@@ -7,5 +7,5 @@ public class CandlesLitUi : MonoBehaviour
 
     private void Awake() => _candlesLitText = GetComponent<TMP_Text>();
     private void Start() => _candlesLitText.text = "Candles Lit: <color=yellow>0</color>";
-    private void Update() => _candlesLitText.text = $"Candles Lit: <color=red>{BanishManager.Instance.CandlesLit}</color>";
+    private void Update() => _candlesLitText.text = $"Candles Lit: <color=yellow>{BanishManager.Instance.CandlesLit}</color>";
 }

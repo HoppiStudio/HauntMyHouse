@@ -1,4 +1,5 @@
-﻿using AiDirector.Scripts;
+﻿using AiDirector;
+using AiDirector.Scripts;
 using UnityEngine;
 
 public class DirectorPeakState : IState

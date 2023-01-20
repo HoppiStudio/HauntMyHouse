@@ -16,18 +16,18 @@ public class BanishManager : MonoBehaviour
 
     private void OnEnable()
     {
-        podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlaced);
-        podiums.ForEach(podium => podium.OnCandleRemoved += OnCandleRemoved);
-        candles.ForEach(candle => candle.OnCandleLit += OnCandleLit);
-        candles.ForEach(candle => candle.OnCandleUnlit += OnCandleUnlit);
+        podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlacedEvent);
+        podiums.ForEach(podium => podium.OnCandleRemoved += OnCandleRemovedEvent);
+        candles.ForEach(candle => candle.OnCandleLit += OnCandleLitEvent);
+        candles.ForEach(candle => candle.OnCandleUnlit += OnCandleUnlitEvent);
     }
 
     private void OnDisable()
-    { 
-        podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlaced);
-        podiums.ForEach(podium => podium.OnCandleRemoved -= OnCandleRemoved);
-        candles.ForEach(candle => candle.OnCandleLit -= OnCandleLit);
-        candles.ForEach(candle => candle.OnCandleUnlit -= OnCandleUnlit);
+    {
+        podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlacedEvent);
+        podiums.ForEach(podium => podium.OnCandleRemoved -= OnCandleRemovedEvent);
+        candles.ForEach(candle => candle.OnCandleLit -= OnCandleLitEvent);
+        candles.ForEach(candle => candle.OnCandleUnlit -= OnCandleUnlitEvent);
     }
 
     private void Awake()
@@ -55,7 +55,7 @@ public class BanishManager : MonoBehaviour
         }
     }
 
-    public void OnCandlePlaced()
+    public void OnCandlePlacedEvent()
     { 
         if (_candlesOnPodiums >= 0)
         {
@@ -70,7 +70,7 @@ public class BanishManager : MonoBehaviour
         }
     }
     
-    public void OnCandleRemoved()
+    public void OnCandleRemovedEvent()
     {
         if (_candlesOnPodiums > 0)
         {
@@ -78,7 +78,7 @@ public class BanishManager : MonoBehaviour
         }
     }
     
-    private void OnCandleLit()
+    private void OnCandleLitEvent()
     {
         if (_candlesLit >= 0)
         {
@@ -92,7 +92,7 @@ public class BanishManager : MonoBehaviour
         }
     }
 
-    private void OnCandleUnlit()
+    private void OnCandleUnlitEvent()
     {
         if (_candlesLit > 0)
         {
