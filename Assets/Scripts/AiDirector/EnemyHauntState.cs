@@ -1,11 +1,11 @@
 ﻿using Enemies;
 
-public class EnemyIdleState : IState
+public class EnemyHauntState : IState
 {
     private Enemy _enemy;
     private StateMachine _stateMachine;
     
-    public EnemyIdleState(Enemy enemy, StateMachine stateMachine)
+    public EnemyHauntState(Enemy enemy, StateMachine stateMachine)
     {
         _enemy = enemy;
         _stateMachine = stateMachine;
