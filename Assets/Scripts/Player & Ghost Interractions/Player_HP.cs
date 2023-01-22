@@ -29,9 +29,16 @@ public class Player_HP : MonoBehaviour, IDamageable
         HP = 3;
     }
 
+    //Bool
+    private bool Is_Damageable_Now = true;
     public void Rechieve_Damage() //For damageable
     {
-        this.HP--;
+        if(Is_Damageable_Now == true)
+        {
+            Is_Damageable_Now = false;
+            StartCoroutine(Damage_Player());
+        }
+        
     }
 
     void Update()
@@ -61,8 +68,18 @@ public class Player_HP : MonoBehaviour, IDamageable
         }
         if (this.HP == 0)
         {
+            HP_Sprite_1.sprite = Lost_HP_Icon;
+            HP_Sprite_2.sprite = Lost_HP_Icon;
+            HP_Sprite_3.sprite = Lost_HP_Icon;
             //Lose State
         }
     }
 
+
+    IEnumerator Damage_Player()
+    {
+        this.HP--;
+        yield return new WaitForSeconds(3f);
+        Is_Damageable_Now = true;
+    }
 }
