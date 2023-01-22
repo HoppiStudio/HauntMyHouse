@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Ghost_Damage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnCollisionEnter(Collision collision)
     {
-        
-    }
+        if (collision.gameObject.tag == "Player")
+        {
+            var Player_HP = collision.gameObject.GetComponent<IDamageable>();
+            Player_HP.Rechieve_Damage();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
