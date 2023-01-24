@@ -644,8 +644,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278255410
+  m_fontColor: {r: 0.19723403, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -827,7 +827,7 @@ PrefabInstance:
     - target: {fileID: 2326460627763883299, guid: 2c53823fc4b1d9041a3b4ee94d7bcc9d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.045005545
+      value: -0.479782
       objectReference: {fileID: 0}
     - target: {fileID: 2326460627763883299, guid: 2c53823fc4b1d9041a3b4ee94d7bcc9d,
         type: 3}
@@ -1897,7 +1897,7 @@ PrefabInstance:
     - target: {fileID: 2326460627763883299, guid: 2c53823fc4b1d9041a3b4ee94d7bcc9d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.4802155
+      value: -0.479782
       objectReference: {fileID: 0}
     - target: {fileID: 2326460627763883299, guid: 2c53823fc4b1d9041a3b4ee94d7bcc9d,
         type: 3}
@@ -5966,11 +5966,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CandleDG
-      objectReference: {fileID: 0}
-    - target: {fileID: 8406128344745744299, guid: 61ed8570cd38f0d4880bcb3e79dbe1ea,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
