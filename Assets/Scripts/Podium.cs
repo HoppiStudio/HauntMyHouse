@@ -7,8 +7,11 @@ public class Podium : MonoBehaviour
     public event Action OnCandleRemoved;
 
     private Candle _candleInRange;
+    private float _groundOffset;
     private bool _isCandleInRange;
     private bool _isOccupied;
+
+    private void Start() => _groundOffset = 1.06f;
 
     private void Update()
     {
@@ -17,8 +20,8 @@ public class Podium : MonoBehaviour
             if (OVRInput.GetUp(OVRInput.Button.Any))
             {
                 _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.originalColour;
-                _candleInRange.transform.position = transform.position + Vector3.up * 1.04f;
-                _candleInRange.transform.rotation = transform.rotation * Quaternion.LookRotation(Vector3.up);
+                _candleInRange.transform.position = transform.position + Vector3.up * _groundOffset;
+                _candleInRange.transform.rotation = transform.rotation; /** Quaternion.LookRotation(Vector3.up);*/
                 _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 OnCandlePlaced?.Invoke();
                 _isOccupied = true;
