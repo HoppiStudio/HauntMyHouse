@@ -10,6 +10,7 @@ public class Ghost_Damage : MonoBehaviour
         {
             var Player_HP = collision.gameObject.GetComponent<IDamageable>();
             Player_HP.Rechieve_Damage();
+            Destroy(this.gameObject);
         }
 
     }

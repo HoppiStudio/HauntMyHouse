@@ -36,6 +36,6 @@ public class DirectorUi : MonoBehaviour
     
     private void UpdateDeathTextOnPeakIntensityReachedEvent()
     {
-        deathText.text = "Haunt Threshold Reached. <color=red>You Are Dead</color>.";
+        deathText.text = "Haunt Threshold Reached.";
     }
 }
