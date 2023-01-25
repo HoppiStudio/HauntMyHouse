@@ -62,7 +62,7 @@ public class GhostController : MonoBehaviour
         {
             if (state_randomizer < 3)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime * 3f);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime * 5f);
                 if (counter ==0 && sound_randomizer == 1)
                 {
                     counter++;
@@ -72,7 +72,8 @@ public class GhostController : MonoBehaviour
             }
             else
             {
-                transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime * randomized_int);
+                int randomized_int_2 = UnityEngine.Random.Range(-3, 3);
+                transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime * randomized_int_2);
             }
 
 
