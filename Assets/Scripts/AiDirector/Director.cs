@@ -21,7 +21,7 @@ namespace AiDirector.Scripts
         [SerializeField] private Difficulty difficulty;
         private Dictionary<Difficulty, float> _intensityModifierDict;
 
-        [Header("INTENSITY")] [SerializeField] private float intensityCalculationRate = 1.0f;
+        [Header("INTENSITY")] [SerializeField] private float intensityCalculationRate = 0.5f;
 
         [Header("TEMPO")] [SerializeField] [Range(70, 100)]
         private int peakIntensityThreshold;

@@ -5169,7 +5169,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6886792, g: 0.030232195, b: 0.01732521, a: 0.5019608}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9987,7 +9987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d489cb1c8f3432cb501cfffca8c7689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalColour: {r: 0, g: 0, b: 0, a: 0}
+  originalCandleColour: {r: 0, g: 0, b: 0, a: 0}
+  flameColour: 0
   firePS: {fileID: 122114418555035530}
   lightSource: {fileID: 8406128345426516121}
   lightVolumes:
@@ -10479,8 +10480,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.7499852, b: 0.0141509175, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.1
   m_Range: 1.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
