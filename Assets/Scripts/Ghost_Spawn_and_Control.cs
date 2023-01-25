@@ -1,0 +1,150 @@
+using AiDirector.Scripts;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
+//using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+
+public class Ghost_Spawn_and_Control : MonoBehaviour
+{    
+    //Ghost Spawns
+    [SerializeField] private GameObject Ghost;
+
+    //Player Location
+    [SerializeField] private GameObject Player_Location;
+
+    //Wawe
+    private bool First_Wawe_Came = false;
+    private bool Secound_Wawe_Came = false;
+    private bool Third_Wawe_Came = false;
+
+    //End
+    [SerializeField]private AudioClip End_Clip;
+
+    //Counter
+    private int Counter = 0;
+
+    void Update()
+    {
+        //Intensity
+        float current_intensity = Director.Instance.GetPerceivedIntensity();
+
+        if (current_intensity > 10 && First_Wawe_Came == false)
+        {
+            First_Wawe_Came = true;
+            Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+        }
+
+        if (current_intensity > 60 && Counter == 0)
+        {
+            Counter++;
+
+            GhostController[] Found_Ghosts = FindObjectsOfType<GhostController>();
+
+            if(Found_Ghosts != null)
+            {
+                for(int i = 0; i < Found_Ghosts.Length; i++)
+                {
+                    Found_Ghosts[i].state = GhostState.Aggresive;
+                }
+            }
+
+        }
+
+        if (current_intensity > 70 && Secound_Wawe_Came == false)
+        {
+            Secound_Wawe_Came = true;
+            Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+        }
+
+        if (current_intensity > 80 && Counter == 1)
+        {
+            Counter++;
+
+            GhostController[] Found_Ghosts = FindObjectsOfType<GhostController>();
+
+            if (Found_Ghosts != null)
+            {
+                for (int i = 0; i < Found_Ghosts.Length; i++)
+                {
+                    Found_Ghosts[i].state = GhostState.Aggresive;
+                }
+            }
+
+        }
+
+        if (current_intensity > 90 && Third_Wawe_Came == false)
+        {
+            Third_Wawe_Came = true;
+            Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+        }
+
+
+        if (current_intensity > 99 && Counter == 2)
+        {
+            Counter++;
+
+            GhostController[] Found_Ghosts = FindObjectsOfType<GhostController>();
+
+            if (Found_Ghosts != null)
+            {
+                for (int i = 0; i < Found_Ghosts.Length; i++)
+                {
+                    Found_Ghosts[i].state = GhostState.Aggresive;
+                }
+            }
+
+        }
+
+
+        Player_HP PLAYERHP = FindObjectOfType<Player_HP>();
+
+        if(PLAYERHP.HP <= 0 && End_State_Reched == false)
+        {
+            End_State_Reched = true;
+            End_State();
+
+
+            AudioSource Backtorund_AudioSource = GameObject.Find("Background Sound").GetComponent<AudioSource>();
+            Backtorund_AudioSource.PlayOneShot(End_Clip);
+        }
+
+    }
+
+    private bool End_State_Reched = false;
+    public Vector3 Randomized_Start_Location()
+    {
+        int X_Randomized = Random.Range(-15, 15);
+        int Z_Randomized = Random.Range(-15, 15);
+        return (new Vector3(Player_Location.transform.position.x + X_Randomized, Player_Location.transform.position.y - 1, Player_Location.transform.position.z + Z_Randomized));
+    }
+
+    public void End_State()
+    {
+        for(int i = 0; i < 25; i++)
+        {
+            var x = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+            x.GetComponent<AudioSource>().mute = true;
+        }
+        StartCoroutine(Attack_Player());
+
+    }
+
+    IEnumerator Attack_Player() {
+        yield return new WaitForSeconds(6f);
+
+
+        GhostController[] Found_Ghosts = FindObjectsOfType<GhostController>();
+        if (Found_Ghosts != null)
+        {
+            for (int i = 0; i < Found_Ghosts.Length; i++)
+            {
+                Found_Ghosts[i].state = GhostState.Aggresive;
+            }
+        }
+
+        yield return new WaitForSeconds(4f);
+        Application.Quit();
+    }
+}
