@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+//using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Ghost_Spawn_and_Control : MonoBehaviour
 {    
@@ -97,8 +97,8 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
 
     public Vector3 Randomized_Start_Location()
     {
-        int X_Randomized = Random.Range(5, 25);
-        int Z_Randomized = Random.Range(5, 25);
+        int X_Randomized = Random.Range(5, 15);
+        int Z_Randomized = Random.Range(5, 15);
         return (new Vector3(Player_Location.transform.position.x + X_Randomized, Player_Location.transform.position.y, Player_Location.transform.position.z + Z_Randomized));
     }
 }

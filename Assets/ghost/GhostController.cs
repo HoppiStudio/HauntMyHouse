@@ -1,4 +1,6 @@
 using AiDirector.Scripts;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public enum GhostState
@@ -18,33 +20,56 @@ public class GhostController : MonoBehaviour
     [SerializeField] private AudioClip Stunned_Voice;
     [SerializeField] private AudioClip Normal_Voice;
 
+    [NonSerialized] private Renderer Renderer;
     private void Start()
     {
         target = GameObject.Find("PlayerController");
+        Renderer = this.GetComponent<Renderer>();
     }
     void Update()
     {
         //this.transform.LookAt(target.transform.position, Vector3.up);
-        int randomized_int = Random.Range(0, 2);
-        int sound_randomizer = Random.Range(0, 2);
+        int randomized_int = UnityEngine.Random.Range(-1, 1);
+        int state_randomizer = UnityEngine.Random.Range(0, 5);
+        int sound_randomizer = UnityEngine.Random.Range(0, 2);
 
         if (state == GhostState.Passive)
         {
-            transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime * randomized_int);
-
-            if(this.GetComponent<AudioSource>().isPlaying == false && sound_randomizer == 1)
+            if(state_randomizer < 3)
             {
-                this.GetComponent<AudioSource>().PlayOneShot(Normal_Voice);
-            }
+                transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime * randomized_int);
 
+                if (this.GetComponent<AudioSource>().isPlaying == false && sound_randomizer == 1)
+                {
+                    this.GetComponent<AudioSource>().PlayOneShot(Normal_Voice);
+                }
+                Renderer.material.SetColor("_Color", Color.green);
+            }
+            else
+            {
+                int movement_randomizer_towards = UnityEngine.Random.Range(-1, +1);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime * movement_randomizer_towards);
+            }
+          
         }
         else if(state == GhostState.Aggresive)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime * 0.5f);
-            if (this.GetComponent<AudioSource>().isPlaying == false && sound_randomizer == 1)
+            if (state_randomizer < 3)
             {
-                this.GetComponent<AudioSource>().PlayOneShot(Attack_Voice);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime * 1f);
+                if (this.GetComponent<AudioSource>().isPlaying == false && sound_randomizer == 1)
+                {
+                    this.GetComponent<AudioSource>().PlayOneShot(Attack_Voice);
+                }
+                Renderer.material.SetColor("_Color", Color.red);
             }
+            else
+            {
+                transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime * randomized_int);
+            }
+
+
+            StartCoroutine(Rotate_Around_Randomly());   
         }
         else if(state == GhostState.Scared)
         {
@@ -52,6 +77,29 @@ public class GhostController : MonoBehaviour
             {
                 this.GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
             }
+            Renderer.material.SetColor("_Color", Color.yellow);
+        }
+
+        this.transform.LookAt(target.transform.position);
+    }
+
+    IEnumerator Rotate_Around_Randomly()
+    {
+        int randomized_int = UnityEngine.Random.Range(-1, 1);
+        yield return new WaitForSeconds(0.2f);
+        transform.RotateAround(target.transform.position, Vector3.up, speed * Time.deltaTime * randomized_int);
+    }
+
+
+    IEnumerator Go_Towards_Backwards_Randomly()
+    {
+        int randomized_int = UnityEngine.Random.Range(-1, 1);
+        int movement_randomizer_towards = UnityEngine.Random.Range(-10, +10);
+        yield return new WaitForSeconds(0.2f);
+        if (randomized_int < 5)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed / 10 * Time.deltaTime * movement_randomizer_towards);
+
         }
     }
 }
