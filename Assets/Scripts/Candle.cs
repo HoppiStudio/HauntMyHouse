@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Candle : MonoBehaviour, IFlammable
 {
-    public event Action OnCandleLit;
-    public event Action OnCandleUnlit;
+    //public event Action OnCandleLit;
+    //public event Action OnCandleUnlit;
 
     public ParticleSystem FirePS
     {
@@ -73,7 +72,10 @@ public class Candle : MonoBehaviour, IFlammable
     private void Start()
     {
         originalCandleColour = GetComponent<MeshRenderer>().material.color;
-        Extinguish();
+        FirePS.Stop();
+        LightSource.enabled = false;
+        LightVolumes.ForEach(ctx => ctx.SetActive(false));
+        //Extinguish();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,7 +97,8 @@ public class Candle : MonoBehaviour, IFlammable
         LightSource.enabled = true;
         LightVolumes.ForEach(ctx => ctx.SetActive(true));
         IsOnFire = true;
-        OnCandleLit?.Invoke();
+        BanishManager.Instance.OnCandleLitEvent(); // TODO: Tidy this
+        //OnCandleLit?.Invoke();
     }
 
     public void Extinguish()
@@ -104,6 +107,7 @@ public class Candle : MonoBehaviour, IFlammable
         LightSource.enabled = false;
         LightVolumes.ForEach(ctx => ctx.SetActive(false));
         IsOnFire = false;
-        OnCandleUnlit?.Invoke();
+        BanishManager.Instance.OnCandleUnlitEvent(); // TODO: Tidy this
+        //OnCandleUnlit?.Invoke();
     }
 }

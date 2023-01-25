@@ -15,8 +15,11 @@ public enum PodiumColour
 public class Podium : MonoBehaviour
 {
     public event Action OnCandlePlaced;
-    public event Action OnCandleRemoved;
+    //public event Action OnCandleRemoved;
+    //public bool HasCandle => _isOccupied;
+    public Candle HasCandle => _candleInRange;
 
+    [SerializeField] private Candle placedCandle;
     [SerializeField] private PodiumColour podiumColour;
     [SerializeField] private List<SpriteRenderer> flameIconSprite;
     private Candle _candleInRange;
@@ -52,7 +55,17 @@ public class Podium : MonoBehaviour
         }
     }
 
-    private void Start() => _groundOffset = 1.06f;
+    private void Start()
+    {
+        _groundOffset = 1.06f;
+        
+        if (placedCandle != null)
+        {
+            placedCandle.Ignite();
+            _candleInRange = placedCandle;
+            PlaceCandleOnPodium();
+        }
+    }
 
     private void Update()
     {
@@ -60,12 +73,7 @@ public class Podium : MonoBehaviour
         {
             if (OVRInput.GetUp(OVRInput.Button.Any))
             {
-                _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.originalCandleColour;
-                _candleInRange.transform.position = transform.position + Vector3.up * _groundOffset;
-                _candleInRange.transform.rotation = transform.rotation;
-                _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                OnCandlePlaced?.Invoke();
-                _isOccupied = true;
+                PlaceCandleOnPodium();
             }
         }
     }
@@ -97,5 +105,16 @@ public class Podium : MonoBehaviour
             }
             _isCandleInRange = false;
         }
+    }
+    
+    private void PlaceCandleOnPodium()
+    {
+        _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.originalCandleColour;
+        _candleInRange.transform.position = transform.position + Vector3.up * _groundOffset;
+        _candleInRange.transform.rotation = transform.rotation;
+        _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        OnCandlePlaced?.Invoke();
+        placedCandle = _candleInRange;
+        _isOccupied = true;
     }
 }

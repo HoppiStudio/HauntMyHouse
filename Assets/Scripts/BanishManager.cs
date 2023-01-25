@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BanishManager : MonoBehaviour
@@ -7,27 +8,27 @@ public class BanishManager : MonoBehaviour
     public event Action OnGhostBanished; 
     public static BanishManager Instance { get; private set; }
     public int CandlesPlaced => _candlesOnPodiums;
-    public int CandlesLit => _candlesLit;
-
-    [SerializeField] private List<Podium> podiums;
-    [SerializeField] private List<Candle> candles;
+    public List<Candle> Candles { get; set; }
+    
+    private List<Podium> _podiums = new();
     private int _candlesOnPodiums;
     private int _candlesLit;
+    private bool _ghostsBanished;
 
     private void OnEnable()
     {
-        podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlacedEvent);
-        podiums.ForEach(podium => podium.OnCandleRemoved += OnCandleRemovedEvent);
-        candles.ForEach(candle => candle.OnCandleLit += OnCandleLitEvent);
-        candles.ForEach(candle => candle.OnCandleUnlit += OnCandleUnlitEvent);
+        _podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlacedEvent);
+        //podiums.ForEach(podium => podium.OnCandleRemoved += OnCandleRemovedEvent);
+        //Candles.ForEach(candle => candle.OnCandleLit += OnCandleLitEvent);
+        //Candles.ForEach(candle => candle.OnCandleUnlit += OnCandleUnlitEvent);
     }
 
     private void OnDisable()
     {
-        podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlacedEvent);
-        podiums.ForEach(podium => podium.OnCandleRemoved -= OnCandleRemovedEvent);
-        candles.ForEach(candle => candle.OnCandleLit -= OnCandleLitEvent);
-        candles.ForEach(candle => candle.OnCandleUnlit -= OnCandleUnlitEvent);
+        _podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlacedEvent);
+        //podiums.ForEach(podium => podium.OnCandleRemoved -= OnCandleRemovedEvent);
+        //Candles.ForEach(candle => candle.OnCandleLit -= OnCandleLitEvent);
+        //Candles.ForEach(candle => candle.OnCandleUnlit -= OnCandleUnlitEvent);
     }
 
     private void Awake()
@@ -41,17 +42,32 @@ public class BanishManager : MonoBehaviour
             Destroy(this);
             Debug.LogWarning($"There should only be one instance of {GetType()} in the scene");
         }
+        
+        Candles = new List<Candle>();
+        Candles.AddRange(FindObjectsOfType<Candle>());
+        _podiums.AddRange(FindObjectsOfType<Podium>());
     }
 
     private void Start()
     {
-        if (podiums.Count == 0)
+        if (_podiums.Count == 0)
         {
             Debug.LogError("BanishManager is missing podium references in it's inspector!");
         }
-        if (candles.Count == 0)
+        if (Candles.Count == 0)
         {
             Debug.LogError("BanishManager is missing candle references in it's inspector!");
+        }
+    }
+
+    private void Update()
+    {
+        // TODO: Tidy this
+        if(_podiums.Count(podium => podium.HasCandle.IsOnFire) >= _podiums.Count && !_ghostsBanished)
+        {
+            OnGhostBanished?.Invoke();
+            Destroy(FindObjectOfType<GhostController>().gameObject);
+            _ghostsBanished = true;
         }
     }
 
@@ -62,12 +78,6 @@ public class BanishManager : MonoBehaviour
             Debug.Log("Candle placed");
             _candlesOnPodiums++;
         }
-
-        if(_candlesOnPodiums == candles.Count && _candlesLit == candles.Count)
-        {
-            OnGhostBanished?.Invoke();
-            Destroy(FindObjectOfType<GhostController>().gameObject);
-        }
     }
     
     public void OnCandleRemovedEvent()
@@ -77,22 +87,16 @@ public class BanishManager : MonoBehaviour
             _candlesOnPodiums--;
         }
     }
-    
-    private void OnCandleLitEvent()
+
+    public void OnCandleLitEvent()
     {
         if (_candlesLit >= 0)
         {
             _candlesLit++;
         }
-        
-        if(_candlesOnPodiums == candles.Count && _candlesLit == candles.Count)
-        {
-            OnGhostBanished?.Invoke();
-            Destroy(FindObjectOfType<GhostController>().gameObject);
-        }
     }
 
-    private void OnCandleUnlitEvent()
+    public void OnCandleUnlitEvent()
     {
         if (_candlesLit > 0)
         {
