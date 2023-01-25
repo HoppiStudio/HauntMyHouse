@@ -97,8 +97,8 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
 
     public Vector3 Randomized_Start_Location()
     {
-        int X_Randomized = Random.Range(5, 15);
-        int Z_Randomized = Random.Range(5, 15);
-        return (new Vector3(Player_Location.transform.position.x + X_Randomized, Player_Location.transform.position.y, Player_Location.transform.position.z + Z_Randomized));
+        int X_Randomized = Random.Range(-15, 15);
+        int Z_Randomized = Random.Range(-15, 15);
+        return (new Vector3(Player_Location.transform.position.x + X_Randomized, Player_Location.transform.position.y - 1, Player_Location.transform.position.z + Z_Randomized));
     }
 }
