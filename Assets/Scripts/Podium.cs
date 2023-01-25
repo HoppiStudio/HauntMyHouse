@@ -80,12 +80,21 @@ public class Podium : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        // If podiums comes into contact with a candle and podium is not occupied
         if(other.GetComponent<Candle>() != null && !_isOccupied)
         {
-            var candle = other.GetComponent<Candle>();
-            candle.GetComponent<MeshRenderer>().material.color = Color.green;
-            _candleInRange = candle;
-            _isCandleInRange = true;
+            if (other.GetComponent<Candle>().FlameColour == (FlameColour) podiumColour) // TODO: Tidy up
+            {
+                var candle = other.GetComponent<Candle>();
+                candle.GetComponent<MeshRenderer>().material.color = Color.green;
+                _candleInRange = candle;
+                _isCandleInRange = true;
+            }
+            else
+            {
+                var candle = other.GetComponent<Candle>();
+                candle.GetComponent<MeshRenderer>().material.color = Color.red;
+            }
         }
     }
 

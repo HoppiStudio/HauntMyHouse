@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Candle : MonoBehaviour, IFlammable
@@ -46,6 +47,14 @@ public class Candle : MonoBehaviour, IFlammable
         LightSource.enabled = false;
         LightVolumes.ForEach(ctx => ctx.SetActive(false));
         //Extinguish();
+    }
+
+    private void Update()
+    {
+        if (transform.position.y <= 0.5f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

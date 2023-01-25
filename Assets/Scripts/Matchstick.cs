@@ -33,6 +33,7 @@ public class Matchstick : MonoBehaviour, IFlammable
     [Space]
     [SerializeField] private TMP_Text debugText;
     private bool _isCollidingWithMatchbox;
+    private Vector3 _startPosition;
     
     private void OnValidate()
     {
@@ -41,6 +42,7 @@ public class Matchstick : MonoBehaviour, IFlammable
 
     private void Start()
     {
+        _startPosition = transform.position;
         FlameColour = flameColour;
         debugText.text = "";
         Extinguish();
@@ -48,6 +50,11 @@ public class Matchstick : MonoBehaviour, IFlammable
 
     private void Update()
     {
+        if (transform.position.y <= 0.5f)
+        {
+            transform.position = _startPosition;
+        }
+        
         if(!_isCollidingWithMatchbox) { return; }
 
         if (OVRInput.GetDown(OVRInput.Button.One))
