@@ -71,7 +71,7 @@ public class Podium : MonoBehaviour
     {
         if (_isCandleInRange && !_isOccupied)
         {
-            if (OVRInput.GetUp(OVRInput.Button.Any))
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
             {
                 PlaceCandleOnPodium();
             }
