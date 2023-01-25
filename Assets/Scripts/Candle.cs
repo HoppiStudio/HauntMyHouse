@@ -22,16 +22,57 @@ public class Candle : MonoBehaviour, IFlammable
         get => lightVolumes; 
         set {}
     }
+    public FlameColour FlameColour
+    {
+        get => flameColour; 
+        set{}
+    }
     public bool IsOnFire { get; set; }
-    public Color originalColour;
-
+    
+    [HideInInspector] public Color originalCandleColour;
+    [SerializeField] private FlameColour flameColour;
     [SerializeField] private ParticleSystem firePS;
     [SerializeField] private Light lightSource;
     [SerializeField] private List<GameObject> lightVolumes;
 
+    private void OnValidate()
+    {
+        switch (flameColour)
+        {
+            case FlameColour.White:
+                firePS.startColor = Color.white;
+                lightSource.color = Color.white;
+                break;
+            case FlameColour.Red:
+                firePS.startColor = Color.red;
+                lightSource.color = Color.red;
+                break;
+            case FlameColour.Green:
+                firePS.startColor = Color.green;
+                lightSource.color = Color.green;
+                break;
+            case FlameColour.Blue:
+                firePS.startColor = Color.blue;
+                lightSource.color = Color.blue;
+                break;
+            case FlameColour.Orange:
+                firePS.startColor = new Color(1,0.5f,0);
+                lightSource.color = new Color(1,0.5f,0);
+                break;
+            case FlameColour.Purple:
+                firePS.startColor = new Color(0.5f, 0, 1);
+                lightSource.color = new Color(0.5f, 0, 1);
+                break;
+            default:
+                firePS.startColor = Color.white;
+                lightSource.color = Color.white;
+                break;
+        }
+    }
+
     private void Start()
     {
-        originalColour = GetComponent<MeshRenderer>().material.color;
+        originalCandleColour = GetComponent<MeshRenderer>().material.color;
         Extinguish();
     }
 
