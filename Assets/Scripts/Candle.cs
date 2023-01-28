@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Candle : MonoBehaviour, IFlammable
 {
-    //public event Action OnCandleLit;
+    public event Action OnCandleLit;
     //public event Action OnCandleUnlit;
 
     public ParticleSystem FirePS
@@ -34,20 +34,24 @@ public class Candle : MonoBehaviour, IFlammable
     [SerializeField] private ParticleSystem firePS;
     [SerializeField] private Light lightSource;
     [SerializeField] private List<GameObject> lightVolumes;
+    
+    private readonly Dictionary<FlameColour, Color> _candleFlameColourDict = new()
+    {
+        {FlameColour.White, Color.white},
+        {FlameColour.Red, Color.red},
+        {FlameColour.Green, Color.green},
+        {FlameColour.Blue, Color.cyan},
+        {FlameColour.Orange, new Color(1,0.5f,0)},
+        {FlameColour.Purple, new Color(0.5f, 0, 1)}
+    };
 
     private void OnValidate()
     {
-        CheckFlameColour();
+        firePS.startColor = _candleFlameColourDict[flameColour];
+        lightSource.color = _candleFlameColourDict[flameColour];
     }
 
-    private void Start()
-    {
-        originalCandleColour = GetComponent<MeshRenderer>().material.color;
-        FirePS.Stop();
-        LightSource.enabled = false;
-        LightVolumes.ForEach(ctx => ctx.SetActive(false));
-        //Extinguish();
-    }
+    private void Awake() => originalCandleColour = GetComponent<MeshRenderer>().material.color;
 
     private void Update()
     {
@@ -81,13 +85,13 @@ public class Candle : MonoBehaviour, IFlammable
 
     public void Ignite() // Abstract class would probably be more ideal
     {
-        CheckFlameColour();
+        firePS.startColor = _candleFlameColourDict[flameColour];
+        lightSource.color = _candleFlameColourDict[flameColour];
         FirePS.Play();
         LightSource.enabled = true;
         LightVolumes.ForEach(ctx => ctx.SetActive(true));
         IsOnFire = true;
-        BanishManager.Instance.OnCandleLitEvent(); // TODO: Tidy this
-        //OnCandleLit?.Invoke();
+        OnCandleLit?.Invoke();
     }
 
     public void Extinguish()
@@ -96,42 +100,6 @@ public class Candle : MonoBehaviour, IFlammable
         LightSource.enabled = false;
         LightVolumes.ForEach(ctx => ctx.SetActive(false));
         IsOnFire = false;
-        BanishManager.Instance.OnCandleUnlitEvent(); // TODO: Tidy this
         //OnCandleUnlit?.Invoke();
-    }
-    
-    private void CheckFlameColour()
-    {
-        switch (flameColour)
-        {
-            case FlameColour.White:
-                firePS.startColor = Color.white;
-                lightSource.color = Color.white;
-                break;
-            case FlameColour.Red:
-                firePS.startColor = Color.red;
-                lightSource.color = Color.red;
-                break;
-            case FlameColour.Green:
-                firePS.startColor = Color.green;
-                lightSource.color = Color.green;
-                break;
-            case FlameColour.Blue:
-                firePS.startColor = Color.cyan;
-                lightSource.color = Color.cyan;
-                break;
-            case FlameColour.Orange:
-                firePS.startColor = new Color(1, 0.5f, 0);
-                lightSource.color = new Color(1, 0.5f, 0);
-                break;
-            case FlameColour.Purple:
-                firePS.startColor = new Color(0.5f, 0, 1);
-                lightSource.color = new Color(0.5f, 0, 1);
-                break;
-            default:
-                firePS.startColor = Color.white;
-                lightSource.color = Color.white;
-                break;
-        }
     }
 }

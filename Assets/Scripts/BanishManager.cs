@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class BanishManager : MonoBehaviour
 {
-    public event Action OnGhostBanished; 
-    public static BanishManager Instance { get; private set; }
-    public int CandlesPlaced => _candlesOnPodiums;
-    public List<Candle> Candles { get; set; }
-    
+    public event Action OnGhostBanished;
+    public event Action<int> OnCandlesPlacedCountChange;
+
+    private List<Candle> _candles = new();
     private List<Podium> _podiums = new();
     private int _candlesOnPodiums;
     private int _candlesLit;
@@ -17,53 +16,26 @@ public class BanishManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlacedEvent);
-        //podiums.ForEach(podium => podium.OnCandleRemoved += OnCandleRemovedEvent);
-        //Candles.ForEach(candle => candle.OnCandleLit += OnCandleLitEvent);
-        //Candles.ForEach(candle => candle.OnCandleUnlit += OnCandleUnlitEvent);
+        _podiums.ForEach(podium => podium.OnCandlePlaced += OnCandlePlacedIncrementCounterEvent);
+        CandleSpawner.OnCandleSpawned += OnCandleSpawnedAddCandleEvent;
     }
 
     private void OnDisable()
     {
-        _podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlacedEvent);
-        //podiums.ForEach(podium => podium.OnCandleRemoved -= OnCandleRemovedEvent);
-        //Candles.ForEach(candle => candle.OnCandleLit -= OnCandleLitEvent);
-        //Candles.ForEach(candle => candle.OnCandleUnlit -= OnCandleUnlitEvent);
+        _podiums.ForEach(podium => podium.OnCandlePlaced -= OnCandlePlacedIncrementCounterEvent);
+        _candles.ForEach(candle => candle.OnCandleLit -= OnCandleLitIncrementCounterEvent);
+        CandleSpawner.OnCandleSpawned -= OnCandleSpawnedAddCandleEvent;
     }
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-            Debug.LogWarning($"There should only be one instance of {GetType()} in the scene");
-        }
-        
-        Candles = new List<Candle>();
-        Candles.AddRange(FindObjectsOfType<Candle>());
+        _candles.AddRange(FindObjectsOfType<Candle>());
         _podiums.AddRange(FindObjectsOfType<Podium>());
-    }
-
-    private void Start()
-    {
-        if (_podiums.Count == 0)
-        {
-            Debug.LogError("BanishManager is missing podium references in it's inspector!");
-        }
-        if (Candles.Count == 0)
-        {
-            Debug.LogError("BanishManager is missing candle references in it's inspector!");
-        }
     }
 
     private void Update()
     {
-        // TODO: Tidy this
-        if(_podiums.Count(podium => podium.HasCandle.IsOnFire) >= _podiums.Count && !_ghostsBanished)
+        if(_podiums.Count(podium => podium.HasCandle != null && podium.HasCandle.IsOnFire) >= _podiums.Count && !_ghostsBanished)
         {
             OnGhostBanished?.Invoke();
             Destroy(FindObjectOfType<GhostController>().gameObject);
@@ -71,24 +43,31 @@ public class BanishManager : MonoBehaviour
         }
     }
 
-    public void OnCandlePlacedEvent()
-    { 
+    private void OnCandleSpawnedAddCandleEvent(Candle candle)
+    {
+        _candles.Add(candle);
+        candle.OnCandleLit += OnCandleLitIncrementCounterEvent;
+    }
+
+    private void OnCandlePlacedIncrementCounterEvent()
+    {
         if (_candlesOnPodiums >= 0)
         {
-            Debug.Log("Candle placed");
             _candlesOnPodiums++;
+            OnCandlesPlacedCountChange?.Invoke(_candlesOnPodiums);
         }
     }
-    
-    public void OnCandleRemovedEvent()
+
+    private void OnCandleRemovedDecrementCounterEvent()
     {
         if (_candlesOnPodiums > 0)
         {
             _candlesOnPodiums--;
+            OnCandlesPlacedCountChange?.Invoke(_candlesOnPodiums);
         }
     }
 
-    public void OnCandleLitEvent()
+    private void OnCandleLitIncrementCounterEvent()
     {
         if (_candlesLit >= 0)
         {
@@ -96,7 +75,7 @@ public class BanishManager : MonoBehaviour
         }
     }
 
-    public void OnCandleUnlitEvent()
+    private void OnCandleUnlitDecrementCounterEvent()
     {
         if (_candlesLit > 0)
         {

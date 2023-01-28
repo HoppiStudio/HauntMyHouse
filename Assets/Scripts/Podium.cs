@@ -16,43 +16,29 @@ public class Podium : MonoBehaviour
 {
     public event Action OnCandlePlaced;
     //public event Action OnCandleRemoved;
-    //public bool HasCandle => _isOccupied;
     public Candle HasCandle => _candleInRange;
 
     [SerializeField] private Candle placedCandle;
-    [SerializeField] private PodiumColour podiumColour;
+    [SerializeField] private PodiumColour currentPodiumColour;
     [SerializeField] private List<SpriteRenderer> flameIconSprite;
     private Candle _candleInRange;
     private float _groundOffset;
     private bool _isCandleInRange;
     private bool _isOccupied;
 
+    private readonly Dictionary<PodiumColour, Color> _flameIconColourDict = new()
+    {
+        {PodiumColour.White, Color.white},
+        {PodiumColour.Red, Color.red},
+        {PodiumColour.Green, Color.green},
+        {PodiumColour.Blue, Color.cyan},
+        {PodiumColour.Orange, new Color(1,0.5f,0)},
+        {PodiumColour.Purple, new Color(0.5f, 0, 1)}
+    };
+
     private void OnValidate()
     {
-        switch (podiumColour)
-        {
-            case PodiumColour.White:
-                flameIconSprite.ForEach(sprite => sprite.color = Color.white);
-                break;
-            case PodiumColour.Red:
-                flameIconSprite.ForEach(sprite => sprite.color = Color.red);
-                break;
-            case PodiumColour.Green:
-                flameIconSprite.ForEach(sprite => sprite.color = Color.green);
-                break;
-            case PodiumColour.Blue:
-                flameIconSprite.ForEach(sprite => sprite.color = Color.cyan);
-                break;
-            case PodiumColour.Orange:
-                flameIconSprite.ForEach(sprite => sprite.color = new Color(1,0.5f,0));
-                break;
-            case PodiumColour.Purple:
-                flameIconSprite.ForEach(sprite => sprite.color = new Color(0.5f, 0, 1));
-                break;
-            default:
-                flameIconSprite.ForEach(sprite => sprite.color = Color.white);
-                break;
-        }
+        flameIconSprite.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
     }
 
     private void Start()
@@ -83,7 +69,7 @@ public class Podium : MonoBehaviour
         // If podiums comes into contact with a candle and podium is not occupied
         if(other.GetComponent<Candle>() != null && !_isOccupied)
         {
-            if (other.GetComponent<Candle>().FlameColour == (FlameColour) podiumColour) // TODO: Tidy up
+            if (other.GetComponent<Candle>().FlameColour == (FlameColour) currentPodiumColour) // TODO: Tidy up
             {
                 var candle = other.GetComponent<Candle>();
                 candle.GetComponent<MeshRenderer>().material.color = Color.green;
