@@ -35,15 +35,26 @@ public class Matchstick : MonoBehaviour, IFlammable
     private bool _isCollidingWithMatchbox;
     private Vector3 _startPosition;
     
+    private readonly Dictionary<FlameColour, Color> _matchstickFlameColourDict = new()
+    {
+        {FlameColour.White, Color.white},
+        {FlameColour.Red, Color.red},
+        {FlameColour.Green, Color.green},
+        {FlameColour.Blue, Color.cyan},
+        {FlameColour.Orange, new Color(1,0.5f,0)},
+        {FlameColour.Purple, new Color(0.5f, 0, 1)}
+    };
+
     private void OnValidate()
     {
-        CheckFlameColour();
+        firePS.startColor = _matchstickFlameColourDict[flameColour];
+        lightSource.color = _matchstickFlameColourDict[flameColour];
     }
 
     private void Start()
     {
         _startPosition = transform.position;
-        FlameColour = flameColour;
+        //FlameColour = flameColour;
         debugText.text = "";
         Extinguish();
     }
