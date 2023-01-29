@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using OculusSampleFramework;
 using UnityEngine;
 
 public enum PodiumColour
@@ -108,6 +109,7 @@ public class Podium : MonoBehaviour
         _candleInRange.transform.position = transform.position + Vector3.up * _groundOffset;
         _candleInRange.transform.rotation = transform.rotation;
         _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        Destroy(_candleInRange.GetComponent<DistanceGrabbable>());
         OnCandlePlaced?.Invoke();
         placedCandle = _candleInRange;
         _isOccupied = true;
