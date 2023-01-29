@@ -460,7 +460,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.5, b: 0, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.1
   m_Range: 1.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -962,10 +962,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac3ac69e1d6451090d31e1621dd340c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flameColour: 4
   firePS: {fileID: 2578495070981159024}
   lightSource: {fileID: 952029345}
   lightVolumes: []
-  flameColour: 4
   debugText: {fileID: 0}
 --- !u!114 &3243694031553174041
 MonoBehaviour:

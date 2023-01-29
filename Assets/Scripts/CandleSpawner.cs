@@ -15,10 +15,7 @@ public class CandleSpawner : MonoBehaviour
         candleObject.transform.rotation *= Quaternion.LookRotation(Vector3.up);
         
         var candle = candleObject.GetComponent<Candle>();
-        // TODO: Clean-up here
-        candle.FirePS.Stop();
-        candle.LightSource.enabled = false; 
-        candle.LightVolumes.ForEach(ctx => ctx.SetActive(false));
+        candle.Extinguish();
         OnCandleSpawned?.Invoke(candle);
     }
 }

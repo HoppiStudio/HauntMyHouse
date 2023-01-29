@@ -9987,7 +9987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d489cb1c8f3432cb501cfffca8c7689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalCandleColour: {r: 0, g: 0, b: 0, a: 0}
   flameColour: 0
   firePS: {fileID: 122114418555035530}
   lightSource: {fileID: 8406128345426516121}

@@ -1,70 +1,21 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class Matchstick : MonoBehaviour, IFlammable
+public class Matchstick : Flammable
 {
-    public ParticleSystem FirePS
-    {
-        get => firePS;
-        set {}
-    }
-    public Light LightSource 
-    { 
-        get => lightSource;
-        set {}
-    }
-    public List<GameObject> LightVolumes
-    {
-        get => lightVolumes;
-        set {}
-    }
-    public FlameColour FlameColour
-    {
-        get => flameColour;
-        set => flameColour = value;
-    }
-    public bool IsOnFire { get; set; }
-    
-    [SerializeField] private ParticleSystem firePS;
-    [SerializeField] private Light lightSource;
-    [SerializeField] private List<GameObject> lightVolumes;
-    [SerializeField] private FlameColour flameColour;
-    [Space]
     [SerializeField] private TMP_Text debugText;
     private bool _isCollidingWithMatchbox;
-    private Vector3 _startPosition;
-    
-    private readonly Dictionary<FlameColour, Color> _matchstickFlameColourDict = new()
-    {
-        {FlameColour.White, Color.white},
-        {FlameColour.Red, Color.red},
-        {FlameColour.Green, Color.green},
-        {FlameColour.Blue, Color.cyan},
-        {FlameColour.Orange, new Color(1,0.5f,0)},
-        {FlameColour.Purple, new Color(0.5f, 0, 1)}
-    };
 
-    private void OnValidate()
+    protected override void Start()
     {
-        firePS.startColor = _matchstickFlameColourDict[flameColour];
-        lightSource.color = _matchstickFlameColourDict[flameColour];
-    }
-
-    private void Start()
-    {
-        _startPosition = transform.position;
-        //FlameColour = flameColour;
+        base.Start();
         debugText.text = "";
         Extinguish();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (transform.position.y <= 0.5f)
-        {
-            transform.position = _startPosition;
-        }
+        base.Update();
         
         if(!_isCollidingWithMatchbox) { return; }
 
@@ -75,23 +26,14 @@ public class Matchstick : MonoBehaviour, IFlammable
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Matchbox>() != null && !IsOnFire)
+        base.OnTriggerEnter(other);
+        
+        if (other.GetComponent<Matchbox>() != null && !IsOnFire())
         {
             debugText.text = "Press A to light the match";
             _isCollidingWithMatchbox = true;
-        }
-        
-        if (other.GetComponent<IFlammable>() != null)
-        {
-            // If this object is on fire, ignite other flammable objects (if they aren't already on fire)
-            if (!other.GetComponent<IFlammable>().IsOnFire && IsOnFire)
-            {
-                var flammable = other.GetComponent<IFlammable>();
-                flammable.FlameColour = flameColour;
-                flammable.Ignite();
-            }
         }
     }
 
@@ -102,23 +44,5 @@ public class Matchstick : MonoBehaviour, IFlammable
             debugText.text = "";
             _isCollidingWithMatchbox = false;
         }
-    }
-
-    public void Ignite()
-    {
-        firePS.startColor = _matchstickFlameColourDict[flameColour];
-        lightSource.color = _matchstickFlameColourDict[flameColour];
-        FirePS.Play();
-        LightSource.enabled = true;
-        LightVolumes.ForEach(ctx => ctx.SetActive(true));
-        IsOnFire = true;
-    }
-
-    public void Extinguish()
-    {
-        FirePS.Stop();
-        LightSource.enabled = false;
-        LightVolumes.ForEach(ctx => ctx.SetActive(false));
-        IsOnFire = false;
     }
 }

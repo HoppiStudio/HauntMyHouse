@@ -70,16 +70,16 @@ public class Podium : MonoBehaviour
         // If podiums comes into contact with a candle and podium is not occupied
         if(other.GetComponent<Candle>() != null && !_isOccupied)
         {
-            if (other.GetComponent<Candle>().FlameColour == (FlameColour) currentPodiumColour) // TODO: Tidy up
+            var candle = other.GetComponent<Candle>();
+            
+            if (candle.GetFlameColour() == (FlameColour) currentPodiumColour) // TODO: Tidy up
             {
-                var candle = other.GetComponent<Candle>();
                 candle.GetComponent<MeshRenderer>().material.color = Color.green;
                 _candleInRange = candle;
                 _isCandleInRange = true;
             }
             else
             {
-                var candle = other.GetComponent<Candle>();
                 candle.GetComponent<MeshRenderer>().material.color = Color.red;
             }
         }
@@ -90,7 +90,7 @@ public class Podium : MonoBehaviour
         if(other.GetComponent<Candle>() != null)
         {
             var candle = other.GetComponent<Candle>();
-            candle.GetComponent<MeshRenderer>().material.color = candle.originalCandleColour;
+            candle.GetComponent<MeshRenderer>().material.color = candle.GetOriginalMaterialColour();
 
             if (_isOccupied)
             {
@@ -105,7 +105,7 @@ public class Podium : MonoBehaviour
     
     private void PlaceCandleOnPodium()
     {
-        _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.originalCandleColour;
+        _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
         _candleInRange.transform.position = transform.position + Vector3.up * _groundOffset;
         _candleInRange.transform.rotation = transform.rotation;
         _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

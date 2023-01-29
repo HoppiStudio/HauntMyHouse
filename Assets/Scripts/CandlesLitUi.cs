@@ -11,7 +11,7 @@ public class CandlesLitUi : MonoBehaviour
     
     private void Update()
     {
-        _candlesLitText.text = $"Candles Lit: <color=yellow>{FindObjectsOfType<Candle>().Count(candle => candle.IsOnFire)}</color>"; // TODO: Tidy up
+        _candlesLitText.text = $"Candles Lit: <color=yellow>{FindObjectsOfType<Candle>().Count(candle => candle.IsOnFire())}</color>"; // TODO: Tidy up
         //_candlesLitText.text = $"Candles Lit: <color=yellow>{BanishManager.Instance.CandlesLit}</color>";
     }
 }
