@@ -10006,9 +10006,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_allowOffhandGrab: 1
-  m_snapPosition: 0
+  m_snapPosition: 1
   m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
+  m_snapOffset: {fileID: 3661805890664034422, guid: 8df3597b930dfcd44860138d67500573,
+    type: 3}
   m_grabPoints: []
   m_materialColorField: _OutlineColor
 --- !u!1 &8406128344437399931
