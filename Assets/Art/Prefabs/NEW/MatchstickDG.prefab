@@ -966,7 +966,6 @@ MonoBehaviour:
   firePS: {fileID: 2578495070981159024}
   lightSource: {fileID: 952029345}
   lightVolumes: []
-  debugText: {fileID: 0}
 --- !u!114 &3243694031553174041
 MonoBehaviour:
   m_ObjectHideFlags: 0

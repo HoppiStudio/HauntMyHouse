@@ -4,7 +4,6 @@ using UnityEngine;
 public class CandleSpawner : MonoBehaviour
 {
     public static event Action<Candle> OnCandleSpawned;
-    
     [SerializeField] private GameObject candlePrefab;
 
     private void Start() => InvokeRepeating(nameof(SpawnNewCandle), 1, 10.0f);
