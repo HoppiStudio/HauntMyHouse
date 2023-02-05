@@ -10,7 +10,8 @@ public enum PodiumColour
     Green,
     Blue,
     Orange,
-    Purple
+    Purple,
+    Yellow
 }
 
 public class Podium : MonoBehaviour
@@ -34,7 +35,8 @@ public class Podium : MonoBehaviour
         {PodiumColour.Green, Color.green},
         {PodiumColour.Blue, Color.cyan},
         {PodiumColour.Orange, new Color(1,0.5f,0)},
-        {PodiumColour.Purple, new Color(0.5f, 0, 1)}
+        {PodiumColour.Purple, new Color(0.5f, 0, 1)},
+        {PodiumColour.Yellow, Color.yellow}
     };
 
     private void OnValidate()

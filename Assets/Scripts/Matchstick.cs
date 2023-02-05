@@ -3,7 +3,7 @@
 public class Matchstick : Flammable
 {
     private Vector3 _positionBeforeSwipe;
-    
+
     protected override void Start()
     {
         base.Start();

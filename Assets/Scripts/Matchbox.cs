@@ -38,6 +38,7 @@ public class Matchbox : MonoBehaviour
             {
                 debugText.text = "Press A to light the match";
                 _isCollidingWithMatchstick = true;
+                _matchstick.SetFlameColour(FlameColour.Orange);
             }
         }
     }

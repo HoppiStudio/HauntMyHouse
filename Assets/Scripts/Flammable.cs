@@ -8,7 +8,8 @@ public enum FlameColour
     Green,
     Blue,
     Orange,
-    Purple
+    Purple,
+    Yellow
 }
 
 public abstract class Flammable : MonoBehaviour
@@ -26,21 +27,18 @@ public abstract class Flammable : MonoBehaviour
         {FlameColour.Red, Color.red},
         {FlameColour.Green, Color.green},
         {FlameColour.Blue, Color.cyan},
-        {FlameColour.Orange, new Color(1,0.5f,0)},
-        {FlameColour.Purple, new Color(0.5f, 0, 1)}
+        {FlameColour.Orange, new Color(1,0.1265772f,0)}, // Yes it's orange for some reason
+        {FlameColour.Purple, new Color(0.5f, 0, 1)},
+        {FlameColour.Yellow, Color.yellow}
     };
-    
+
     private void OnValidate()
     {
         firePS.startColor = _flameColourDictionary[flameColour];
         lightSource.color = _flameColourDictionary[flameColour];
     }
 
-    protected virtual void Start()
-    {
-        _startPosition = transform.position;
-        //FlameColour = flameColour;
-    }
+    protected virtual void Start() => _startPosition = transform.position;
 
     protected virtual void Update()
     {
@@ -54,7 +52,7 @@ public abstract class Flammable : MonoBehaviour
     {
         if (other.GetComponent<Flammable>() != null)
         {
-            // If this object is on fire, ignite other flammable objects (if they aren't already on fire)
+            // If this object is on fire, ignite other unlit flammable objects 
             if (!other.GetComponent<Flammable>()._isOnFire && _isOnFire)
             {
                 var flammable = other.GetComponent<Flammable>();
