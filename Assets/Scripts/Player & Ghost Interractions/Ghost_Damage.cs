@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ghost_Damage : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            var Player_HP = collision.gameObject.GetComponent<IDamageable>();
+            var Player_HP = other.GetComponent<IDamageable>();
             Player_HP.Rechieve_Damage();
             Destroy(this.gameObject);
         }
-
     }
 }
