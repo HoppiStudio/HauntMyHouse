@@ -28,6 +28,17 @@ public class Podium : MonoBehaviour
     private bool _isCandleInRange;
     private bool _isOccupied;
 
+    private readonly Dictionary<PodiumColour, FlameColour> _podiumToFlameColoursDict = new()
+    {
+        {PodiumColour.White, FlameColour.White},
+        {PodiumColour.Red, FlameColour.Red},
+        {PodiumColour.Green, FlameColour.Green},
+        {PodiumColour.Blue, FlameColour.Blue},
+        {PodiumColour.Orange, FlameColour.Orange},
+        {PodiumColour.Purple, FlameColour.Purple},
+        {PodiumColour.Yellow, FlameColour.Yellow}
+    };
+
     private readonly Dictionary<PodiumColour, Color> _flameIconColourDict = new()
     {
         {PodiumColour.White, Color.white},
@@ -74,7 +85,7 @@ public class Podium : MonoBehaviour
         {
             var candle = other.GetComponent<Candle>();
             
-            if (candle.GetFlameColour() == (FlameColour) currentPodiumColour) // TODO: Tidy up
+            if (candle.GetFlameColour() == _podiumToFlameColoursDict[currentPodiumColour]) 
             {
                 candle.GetComponent<MeshRenderer>().material.color = Color.green;
                 _candleInRange = candle;
