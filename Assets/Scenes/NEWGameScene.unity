@@ -7490,6 +7490,21 @@ PrefabInstance:
       propertyPath: Player_Location
       value: 
       objectReference: {fileID: 3680607433127796671}
+    - target: {fileID: 1444314463134932078, guid: 78bccf7c98c76fc4eb9e03aeeb978aa0,
+        type: 3}
+      propertyPath: Attached_Podium_for_Green_Ghost
+      value: 
+      objectReference: {fileID: 6913830368095496363}
+    - target: {fileID: 1444314463134932078, guid: 78bccf7c98c76fc4eb9e03aeeb978aa0,
+        type: 3}
+      propertyPath: Attached_Podium_for_Orange_Ghost
+      value: 
+      objectReference: {fileID: 6913830367301739981}
+    - target: {fileID: 1444314463134932078, guid: 78bccf7c98c76fc4eb9e03aeeb978aa0,
+        type: 3}
+      propertyPath: Attached_Podium_for_Purple_Ghost
+      value: 
+      objectReference: {fileID: 6913830368501059567}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 78bccf7c98c76fc4eb9e03aeeb978aa0, type: 3}

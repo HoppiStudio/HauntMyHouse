@@ -23,9 +23,10 @@ public class GhostController : MonoBehaviour
     private Vector3 _targetPos;
     private int counter = 0;
 
-    [SerializeField] bool Orange_Ghost_Banishment_Riles = false;
-    [SerializeField] bool Purple_Ghost_Banishment_Riles = false;
-    [SerializeField] bool Green_Ghost_Banishment_Riles = false;
+    [SerializeField] public Podium Attached_Podium;
+    [SerializeField] public bool Orange_Ghost_Banishment_Rules = false;
+    [SerializeField] public bool Purple_Ghost_Banishment_Rules = false;
+    [SerializeField] public bool Green_Ghost_Banishment_Rules = false;
 
     private void Start()
     {
@@ -92,6 +93,33 @@ public class GhostController : MonoBehaviour
         }
 
         transform.LookAt(_targetPos);
+
+
+        //Banishment Rules
+        if (this.Orange_Ghost_Banishment_Rules == true)
+        {
+            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Orange)
+            {
+                Destroy(gameObject, 1);
+            }
+        }
+
+        if (this.Purple_Ghost_Banishment_Rules == true)
+        {
+            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Purple)
+            {
+                Destroy(gameObject,1);
+            }
+        }
+
+        if (this.Green_Ghost_Banishment_Rules == true)
+        {
+            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Green)
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     IEnumerator Rotate_Around_Randomly()

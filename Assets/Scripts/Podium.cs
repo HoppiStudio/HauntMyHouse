@@ -20,8 +20,8 @@ public class Podium : MonoBehaviour
     //public event Action OnCandleRemoved;
     public Candle HasCandle => _candleInRange;
 
-    [SerializeField] private Candle placedCandle;
-    [SerializeField] private PodiumColour currentPodiumColour;
+    [SerializeField] public Candle placedCandle;
+    [SerializeField] public PodiumColour currentPodiumColour;
     [SerializeField] private List<SpriteRenderer> flameIconSprite;
     private Candle _candleInRange;
     private float _groundOffset;
