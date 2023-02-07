@@ -23,6 +23,10 @@ public class GhostController : MonoBehaviour
     private Vector3 _targetPos;
     private int counter = 0;
 
+    [SerializeField] bool Orange_Ghost_Banishment_Riles = false;
+    [SerializeField] bool Purple_Ghost_Banishment_Riles = false;
+    [SerializeField] bool Green_Ghost_Banishment_Riles = false;
+
     private void Start()
     {
         target = GameObject.Find("PlayerController").transform;
@@ -49,7 +53,7 @@ public class GhostController : MonoBehaviour
                 {
                     GetComponent<AudioSource>().PlayOneShot(Normal_Voice);
                 }
-                Renderer.material.SetColor("_Color", Color.green);
+                //Renderer.material.SetColor("_Color", Color.green);
             }
             else
             {
@@ -67,7 +71,7 @@ public class GhostController : MonoBehaviour
                     counter++;
                     GetComponent<AudioSource>().PlayOneShot(Attack_Voice);
                 }
-                Renderer.material.SetColor("_Color", Color.red);
+                //Renderer.material.SetColor("_Color", Color.red);
             }
             else
             {
@@ -84,7 +88,7 @@ public class GhostController : MonoBehaviour
             {
                 GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
             }
-            Renderer.material.SetColor("_Color", Color.yellow);
+            //Renderer.material.SetColor("_Color", Color.yellow);
         }
 
         transform.LookAt(_targetPos);

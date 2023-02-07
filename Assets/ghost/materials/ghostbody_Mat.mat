@@ -45,7 +45,7 @@ Material:
     - _WobbleFrequency: 15.66
     - _WobbleSpeed: 8.12
     m_Colors:
-    - _Color: {r: 0.0019607844, g: 0.0019607844, b: 0.0019607844, a: 1}
+    - _Color: {r: 0.0023461424, g: 0.0023461424, b: 0.0023461424, a: 1}
     - _Vector3: {r: 0.02, g: 0.02, b: 0.02, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2887796182850717074

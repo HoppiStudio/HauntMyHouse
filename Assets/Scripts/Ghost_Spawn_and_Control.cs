@@ -25,6 +25,12 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
     //Counter
     private int Counter = 0;
 
+
+    GameObject First_Ghost;
+    GameObject Secound_Ghost;
+    GameObject Third_Ghost;
+
+
     void Update()
     {
         //Intensity
@@ -33,7 +39,11 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
         if (current_intensity > 10 && First_Wawe_Came == false)
         {
             First_Wawe_Came = true;
-            Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+            First_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+
+            First_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 149, 10, 155));
+
+
         }
 
         if (current_intensity > 60 && Counter == 0)
@@ -55,7 +65,10 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
         if (current_intensity > 70 && Secound_Wawe_Came == false)
         {
             Secound_Wawe_Came = true;
-            Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+            Secound_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+
+            Secound_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(250, 10, 255, 155));
+
         }
 
         if (current_intensity > 80 && Counter == 1)
@@ -77,7 +90,10 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
         if (current_intensity > 90 && Third_Wawe_Came == false)
         {
             Third_Wawe_Came = true;
-            Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+            Third_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
+            
+            
+            Third_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(8, 255, 0,155));
         }
 
 
@@ -145,6 +161,6 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
         }
 
         yield return new WaitForSeconds(4f);
-        Application.Quit();
+        //Application.Quit();
     }
 }
