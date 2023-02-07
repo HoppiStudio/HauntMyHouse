@@ -38,12 +38,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FrenselPower: 0.75
+    - _FrenselPower: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WobbleDistance: 0.4
-    - _WobbleFrequency: 10
-    - _WobbleSpeed: 5
+    - _WobbleDistance: 1
+    - _WobbleFrequency: 9.8
+    - _WobbleSpeed: 11.56
     m_Colors:
     - _Color: {r: 0.2264151, g: 0, b: 0.011824554, a: 1}
     - _Vector3: {r: 0.02, g: 0.02, b: 0.02, a: 0}
