@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mouth
-  m_Shader: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 4700a70da584fd340ba492b9d2da43b0,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -110,14 +111,14 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WobbleDistance: 0.4
-    - _WobbleFrequency: 10
-    - _WobbleSpeed: 5
+    - _WobbleDistance: 11.62
+    - _WobbleFrequency: 13.74
+    - _WobbleSpeed: 6.33
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.680697, g: 0.8207547, b: 0, a: 1}
-    - _Color: {r: 0.6132076, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Vector3: {r: 0.02, g: 0.02, b: 0.02, a: 0}

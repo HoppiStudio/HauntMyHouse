@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Eyes
-  m_Shader: {fileID: 4800000, guid: 953d6c4c7f7ec324d860efb0db9c68ff, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4700a70da584fd340ba492b9d2da43b0,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -110,7 +111,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WobbleDistance: 0.4
+    - _WobbleDistance: 51
     - _WobbleFrequency: 10
     - _WobbleSpeed: 5
     - _WorkflowMode: 1

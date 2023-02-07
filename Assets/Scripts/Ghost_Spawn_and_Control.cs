@@ -35,7 +35,12 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
     GameObject Secound_Ghost;
     GameObject Third_Ghost;
 
-
+    //End Game
+    [SerializeField] Canvas End_Game_Canvas;
+    private void Start()
+    {
+        End_Game_Canvas.enabled = false;
+    }
     void Update()
     {
         //Intensity
@@ -46,7 +51,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             First_Wawe_Came = true;
             First_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
 
-            First_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 0, 0, 200));
+            First_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(80, 19, 29, 10));
             First_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Orange_Ghost;
             First_Ghost.GetComponent<GhostController>().Orange_Ghost_Banishment_Rules = true;
         }
@@ -72,7 +77,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             Secound_Wawe_Came = true;
             Secound_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
 
-            Secound_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 180, 255, 200));
+            Secound_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(19, 26, 80, 10));
             Secound_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Purple_Ghost;
             Secound_Ghost.GetComponent<GhostController>().Purple_Ghost_Banishment_Rules = true;
         }
@@ -99,7 +104,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             Third_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
             
             
-            Third_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 236, 200));
+            Third_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(80, 19, 69, 10));
             Third_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Green_Ghost;
             Third_Ghost.GetComponent<GhostController>().Green_Ghost_Banishment_Rules = true;
         }
@@ -134,7 +139,24 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             Backtorund_AudioSource.PlayOneShot(End_Clip);
         }
 
+
+
+
+
+
+
+        //End State Update
+
+        if(End_Game_Canvas.enabled == true && _current_Scale_Factor < _max_Scale_Factor)
+        {
+            StartCoroutine(Scale_Canvas_Over_Time());
+            _current_Scale_Factor++;
+        }
+
     }
+
+    private int _current_Scale_Factor = 0;
+    private int _max_Scale_Factor = 1000;
 
     private bool End_State_Reched = false;
     public Vector3 Randomized_Start_Location()
@@ -142,6 +164,12 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
         int X_Randomized = Random.Range(-15, 15);
         int Z_Randomized = Random.Range(-15, 15);
         return (new Vector3(Player_Location.transform.position.x + X_Randomized, Player_Location.transform.position.y - 1, Player_Location.transform.position.z + Z_Randomized));
+    }
+
+    IEnumerator Scale_Canvas_Over_Time()
+    {
+        yield return new WaitForSeconds(0.05f);
+        End_Game_Canvas.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
     }
 
     public void End_State()
@@ -153,6 +181,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
         }
         StartCoroutine(Attack_Player());
 
+        End_Game_Canvas.enabled = true;
     }
 
     IEnumerator Attack_Player() {

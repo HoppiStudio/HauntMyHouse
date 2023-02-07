@@ -990,9 +990,9 @@ MonoBehaviour:
   Stunned_Voice: {fileID: 8300000, guid: 9cb7f5118b2ce6f4a964bb6cc64154b4, type: 3}
   Normal_Voice: {fileID: 8300000, guid: 77cf8cc4729c5384b905fe6aac7cd4ce, type: 3}
   Attached_Podium: {fileID: 0}
-  Orange_Ghost_Banishment_Riles: 0
-  Purple_Ghost_Banishment_Riles: 0
-  Green_Ghost_Banishment_Riles: 0
+  Orange_Ghost_Banishment_Rules: 0
+  Purple_Ghost_Banishment_Rules: 0
+  Green_Ghost_Banishment_Rules: 0
 --- !u!114 &3069166420902521701
 MonoBehaviour:
   m_ObjectHideFlags: 0
