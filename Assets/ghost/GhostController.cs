@@ -98,9 +98,12 @@ public class GhostController : MonoBehaviour
         //Banishment Rules
         if (this.Orange_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Orange)
+            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.White)
             {
-                Destroy(gameObject, 1);
+                Destroy(gameObject, 2);
+                GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
+                this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
+                Orange_Ghost_Banishment_Rules = false;
             }
         }
 
@@ -108,7 +111,10 @@ public class GhostController : MonoBehaviour
         {
             if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Purple)
             {
-                Destroy(gameObject,1);
+                Destroy(gameObject,2);
+                GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
+                this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
+                Purple_Ghost_Banishment_Rules = false;
             }
         }
 
@@ -116,7 +122,10 @@ public class GhostController : MonoBehaviour
         {
             if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Green)
             {
-                Destroy(gameObject);
+                Destroy(gameObject, 2);
+                GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
+                this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
+                Green_Ghost_Banishment_Rules = false;
             }
         }
 

@@ -654,3 +654,4 @@ MonoBehaviour:
   flameIconSprite:
   - {fileID: 177893089}
   - {fileID: 1409621739581828021}
+  _isBanishmentPodium: 0

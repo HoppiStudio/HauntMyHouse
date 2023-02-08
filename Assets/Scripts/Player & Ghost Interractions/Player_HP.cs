@@ -79,6 +79,12 @@ public class Player_HP : MonoBehaviour, IDamageable
     IEnumerator Damage_Player()
     {
         this.HP--;
+
+        //Debug
+        this.HP--;
+
+
+
         yield return new WaitForSeconds(3f);
         Is_Damageable_Now = true;
     }

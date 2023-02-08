@@ -27,6 +27,8 @@ public class Podium : MonoBehaviour
     private float _groundOffset;
     private bool _isCandleInRange;
     private bool _isOccupied;
+    //True if used for banishing the ghost
+    [SerializeField] private bool _isBanishmentPodium = false;
 
     private readonly Dictionary<PodiumColour, FlameColour> _podiumToFlameColoursDict = new()
     {
@@ -52,7 +54,11 @@ public class Podium : MonoBehaviour
 
     private void OnValidate()
     {
-        flameIconSprite.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
+        if(flameIconSprite != null && _isBanishmentPodium == false)
+        {
+            flameIconSprite.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
+
+        }
     }
 
     private void Start()

@@ -26,9 +26,9 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
     private int Counter = 0;
 
     //Attached Podiums for Ghosts
-    [SerializeField] Podium Attached_Podium_for_Orange_Ghost;
+    [SerializeField] Podium Attached_Podium_for_Red_Ghost;
+    [SerializeField] Podium Attached_Podium_for_Blue_Ghost;
     [SerializeField] Podium Attached_Podium_for_Purple_Ghost;
-    [SerializeField] Podium Attached_Podium_for_Green_Ghost;
 
 
     GameObject First_Ghost;
@@ -52,7 +52,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             First_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
 
             First_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(80, 19, 29, 10));
-            First_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Orange_Ghost;
+            First_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Red_Ghost;
             First_Ghost.GetComponent<GhostController>().Orange_Ghost_Banishment_Rules = true;
         }
 
@@ -78,7 +78,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             Secound_Ghost = Instantiate(Ghost, Randomized_Start_Location(), Player_Location.transform.rotation);
 
             Secound_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(19, 26, 80, 10));
-            Secound_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Purple_Ghost;
+            Secound_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Blue_Ghost;
             Secound_Ghost.GetComponent<GhostController>().Purple_Ghost_Banishment_Rules = true;
         }
 
@@ -105,7 +105,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
             
             
             Third_Ghost.GetComponent<Renderer>().material.SetColor("_Color", new Color32(80, 19, 69, 10));
-            Third_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Green_Ghost;
+            Third_Ghost.GetComponent<GhostController>().Attached_Podium = this.Attached_Podium_for_Purple_Ghost;
             Third_Ghost.GetComponent<GhostController>().Green_Ghost_Banishment_Rules = true;
         }
 
