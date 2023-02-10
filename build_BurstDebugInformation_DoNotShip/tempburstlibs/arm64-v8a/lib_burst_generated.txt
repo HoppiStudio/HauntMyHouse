@@ -159,17 +159,17 @@ Library: lib_burst_generated
 --compilation-defines=USING_URP
 --compilation-defines=USING_MRC_COMPATIBLE_URP_VERSION
 --compilation-defines=OVR_UNITY_ASSET_STORE
---compilation-defines=UNITY_ANALYTICS
---compilation-defines=TIMELINE_FRAMEACCURATE
---compilation-defines=INCLUDE_PHYSICS_MODULE
---compilation-defines=INCLUDE_UGUI
---compilation-defines=INCLUDE_INPUT_SYSTEM
---compilation-defines=INCLUDE_LEGACY_INPUT_HELPERS
 --compilation-defines=INPUT_SYSTEM_1_1_OR_NEWER
 --compilation-defines=LIH_PRESENT_V2API
 --compilation-defines=LIH_PRESENT
 --compilation-defines=ANIMATION_MODULE_PRESENT
 --compilation-defines=PHYSICS2D_MODULE_PRESENT
+--compilation-defines=INCLUDE_PHYSICS_MODULE
+--compilation-defines=INCLUDE_UGUI
+--compilation-defines=INCLUDE_INPUT_SYSTEM
+--compilation-defines=INCLUDE_LEGACY_INPUT_HELPERS
+--compilation-defines=UNITY_ANALYTICS
+--compilation-defines=TIMELINE_FRAMEACCURATE
 --generate-link-xml=Temp\burst.link.xml
 --output=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\tempburstlibs\arm64-v8a\lib_burst_generated
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
@@ -191,6 +191,7 @@ Library: lib_burst_generated
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Oculus.VR.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\PhotonUnityNetworking.Demos.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll
+--root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.Interaction.Toolkit.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\VoiceSDK.Dictation.Runtime.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.Services.Core.Environments.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\PhotonRealtime.dll
@@ -199,6 +200,7 @@ Library: lib_burst_generated
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\PhotonUnityNetworking.Utilities.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Facebook.WitAI.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.Services.Core.Internal.dll
+--root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.CoreUtils.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.OpenXR.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Oculus.Interaction.Samples.dll
@@ -234,8 +236,6 @@ Library: lib_burst_generated
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.OpenXR.Features.RuntimeDebugger.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll
 --root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.OpenXR.Features.OculusQuestSupport.dll
---root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.CoreUtils.dll
---root-assembly=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\Unity.XR.Interaction.Toolkit.dll
 --assembly-folder=D:\HauntMyHouse\HauntMyHouse\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.Universal.LightMinMaxZ, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.Universal.LightMinMaxZ, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--e943843acfb78f5f2f3716a6553740d9
