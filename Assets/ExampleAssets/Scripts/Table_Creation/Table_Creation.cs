@@ -1,75 +1,58 @@
 using Oculus.Interaction.Input;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 public class Table_Creation : MonoBehaviour
 {
-    //Debug Text
-    [SerializeField] public TMP_Text Debug_Text;
+    [SerializeField] private Vector3[] testVertices = new Vector3[3];
 
     //3 cube verticies for table creation.
-    private Vector3 _First_Corner_Coordinates;
-    private Vector3 _Secound_Corner_Coordinates;
-    private Vector3 _Third_Corner_Coordinates;
+    [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
+    private int index = 0;
 
-    //Tracking taken coordinates
-    private bool _Is_1th_corner_taken = false;
-    private bool _Is_2nd_corner_taken = false;
-    private bool _Is_3rd_corner_taken = false;
+    [SerializeField] private Material cubeMaterial;
 
-    //Is Busy
-    private bool _Is_Busy = false;
+    [SerializeField] MeshFilter meshFilter;
+    [SerializeField] MeshRenderer meshRenderer;
 
     private void Start()
     {
-       /* GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = new Vector3(0, 0.5f, 0);*/
+
     }
-    // Update is called once per frame
+
     void Update()
     {
-        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) && _Is_Busy == false)
+        if(Input.GetMouseButtonDown(0))
         {
-            if(_Is_1th_corner_taken == false) { _First_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_1th_corner_taken = true; Debug_Text.text = "First coordinates taken"; }
-            else if (_Is_2nd_corner_taken == false) { _Secound_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_2nd_corner_taken = true; ; Debug_Text.text = "Secound coordinates taken"; }
-            else if (_Is_3rd_corner_taken == false) { _Third_Corner_Coordinates = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch); _Is_3rd_corner_taken = true; ; Debug_Text.text = "Third coordinates taken"; }
-            _Is_Busy = true;
-            StartCoroutine(Release_Busy_State());
-        }
-        
-
-        if(_Is_3rd_corner_taken == true)
-        {
-            _Is_3rd_corner_taken = false;
-            Create_Cube_With_Three_Coordinates(_First_Corner_Coordinates , _Secound_Corner_Coordinates , _Third_Corner_Coordinates);
-            Debug_Text.text = "Creating Cube with coordinates";
+            CreateCubeFromVertices(testVertices);
         }
     }
 
-    IEnumerator Release_Busy_State()
+    private void CreateCubeFromVertices(Vector3[] positions)
     {
-        yield return new WaitForSeconds(1f);
-        _Is_Busy = false;
-    }
-
-
-    private void Create_Cube_With_Three_Coordinates(Vector3 x1, Vector3 x2, Vector3 x3)
-    {
-        Vector3[] vertices = {
-            x1,
-            x2,
-            x3,
+        /*Vector3[] vertices = {
+            new Vector3 (0, 0, 0),
+            new Vector3 (1, 0, 0),
+            new Vector3 (1, 1, 0),
             new Vector3 (0, 1, 0),
             new Vector3 (0, 1, 1),
             new Vector3 (1, 1, 1),
             new Vector3 (1, 0, 1),
             new Vector3 (0, 0, 1),
+        };*/
+
+        Vector3[] vertices = {
+            positions[0],                                                // 0 bottom front left
+            new Vector3(positions[1].x, positions[0].y, positions[0].z), // 1 bottom front right
+            new Vector3(positions[1].x, positions[2].y, positions[0].z), // 2 botton back right
+            new Vector3(positions[0].x, positions[2].y, positions[0].z), // 3 bottom back left
+            new Vector3(positions[0].x, positions[2].y, positions[1].z), // 4 top front right
+            new Vector3(positions[1].x, positions[2].y, positions[1].z),                                               // 5 top back right
+            positions[1],                                                // 6 top back left
+            new Vector3(positions[0].x, positions[0].y, positions[1].z), // 7 top front left
         };
 
         int[] triangles = {
@@ -93,5 +76,8 @@ public class Table_Creation : MonoBehaviour
         mesh.triangles = triangles;
         mesh.Optimize();
         mesh.RecalculateNormals();
+
+        meshFilter.mesh = mesh;
+        meshRenderer.material = cubeMaterial;
     }
 }
