@@ -2,10 +2,7 @@ using Oculus.Interaction.Input;
 using System.Collections;
 using UnityEngine;
 
-
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshRenderer))]
-public class Table_Creation : MonoBehaviour
+public class ObjectBlockout : MonoBehaviour
 {
     [SerializeField] private Vector3[] testVertices = new Vector3[3];
 
@@ -14,9 +11,6 @@ public class Table_Creation : MonoBehaviour
     private int index = 0;
 
     [SerializeField] private Material cubeMaterial;
-
-    [SerializeField] MeshFilter meshFilter;
-    [SerializeField] MeshRenderer meshRenderer;
 
     private void Start()
     {
@@ -44,6 +38,7 @@ public class Table_Creation : MonoBehaviour
             new Vector3 (0, 0, 1),
         };*/
 
+        // [bottom front left, bottom back right, top back right]
         Vector3[] vertices = {
             positions[0],                                                // 0 bottom front left
             new Vector3(positions[1].x, positions[0].y, positions[0].z), // 1 bottom front right
@@ -70,14 +65,17 @@ public class Table_Creation : MonoBehaviour
 			0, 1, 6
         };
 
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
+        GameObject cube = new GameObject("cube " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer));
+        cube.transform.SetParent(this.transform);
+
+        Mesh mesh = cube.GetComponent<MeshFilter>().mesh;
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.Optimize();
         mesh.RecalculateNormals();
 
-        meshFilter.mesh = mesh;
-        meshRenderer.material = cubeMaterial;
+        cube.GetComponent<MeshFilter>().mesh = mesh;
+        cube.GetComponent<MeshRenderer>().material = cubeMaterial;
     }
 }
