@@ -1,6 +1,9 @@
 using Oculus.Interaction.Input;
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ObjectBlockout : MonoBehaviour
 {
@@ -12,16 +15,27 @@ public class ObjectBlockout : MonoBehaviour
 
     [SerializeField] private Material cubeMaterial;
 
-    private void Start()
-    {
+    [SerializeField] private XRController controller;
 
+    private InputActionControls inputActions;
+
+    private void Awake()
+    {
+        inputActions = new InputActionControls();
+
+        inputActions.Player.Blockout.Enable();
+        inputActions.Player.Blockout.performed += DoBlockOut;
     }
 
-    void Update()
+    private void DoBlockOut(InputAction.CallbackContext obj)
     {
-        if(Input.GetMouseButtonDown(0))
+        vertexPositions[index] = controller.transform.position;
+        index++;
+
+        if (index == vertexPositions.Length)
         {
-            CreateCubeFromVertices(testVertices);
+            CreateCubeFromVertices(vertexPositions);
+            index = 0;
         }
     }
 
@@ -77,5 +91,11 @@ public class ObjectBlockout : MonoBehaviour
 
         cube.GetComponent<MeshFilter>().mesh = mesh;
         cube.GetComponent<MeshRenderer>().material = cubeMaterial;
+    }
+
+    private void OnDestroy()
+    {
+        inputActions.Player.Blockout.Disable();
+        inputActions.Player.Blockout.performed -= DoBlockOut;
     }
 }
