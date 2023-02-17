@@ -8,6 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ObjectBlockout : MonoBehaviour
 {
     //3 cube verticies for table creation.
+    [SerializeField] private Vector3[] testVertexPositions = new Vector3[3];
     [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
     private Vector3[] vertices;
 
@@ -27,6 +28,11 @@ public class ObjectBlockout : MonoBehaviour
         inputActions.Player.Blockout.performed += DoBlockOut;
     }
 
+    private void Start()
+    {
+        CreateCubeFromVertices(testVertexPositions);
+    }
+
     private void DoBlockOut(InputAction.CallbackContext obj)
     {
         vertexPositions[index] = controller.transform.position;
@@ -44,12 +50,12 @@ public class ObjectBlockout : MonoBehaviour
         /*Vector3[] vertices = {
             new Vector3 (0, 0, 0), // 0 bottom front left
             new Vector3 (1, 0, 0), // 1 bottom front right
-            new Vector3 (1, 1, 0), // 2 botton back right
-            new Vector3 (0, 1, 0), // 3 bottom back left
-            new Vector3 (0, 1, 1), // 4 top front right
+            new Vector3 (1, 1, 0), // 2 top front right
+            new Vector3 (0, 1, 0), // 3 top front left
+            new Vector3 (0, 1, 1), // 4 top back left
             new Vector3 (1, 1, 1), // 5 top back right
-            new Vector3 (1, 0, 1), // 6 top back left
-            new Vector3 (0, 0, 1), // 7 top front left
+            new Vector3 (1, 0, 1), // 6 bottom back right
+            new Vector3 (0, 0, 1), // 7 bottom back left
         };*/
         
         // left to right
@@ -75,13 +81,49 @@ public class ObjectBlockout : MonoBehaviour
                 // top to bottom
                 else
                 {
-
+                    vertices = new Vector3[] {
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        positions[0],
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        positions[1],
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                    };
                 }
             }
             // back to front
             else
             {
-
+                // bottom to top
+                if (positions[2].y > positions[0].y)
+                {
+                    vertices = new Vector3[] {
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        positions[1],
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        positions[0]
+                    };
+                }
+                // top to bottom
+                else
+                {
+                    vertices = new Vector3[] {
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
+                        positions[1],
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        positions[0],
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                    };
+                }
             }
         }
         // right to left
@@ -93,18 +135,63 @@ public class ObjectBlockout : MonoBehaviour
                 // bottom to top
                 if (positions[2].y > positions[0].y)
                 {
-                    
+                    vertices = new Vector3[] {
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        positions[0],
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        positions[1]
+                    };
                 }
                 // top to bottom
                 else
                 {
-
+                    vertices = new Vector3[] {
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                        positions[0],
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        positions[1],
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                    };
                 }
             }
             // back to front
             else
             {
-
+                // bottom to top
+                if (positions[2].y > positions[0].y)
+                {
+                    vertices = new Vector3[] {
+                        positions[1],
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                        positions[0],
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                    };
+                }
+                // top to bottom
+                else
+                {
+                    vertices = new Vector3[] {
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        positions[1],
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        positions[0],
+                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                    };
+                }
             }
         }
 
