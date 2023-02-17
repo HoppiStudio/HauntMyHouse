@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 25e9bb5baaab1894ea47e843f83eb873
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NEWGameScene.unity
     guid: 41f547e0284dabb48902bf422c64c6ba
   - enabled: 0
-    path: Assets/Scenes/AndroidLobby.unity
-    guid: c153b4850a967da4388ed00d0b323ff1
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/WindowsLobby.unity
     guid: 5ab5f7b393c819149bfc9f21c7781b2c
@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Testing/ObjectGrabbing.unity
     guid: 5a696dbf1c2369d42873207589fcc87d
   - enabled: 0
-    path: Assets/Scenes/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Plugins/Oculus/SampleFramework/Usage/Passthrough/Scenes/Lighting.unity
     guid: b79c88b27037b4b48ab3fa45a63f208d
