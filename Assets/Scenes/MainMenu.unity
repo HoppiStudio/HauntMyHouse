@@ -1759,7 +1759,7 @@ GameObject:
   - component: {fileID: 947359792}
   - component: {fileID: 947359791}
   m_Layer: 2
-  m_Name: Ray Interactor
+  m_Name: Left Hand Ray Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2113,7 +2113,7 @@ MonoBehaviour:
   m_AnimateModel: 0
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
-  m_ControllerNode: 5
+  m_ControllerNode: 4
   m_SelectUsage: 3
   m_ActivateUsage: 2
   m_UIPressUsage: 2
