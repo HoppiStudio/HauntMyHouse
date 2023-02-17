@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ObjectBlockout : MonoBehaviour
 {
     //3 cube verticies for table creation.
-    [SerializeField] private Vector3[] testVertexPositions = new Vector3[3];
+    //[SerializeField] private Vector3[] testVertexPositions = new Vector3[3];
     [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
     private Vector3[] vertices;
 
@@ -26,11 +26,6 @@ public class ObjectBlockout : MonoBehaviour
 
         inputActions.Player.Blockout.Enable();
         inputActions.Player.Blockout.performed += DoBlockOut;
-    }
-
-    private void Start()
-    {
-        CreateCubeFromVertices(testVertexPositions);
     }
 
     private void DoBlockOut(InputAction.CallbackContext obj)
