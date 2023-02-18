@@ -1337,6 +1337,8 @@ Transform:
   - {fileID: 1362553665}
   - {fileID: 385121323}
   - {fileID: 947359790}
+  - {fileID: 747384957}
+  - {fileID: 1992414046}
   m_Father: {fileID: 318421613}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2217,8 +2219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testVertexPositions:
   - {x: 0, y: 0, z: 0}
-  - {x: 1, y: 0, z: 1}
-  - {x: 1, y: 2, z: 1}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: -1, z: -1}
   vertexPositions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

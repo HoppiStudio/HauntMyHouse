@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ObjectBlockout : MonoBehaviour
 {
     //3 cube verticies for table creation.
-    //[SerializeField] private Vector3[] testVertexPositions = new Vector3[3];
+    [SerializeField] private Vector3[] testVertexPositions = new Vector3[3];
     [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
     private Vector3[] vertices;
 
@@ -26,6 +26,16 @@ public class ObjectBlockout : MonoBehaviour
 
         inputActions.Player.Blockout.Enable();
         inputActions.Player.Blockout.performed += DoBlockOut;
+    }
+
+    private void Start()
+    {
+
+    }
+
+    public void CreateTestObject()
+    {
+        CreateCubeFromVertices(testVertexPositions);
     }
 
     private void DoBlockOut(InputAction.CallbackContext obj)
@@ -79,7 +89,7 @@ public class ObjectBlockout : MonoBehaviour
                     vertices = new Vector3[] {
                         new Vector3(positions[0].x, positions[2].y, positions[0].z),
                         new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
+                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
                         positions[0],
                         new Vector3(positions[0].x, positions[0].y, positions[1].z),
                         positions[1],
@@ -152,7 +162,7 @@ public class ObjectBlockout : MonoBehaviour
                         positions[1],
                         new Vector3(positions[0].x, positions[0].y, positions[1].z),
                         new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
+                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
                     };
                 }
             }
@@ -179,7 +189,7 @@ public class ObjectBlockout : MonoBehaviour
                     vertices = new Vector3[] {
                         new Vector3(positions[1].x, positions[2].y, positions[1].z),
                         new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
+                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
                         positions[1],
                         new Vector3(positions[1].x, positions[0].y, positions[0].z),
                         positions[0],
@@ -215,6 +225,7 @@ public class ObjectBlockout : MonoBehaviour
         mesh.Optimize();
         mesh.RecalculateNormals();
 
+        // REMAP MATERIAL
         cube.GetComponent<MeshFilter>().mesh = mesh;
         cube.GetComponent<MeshRenderer>().material = cubeMaterial;
     }
