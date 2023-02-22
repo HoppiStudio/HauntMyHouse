@@ -643,6 +643,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral6CDB7153B7D589C1F981EAF810F3EC3BBBF4465A
 IL2CPP_EXTERN_C String_t* _stringLiteral6DE789FE7BA3DE9662B223723524E52BEDF0F8E3;
 IL2CPP_EXTERN_C String_t* _stringLiteral6F68F40F948021C632D99426FED0FF52A7594517;
 IL2CPP_EXTERN_C String_t* _stringLiteral72A8D7A4198A855CDC624CA26EC0CC90E158AEC0;
+IL2CPP_EXTERN_C String_t* _stringLiteral73BE924278603F7D3D65F0AD333B3DBDB2F9D87D;
 IL2CPP_EXTERN_C String_t* _stringLiteral760203E13224A5DA5FB5B9D822A5C241EF35C453;
 IL2CPP_EXTERN_C String_t* _stringLiteral788688E30149F90FD04BF29D05673BD99EFCEE4B;
 IL2CPP_EXTERN_C String_t* _stringLiteral78F76DF76B8A73793F0A2DF2DF88F3744B64E7AD;
@@ -6511,6 +6512,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_RecalculateNormalsImpl_m87F16BA2194
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_MarkDynamicImpl_m989606245279A69A710361DC0443BE39960DF857 (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* __this, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Mesh::UploadMeshDataImpl(System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_UploadMeshDataImpl_m7B81CF63A72BFB42433F6AAF6789B9DD06D94CC1 (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* __this, bool ___markNoLongerReadable0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.Mesh::OptimizeImpl()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_OptimizeImpl_m655C4BF9937392A9785D95230CCE878F09357B54 (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* __this, const RuntimeMethod* method) ;
 // UnityEngine.MeshTopology UnityEngine.Mesh::GetTopologyImpl(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Mesh_GetTopologyImpl_m94415286049AEA83D26F7B7A6A45D6D93FC7EFD9 (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* __this, int32_t ___submesh0, const RuntimeMethod* method) ;
 // UnityEngine.Experimental.Rendering.GraphicsFormat UnityEngine.Experimental.Rendering.GraphicsFormatUtility::GetFormat(UnityEngine.Texture)
@@ -17851,6 +17854,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Mesh_GetTopologyImpl_m94415286049AEA8
 	int32_t icallRetVal = _il2cpp_icall_func(__this, ___submesh0);
 	return icallRetVal;
 }
+// System.Void UnityEngine.Mesh::OptimizeImpl()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_OptimizeImpl_m655C4BF9937392A9785D95230CCE878F09357B54 (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* __this, const RuntimeMethod* method) 
+{
+	typedef void (*Mesh_OptimizeImpl_m655C4BF9937392A9785D95230CCE878F09357B54_ftn) (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4*);
+	static Mesh_OptimizeImpl_m655C4BF9937392A9785D95230CCE878F09357B54_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Mesh_OptimizeImpl_m655C4BF9937392A9785D95230CCE878F09357B54_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Mesh::OptimizeImpl()");
+	_il2cpp_icall_func(__this);
+}
 // UnityEngine.Rendering.VertexAttribute UnityEngine.Mesh::GetUVChannel(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Mesh_GetUVChannel_m52936A342F9C96EB7F0214A2F310018E1A25A689 (int32_t ___uvIndex0, const RuntimeMethod* method) 
 {
@@ -19936,6 +19948,47 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_UploadMeshData_mE4C94F263DAA8CAC164
 	}
 
 IL_0013:
+	{
+		return;
+	}
+}
+// System.Void UnityEngine.Mesh::Optimize()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mesh_Optimize_m9BEEA08D34B1E99B712B862F540C8B0B9E6505E6 (Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral73BE924278603F7D3D65F0AD333B3DBDB2F9D87D);
+		s_Il2CppMethodInitialized = true;
+	}
+	bool V_0 = false;
+	{
+		bool L_0;
+		L_0 = Mesh_get_canAccess_m97F255BBB8C009D643920E2D095B6DB8868E3572(__this, NULL);
+		V_0 = L_0;
+		bool L_1 = V_0;
+		if (!L_1)
+		{
+			goto IL_0014;
+		}
+	}
+	{
+		Mesh_OptimizeImpl_m655C4BF9937392A9785D95230CCE878F09357B54(__this, NULL);
+		goto IL_002a;
+	}
+
+IL_0014:
+	{
+		String_t* L_2;
+		L_2 = Object_get_name_mAC2F6B897CF1303BA4249B4CB55271AFACBB6392(__this, NULL);
+		String_t* L_3;
+		L_3 = String_Format_mA8DBB4C2516B9723C5A41E6CB1E2FAF4BBE96DD8(_stringLiteral73BE924278603F7D3D65F0AD333B3DBDB2F9D87D, L_2, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2(L_3, NULL);
+	}
+
+IL_002a:
 	{
 		return;
 	}
@@ -26786,6 +26839,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MeshFilter_set_sharedMesh_m946F7E3F58376
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (MeshFilter_set_sharedMesh_m946F7E3F583761982642BDA4753784AF1DF6E16F_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.MeshFilter::set_sharedMesh(UnityEngine.Mesh)");
 	_il2cpp_icall_func(__this, ___value0);
+}
+// UnityEngine.Mesh UnityEngine.MeshFilter::get_mesh()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* MeshFilter_get_mesh_m13172D7EF6682861971817D0A47EE2BE49FBCB1C (MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5* __this, const RuntimeMethod* method) 
+{
+	typedef Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* (*MeshFilter_get_mesh_m13172D7EF6682861971817D0A47EE2BE49FBCB1C_ftn) (MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5*);
+	static MeshFilter_get_mesh_m13172D7EF6682861971817D0A47EE2BE49FBCB1C_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (MeshFilter_get_mesh_m13172D7EF6682861971817D0A47EE2BE49FBCB1C_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.MeshFilter::get_mesh()");
+	Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
 }
 // System.Void UnityEngine.MeshFilter::set_mesh(UnityEngine.Mesh)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MeshFilter_set_mesh_mD2988E2D835205FD6B6CD35A61E1592844D971F8 (MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5* __this, Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* ___value0, const RuntimeMethod* method) 

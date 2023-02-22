@@ -1,0 +1,54 @@
+{
+    "name": "InputActionControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "58738e5e-24bf-452c-b935-c535306b4877",
+            "actions": [
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "f9a35a6a-75f4-4b84-b9e2-14dee59c4b24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Blockout",
+                    "type": "Button",
+                    "id": "42ab957f-69ac-41f1-a580-453cf216f6b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "94f97c2b-b748-4c2e-80d4-f7b5d6139657",
+                    "path": "<XRController>/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92a28d61-b193-4269-8bf7-ddc620e65441",
+                    "path": "<XRController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blockout",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
