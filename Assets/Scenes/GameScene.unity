@@ -8927,25 +8927,6 @@ MonoBehaviour:
   resetHmdPoseByMiddleMouseButton: 1
   activateKeys: 3201000031010000
   pitchKeys: 3401000033010000
---- !u!114 &3680607433127796644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3680607433127796671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847d8b0d968d4a14c89d7508f54c0db7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnableLinearMovement: 1
-  EnableRotation: 1
-  HMDRotatesPlayer: 1
-  RotationEitherThumbstick: 0
-  RotationAngle: 45
-  Speed: 4
-  CameraRig: {fileID: 3680607433035253863}
 --- !u!4 &3680607433127796645
 Transform:
   m_ObjectHideFlags: 0
@@ -9038,10 +9019,10 @@ GameObject:
   - component: {fileID: 3680607433127796672}
   - component: {fileID: 3680607433127796665}
   - component: {fileID: 3680607433127796664}
-  - component: {fileID: 3680607433127796644}
   - component: {fileID: 3680607433127796667}
   - component: {fileID: 3680607433127796646}
   - component: {fileID: 3680607433127796673}
+  - component: {fileID: 3680607433127796674}
   m_Layer: 2
   m_Name: PlayerController
   m_TagString: Player
@@ -9163,6 +9144,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3680607433127796674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680607433127796671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c596b247e7eeba4eaf3fff1930177f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertexPositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  vertexSphereScale: 0.1
+  vertexSpheres: []
+  blockoutMaterial: {fileID: 2100000, guid: 873f64dbd47d70c4e9365bce21028f38, type: 2}
+  controller: {fileID: 1111528205}
 --- !u!20 &3680607433301613268
 Camera:
   m_ObjectHideFlags: 0
@@ -9463,7 +9464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraRig: {fileID: 3680607433035253863}
   CharacterController: {fileID: 3680607433127796667}
-  PlayerController: {fileID: 3680607433127796644}
+  PlayerController: {fileID: 0}
 --- !u!114 &3680607433621626852
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,9 +14,9 @@ public class ObjectBlockoutInspector : Editor
     {
         ObjectBlockout tool = (ObjectBlockout)target;
 
-        if (GUILayout.Button("Create Test Cube"))
+        /*if (GUILayout.Button("Create Test Cube"))
         {
             tool.CreateTestObject();
-        }
+        }*/
     }
 }

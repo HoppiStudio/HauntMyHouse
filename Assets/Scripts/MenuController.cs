@@ -8,7 +8,7 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     public void playBtn ()
     {
-        SceneManager.LoadScene("NEWGameScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     // Update is called once per frame
