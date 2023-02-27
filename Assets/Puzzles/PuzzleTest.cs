@@ -21,6 +21,6 @@ public class PuzzleTest : MonoBehaviour
 
     private void BanishGhost()
     {
-        Debug.Log("Banish ghost");
+        Debug.Log(this + " check");
     }
 }
