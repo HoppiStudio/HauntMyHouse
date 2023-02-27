@@ -14,6 +14,6 @@ public class Puzzle : MonoBehaviour
     public void Complete()
     {
         completed = true;
-        Debug.Log(this.gameObject + "completed");
+        Debug.Log(this + " completed");
     }
 }
