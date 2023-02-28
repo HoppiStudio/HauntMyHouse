@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LeverPuzzle : Puzzle
 {
@@ -9,12 +10,23 @@ public class LeverPuzzle : Puzzle
 
     void Start()
     {
+        Lever[] leverArray = levers.ToArray();
 
+        foreach (var lever in leverArray)
+        {
+            lever.OnLeverStateChanged += CheckPuzzleComplete;
+        }
     }
 
     void Update()
     {
+
+    }
+
+    public void CheckPuzzleComplete()
+    {
         int correctAnswers = 0;
+
         for (int i = 0; i < solution.Count; i++)
         {
             if (solution[i] == levers[i].state)
@@ -22,9 +34,14 @@ public class LeverPuzzle : Puzzle
                 correctAnswers++;
             }
         }
+
         if (correctAnswers == solution.Count)
         {
             Complete();
+        }
+        else 
+        {
+            Debug.Log("incorrect solution");
         }
     }
 }

@@ -8,15 +8,12 @@ public class PuzzleTest : MonoBehaviour
 
     void Start()
     {
-
+        puzzle.OnPuzzleComplete += BanishGhost;
     }
 
     void Update()
     {
-        if (puzzle.IsCompleted())
-        {
-            BanishGhost();
-        }
+
     }
 
     private void BanishGhost()
