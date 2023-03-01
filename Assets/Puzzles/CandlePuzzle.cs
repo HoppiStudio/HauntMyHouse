@@ -18,4 +18,9 @@ public class CandlePuzzle : Puzzle
             Complete();
         }
     }
+
+    public void CheckPuzzleComplete()
+    {
+
+    }
 }

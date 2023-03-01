@@ -20,4 +20,9 @@ public class PuzzleTest : MonoBehaviour
     {
         Debug.Log(this + " check");
     }
+
+    private void OnDisable()
+    {
+        puzzle.OnPuzzleComplete -= BanishGhost;
+    }
 }

@@ -10,9 +10,7 @@ public class LeverPuzzle : Puzzle
 
     void Start()
     {
-        Lever[] leverArray = levers.ToArray();
-
-        foreach (var lever in leverArray)
+        foreach (var lever in levers)
         {
             lever.OnLeverStateChanged += CheckPuzzleComplete;
         }
@@ -39,9 +37,13 @@ public class LeverPuzzle : Puzzle
         {
             Complete();
         }
-        else 
+    }
+
+    private void OnDisable()
+    {
+        foreach (var lever in levers)
         {
-            Debug.Log("incorrect solution");
+            lever.OnLeverStateChanged += CheckPuzzleComplete;
         }
     }
 }
