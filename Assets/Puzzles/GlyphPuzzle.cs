@@ -5,11 +5,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class GlyphPuzzle : Puzzle
 {
-    [SerializeField] private List<GameObject> solution = new List<GameObject>();
-    [SerializeField] private List<GameObject> blocksPlaced = new List<GameObject>();
-
-    [SerializeField] private XRSocketInteractor socket;
-
     void Start()
     {
 
@@ -22,20 +17,20 @@ public class GlyphPuzzle : Puzzle
 
     public void CheckPuzzleComplete()
     {
-        int correctAnswers = 0;
+        /*int correctAnswers = 0;
 
-        for (int i = 0; i < solution.Count; i++)
+        for (int i = 0; i <; i++)
         {
-            if (solution[i] == blocksPlaced[i])
+            if ()
             {
                 correctAnswers++;
             }
         }
 
-        if (correctAnswers == solution.Count)
+        if ()
         {
             Complete();
-        }
+        }*/
     }
 
     public void Debugger()

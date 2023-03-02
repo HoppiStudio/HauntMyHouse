@@ -5,8 +5,11 @@ using System.Linq;
 
 public class LeverPuzzle : Puzzle
 {
-    [SerializeField] private List<LeverState> solution = new List<LeverState>();
-    [SerializeField] private List<Lever> levers = new List<Lever>();
+    [SerializeField, Header("Lever object references")]
+    private List<Lever> levers = new List<Lever>();
+
+    [SerializeField, Header("The correct solution for the levers")]
+    private List<LeverState> solution = new List<LeverState>();
 
     void Start()
     {
@@ -14,11 +17,6 @@ public class LeverPuzzle : Puzzle
         {
             lever.OnLeverStateChanged += CheckPuzzleComplete;
         }
-    }
-
-    void Update()
-    {
-
     }
 
     public void CheckPuzzleComplete()

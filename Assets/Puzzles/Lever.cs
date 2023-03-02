@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using TMPro;
 using System;
 
 public enum LeverState
@@ -18,8 +17,6 @@ public class Lever : MonoBehaviour
     public LeverState state = LeverState.Middle;
 
     [SerializeField] private int deadzone = 60;
-
-    [SerializeField] private TMP_Text debugText;
 
     private HingeJoint lever;
 
@@ -60,10 +57,6 @@ public class Lever : MonoBehaviour
 
     private void Debugger()
     {
-        if(debugText != null)
-        {
-            debugText.text = state.ToString();
-            Debug.Log(this + ": " + state);
-        }
+        Debug.Log(this + ": " + state);
     }
 }
