@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 25e9bb5baaab1894ea47e843f83eb873
   - enabled: 1
@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/WindowsLobby.unity
-    guid: 5ab5f7b393c819149bfc9f21c7781b2c
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/Testing/ObjectGrabbing.unity
     guid: 5a696dbf1c2369d42873207589fcc87d

@@ -50,6 +50,8 @@ struct DelegateData_t9B286B493293CD2D23A5B2B5EF0E5B1324C2B77E;
 struct Exception_t;
 // UnityEngine.GameObject
 struct GameObject_t76FEDD663AB33C991A9C9A23129337651094216F;
+// UnityEngine.HingeJoint
+struct HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7;
 // System.Collections.IDictionary
 struct IDictionary_t6D03155AF1FA9083817AA5B6AD7DEEACC26AB220;
 // UnityEngine.Joint
@@ -224,6 +226,25 @@ struct JointDrive_t02FEB3A7895F33D040010E2BE5377313FAFC3CB6
 	float ___m_PositionDamper_1;
 	// System.Single UnityEngine.JointDrive::m_MaximumForce
 	float ___m_MaximumForce_2;
+};
+
+// UnityEngine.JointLimits
+struct JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A 
+{
+	// System.Single UnityEngine.JointLimits::m_Min
+	float ___m_Min_0;
+	// System.Single UnityEngine.JointLimits::m_Max
+	float ___m_Max_1;
+	// System.Single UnityEngine.JointLimits::m_Bounciness
+	float ___m_Bounciness_2;
+	// System.Single UnityEngine.JointLimits::m_BounceMinVelocity
+	float ___m_BounceMinVelocity_3;
+	// System.Single UnityEngine.JointLimits::m_ContactDistance
+	float ___m_ContactDistance_4;
+	// System.Single UnityEngine.JointLimits::minBounce
+	float ___minBounce_5;
+	// System.Single UnityEngine.JointLimits::maxBounce
+	float ___maxBounce_6;
 };
 
 // UnityEngine.PhysicsScene
@@ -786,6 +807,11 @@ struct FixedJoint_tA10A077292A86BA2A2AB3542E3441610055F806E  : public Joint_tB2C
 {
 };
 
+// UnityEngine.HingeJoint
+struct HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7  : public Joint_tB2C5499F976EBB1EA1C11A80E1BD9F5E2EE4D682
+{
+};
+
 // UnityEngine.MeshCollider
 struct MeshCollider_tB525E4DDE383252364ED0BDD32CF2B53914EE455  : public Collider_t1CC3163924FCD6C4CC2E816373A929C1E3D55E76
 {
@@ -1119,6 +1145,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Joint_set_anchor_Injected_m640F53862ECAB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Joint_get_connectedAnchor_Injected_mB370F52F87BB83B28A071E4342F132D2ACC9C365 (Joint_tB2C5499F976EBB1EA1C11A80E1BD9F5E2EE4D682* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___ret0, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Joint::set_connectedAnchor_Injected(UnityEngine.Vector3&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Joint_set_connectedAnchor_Injected_mE4275DA473C8A61B37A1639E2352A09DCE2A4198 (Joint_tB2C5499F976EBB1EA1C11A80E1BD9F5E2EE4D682* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___value0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.HingeJoint::get_limits_Injected(UnityEngine.JointLimits&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HingeJoint_get_limits_Injected_m33E3633CAC19E9EBB0BCFC5D8A5CA7FBEC8A8E73 (HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7* __this, JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* ___ret0, const RuntimeMethod* method) ;
 // System.Void UnityEngine.ConfigurableJoint::get_secondaryAxis_Injected(UnityEngine.Vector3&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ConfigurableJoint_get_secondaryAxis_Injected_m930CFC10D358646D8B71A761C1F8DE25AA64F266 (ConfigurableJoint_t8B33AB5A6B8D52493F14C4B8DBDF78A1C94ECB77* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___ret0, const RuntimeMethod* method) ;
 // System.Void UnityEngine.ConfigurableJoint::set_secondaryAxis_Injected(UnityEngine.Vector3&)
@@ -1265,6 +1293,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PhysicsScene_t55222DD37072E8560EE054A07C0E3FE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Exception__ctor_m9B2BD92CD68916245A75109105D9071C9D430E7F (Exception_t* __this, String_t* ___message0, const RuntimeMethod* method) ;
 // System.Void UnityEngine.PhysicsSceneExtensions::GetPhysicsScene_Internal_Injected(UnityEngine.SceneManagement.Scene&,UnityEngine.PhysicsScene&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PhysicsSceneExtensions_GetPhysicsScene_Internal_Injected_m2A4EE29C6BD1AA0EB6BF7683EA8E5B6783A6FA57 (Scene_tA1DC762B79745EB5140F054C884855B922318356* ___scene0, PhysicsScene_t55222DD37072E8560EE054A07C0E3FE391D9D9DE* ___ret1, const RuntimeMethod* method) ;
+// System.Single UnityEngine.JointLimits::get_min()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float JointLimits_get_min_m3E8D3C572B30DA53262849D4D5BFFD9A77276FC8 (JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* __this, const RuntimeMethod* method) ;
+// System.Single UnityEngine.JointLimits::get_max()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float JointLimits_get_max_m4E6BC6E5D320C4E2E7599852B19F4524D9549638 (JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* __this, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Vector3::.ctor(System.Single,System.Single,System.Single)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, float ___x0, float ___y1, float ___z2, const RuntimeMethod* method) ;
 // UnityEngine.Vector3 UnityEngine.Vector3::Normalize(UnityEngine.Vector3)
@@ -4472,6 +4504,44 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Joint_set_connectedAnchor_Injected_mE427
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+// UnityEngine.JointLimits UnityEngine.HingeJoint::get_limits()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A HingeJoint_get_limits_mD0E3FDF10D6AEF4D539711C0DE418C20930B6433 (HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7* __this, const RuntimeMethod* method) 
+{
+	JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		HingeJoint_get_limits_Injected_m33E3633CAC19E9EBB0BCFC5D8A5CA7FBEC8A8E73(__this, (&V_0), NULL);
+		JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A L_0 = V_0;
+		return L_0;
+	}
+}
+// System.Single UnityEngine.HingeJoint::get_angle()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float HingeJoint_get_angle_mCCDAB7FAFB7A535562521C450A1A35393622DD6D (HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7* __this, const RuntimeMethod* method) 
+{
+	typedef float (*HingeJoint_get_angle_mCCDAB7FAFB7A535562521C450A1A35393622DD6D_ftn) (HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7*);
+	static HingeJoint_get_angle_mCCDAB7FAFB7A535562521C450A1A35393622DD6D_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (HingeJoint_get_angle_mCCDAB7FAFB7A535562521C450A1A35393622DD6D_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.HingeJoint::get_angle()");
+	float icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
+// System.Void UnityEngine.HingeJoint::get_limits_Injected(UnityEngine.JointLimits&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HingeJoint_get_limits_Injected_m33E3633CAC19E9EBB0BCFC5D8A5CA7FBEC8A8E73 (HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7* __this, JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* ___ret0, const RuntimeMethod* method) 
+{
+	typedef void (*HingeJoint_get_limits_Injected_m33E3633CAC19E9EBB0BCFC5D8A5CA7FBEC8A8E73_ftn) (HingeJoint_t70A95A9F77881D06B0A7BE99B7B16EA40332D2D7*, JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A*);
+	static HingeJoint_get_limits_Injected_m33E3633CAC19E9EBB0BCFC5D8A5CA7FBEC8A8E73_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (HingeJoint_get_limits_Injected_m33E3633CAC19E9EBB0BCFC5D8A5CA7FBEC8A8E73_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.HingeJoint::get_limits_Injected(UnityEngine.JointLimits&)");
+	_il2cpp_icall_func(__this, ___ret0);
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -6442,6 +6512,64 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PhysicsSceneExtensions_GetPhysicsScene_I
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Single UnityEngine.JointLimits::get_min()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float JointLimits_get_min_m3E8D3C572B30DA53262849D4D5BFFD9A77276FC8 (JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* __this, const RuntimeMethod* method) 
+{
+	float V_0 = 0.0f;
+	{
+		float L_0 = __this->___m_Min_0;
+		V_0 = L_0;
+		goto IL_000a;
+	}
+
+IL_000a:
+	{
+		float L_1 = V_0;
+		return L_1;
+	}
+}
+IL2CPP_EXTERN_C  float JointLimits_get_min_m3E8D3C572B30DA53262849D4D5BFFD9A77276FC8_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A*>(__this + _offset);
+	float _returnValue;
+	_returnValue = JointLimits_get_min_m3E8D3C572B30DA53262849D4D5BFFD9A77276FC8(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Single UnityEngine.JointLimits::get_max()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float JointLimits_get_max_m4E6BC6E5D320C4E2E7599852B19F4524D9549638 (JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* __this, const RuntimeMethod* method) 
+{
+	float V_0 = 0.0f;
+	{
+		float L_0 = __this->___m_Max_1;
+		V_0 = L_0;
+		goto IL_000a;
+	}
+
+IL_000a:
+	{
+		float L_1 = V_0;
+		return L_1;
+	}
+}
+IL2CPP_EXTERN_C  float JointLimits_get_max_m4E6BC6E5D320C4E2E7599852B19F4524D9549638_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<JointLimits_tB79BCEF381B77F069150A1A961C05DD9838B998A*>(__this + _offset);
+	float _returnValue;
+	_returnValue = JointLimits_get_max_m4E6BC6E5D320C4E2E7599852B19F4524D9549638(_thisAdjusted, method);
+	return _returnValue;
+}
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif

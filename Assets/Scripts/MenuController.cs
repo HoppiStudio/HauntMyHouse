@@ -5,13 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
     public void playBtn ()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    // Update is called once per frame
+    public void restartBtn()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void exitBtn()
     {
         Application.Quit();
