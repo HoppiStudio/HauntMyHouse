@@ -1,56 +1,79 @@
 using Oculus.Interaction.Input;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ObjectBlockout : MonoBehaviour
 {
-    //3 cube verticies for table creation.
-    [SerializeField] private Vector3[] testVertexPositions = new Vector3[3];
+    // vertices
     [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
     private Vector3[] vertices;
 
-    [SerializeField] private Material cubeMaterial;
+    // vertex spheres
+    [SerializeField] private float vertexSphereScale = 0.1f;
+    [SerializeField] private List<GameObject> vertexSpheres = new List<GameObject>();
+
+    [SerializeField] private Material blockoutMaterial;
 
     [SerializeField] private XRController controller;
 
-    private int index = 0;
+    private int vertexIndex = 0;
 
     private InputActionControls inputActions;
 
     private void Awake()
     {
+        // input action manager may be requried
         inputActions = new InputActionControls();
+    }
 
+    private void OnEnable()
+    {
         inputActions.Player.Blockout.Enable();
         inputActions.Player.Blockout.performed += DoBlockOut;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-
-    }
-
-    public void CreateTestObject()
-    {
-        CreateCubeFromVertices(testVertexPositions);
+        inputActions.Player.Blockout.performed -= DoBlockOut;
+        inputActions.Player.Blockout.Disable();
     }
 
     private void DoBlockOut(InputAction.CallbackContext obj)
     {
-        vertexPositions[index] = controller.transform.position;
-        index++;
-
-        if (index == vertexPositions.Length)
+        // Clear vertex Spheres if necessary
+        if (vertexIndex == 0 && vertexSpheres.Count == vertexPositions.Length)
         {
-            CreateCubeFromVertices(vertexPositions);
-            index = 0;
+            for (int i = 0; i < vertexSpheres.Count; i++)
+            {
+                Destroy(vertexSpheres[i]);
+            }
+            vertexSpheres.Clear();
+        }
+
+        // Set vertex position to position of controller in world space
+        vertexPositions[vertexIndex] = controller.transform.position;
+
+        // create sphere at vertex position
+        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.transform.localScale = new Vector3(vertexSphereScale, vertexSphereScale, vertexSphereScale);
+        sphere.transform.position = vertexPositions[vertexIndex];
+        vertexSpheres.Add(sphere);
+
+        vertexIndex++;
+
+        // If all needed vertices are placed then create blockout object
+        if (vertexIndex == vertexPositions.Length)
+        {
+            CreateBlockoutFromVertices(vertexPositions);
+            vertexIndex = 0;
         }
     }
 
-    private void CreateCubeFromVertices(Vector3[] positions)
+    private void CreateBlockoutFromVertices(Vector3[] positions)
     {
         /*Vector3[] vertices = {
             new Vector3 (0, 0, 0), // 0 bottom front left
@@ -215,10 +238,10 @@ public class ObjectBlockout : MonoBehaviour
 			0, 1, 6
         };
 
-        GameObject cube = new GameObject("cube " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer));
-        cube.transform.SetParent(this.transform);
+        GameObject blouckout = new GameObject("blockout " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer));
+        blouckout.transform.SetParent(this.transform);
 
-        Mesh mesh = cube.GetComponent<MeshFilter>().mesh;
+        Mesh mesh = blouckout.GetComponent<MeshFilter>().mesh;
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
@@ -226,13 +249,7 @@ public class ObjectBlockout : MonoBehaviour
         mesh.RecalculateNormals();
 
         // REMAP MATERIAL
-        cube.GetComponent<MeshFilter>().mesh = mesh;
-        cube.GetComponent<MeshRenderer>().material = cubeMaterial;
-    }
-
-    private void OnDestroy()
-    {
-        inputActions.Player.Blockout.Disable();
-        inputActions.Player.Blockout.performed -= DoBlockOut;
+        blouckout.GetComponent<MeshFilter>().mesh = mesh;
+        blouckout.GetComponent<MeshRenderer>().material = blockoutMaterial;
     }
 }

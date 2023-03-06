@@ -24,7 +24,7 @@ public class DirectorBuildUpState : IState
             _director.MaxPopulationCount = _director.GetMaxPeakPopulation();
             _stateMachine.ChangeState(typeof(DirectorPeakState));
         }
-        Debug.Log($"Intensity State: <color=orange>BUILDUP</color>");
+        //Debug.Log($"Intensity State: <color=orange>BUILDUP</color>");
     }
 
     public void OnStateExit() => DirectorEventBus.Publish(DirectorEvent.ReachedPeakIntensity);
