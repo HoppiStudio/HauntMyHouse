@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 200
     height: 819.3333
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 105
+  controlID: 52
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 484.66663
     height: 819.3333
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 136
+  controlID: 53
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -394,22 +394,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Puzzles
+    - Assets/Puzzles/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Puzzles
+  - Assets/Puzzles/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\m_kha\OneDrive\Desktop\HauntMyHouse
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 491.00003}
-    m_SelectedIDs: 94810000
-    m_LastClickedID: 33172
-    m_ExpandedIDs: 00000000ee7e0000f47e00009281000094810000ce8e0000d08e0000089300000a9300000c93000000ca9a3b
+    scrollPos: {x: 0, y: 79.00003}
+    m_SelectedIDs: f28c0000
+    m_LastClickedID: 36082
+    m_ExpandedIDs: 00000000c08c0000c28c0000c48c0000c68c0000c88c0000ca8c0000cc8c0000ce8c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -437,7 +437,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ee7e0000f07e0000f27e0000f47e0000
+    m_ExpandedIDs: 00000000c08c0000c28c0000c48c0000c68c0000c88c0000ca8c0000cc8c0000ce8c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -567,23 +567,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 3a0b0000
+      m_SelectedIDs: 8a910000
       m_LastClickedID: 0
-      m_ExpandedIDs: 6aebffff9cecffff20f6ffff1cfafffffe8100002a820000de8200004c830000728300008a8300002e84000012850000
+      m_ExpandedIDs: 24fbffff287d0000547d0000ee7e0000427f0000cc7f0000c0800000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Lever (2)
-        m_OriginalName: Lever (2)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 33474
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 2}
       m_SearchString: 
@@ -874,9 +874,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.0916214, y: 3.4699614, z: -3.4840164}
+    m_Target: {x: 1.8191015, y: 2.0922823, z: -1.8198668}
     speed: 2
-    m_Value: {x: 5.0916214, y: 3.4699614, z: -3.4840164}
+    m_Value: {x: 1.8191015, y: 2.0922823, z: -1.8198668}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -924,11 +924,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.16968802, y: -0.29602885, z: 0.05334025, w: -0.93856823}
     speed: 2
-    m_Value: {x: -0.16983178, y: -0.29318509, z: 0.05282613, w: -0.9393664}
+    m_Value: {x: -0.16967252, y: -0.29600182, z: 0.05333538, w: -0.9384825}
   m_Size:
-    m_Target: 2.93575
+    m_Target: 1.2783457
     speed: 2
-    m_Value: 2.8093302
+    m_Value: 1.2232974
   m_Ortho:
     m_Target: 0
     speed: 2
