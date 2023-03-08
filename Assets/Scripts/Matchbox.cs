@@ -1,8 +1,12 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Matchbox : MonoBehaviour
 {
+    private InputActionManager inputActionManager;
+
     [SerializeField] private TMP_Text debugText;
     private Matchstick _matchstick;
     private Vector3 _startPosition;
@@ -10,8 +14,25 @@ public class Matchbox : MonoBehaviour
 
     private void Start()
     {
+        inputActionManager = InputActionManager.Instance;
+
         debugText.text = "";
         _startPosition = transform.position;
+    }
+
+    private void OnEnable()
+    {
+        inputActionManager.playerInputActions.Player.Interact.performed += DoIgnite;
+    }
+
+    private void OnDisable()
+    {
+        inputActionManager.playerInputActions.Player.Interact.performed -= DoIgnite;
+    }
+
+    private void DoIgnite(InputAction.CallbackContext obj)
+    {
+        _matchstick.Ignite();
     }
 
     private void Update()
@@ -22,12 +43,9 @@ public class Matchbox : MonoBehaviour
         }
         
         if(!_isCollidingWithMatchstick) { return; }
-
-        if (OVRInput.GetDown(OVRInput.Button.One))
-        {
-            _matchstick.Ignite();
-        }
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {

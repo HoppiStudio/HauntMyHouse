@@ -44,6 +44,24 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UndoBlockout"",
+                    ""type"": ""Button"",
+                    ""id"": ""54dcfea9-bc0c-4724-a79a-9c1a15023343"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9f5f8d4-3f4c-4332-84f3-16a7c57fbf53"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +86,28 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                     ""action"": ""Blockout"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dad4994-4310-4d4c-bb81-5607202e8c04"",
+                    ""path"": ""<XRController>{RightHand}/secondaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UndoBlockout"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53bd05a9-0528-4079-87c6-229d6141e717"",
+                    ""path"": ""<XRController>{RightHand}/primaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +118,8 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_Blockout = m_Player.FindAction("Blockout", throwIfNotFound: true);
+        m_Player_UndoBlockout = m_Player.FindAction("UndoBlockout", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +181,16 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_Blockout;
+    private readonly InputAction m_Player_UndoBlockout;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @InputActionControls m_Wrapper;
         public PlayerActions(@InputActionControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
         public InputAction @Blockout => m_Wrapper.m_Player_Blockout;
+        public InputAction @UndoBlockout => m_Wrapper.m_Player_UndoBlockout;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +206,12 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                 @Blockout.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlockout;
                 @Blockout.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlockout;
                 @Blockout.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlockout;
+                @UndoBlockout.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUndoBlockout;
+                @UndoBlockout.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUndoBlockout;
+                @UndoBlockout.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUndoBlockout;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +222,12 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                 @Blockout.started += instance.OnBlockout;
                 @Blockout.performed += instance.OnBlockout;
                 @Blockout.canceled += instance.OnBlockout;
+                @UndoBlockout.started += instance.OnUndoBlockout;
+                @UndoBlockout.performed += instance.OnUndoBlockout;
+                @UndoBlockout.canceled += instance.OnUndoBlockout;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -178,5 +236,7 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
     {
         void OnGrab(InputAction.CallbackContext context);
         void OnBlockout(InputAction.CallbackContext context);
+        void OnUndoBlockout(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

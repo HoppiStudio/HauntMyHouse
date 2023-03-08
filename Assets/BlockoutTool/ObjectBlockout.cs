@@ -8,6 +8,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ObjectBlockout : MonoBehaviour
 {
+    private InputActionManager inputActionManager;
+
     // vertices
     [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
     private Vector3[] vertices;
@@ -20,29 +22,28 @@ public class ObjectBlockout : MonoBehaviour
 
     [SerializeField] private XRController controller;
 
+    [SerializeField] private Stack<GameObject> blockouts = new Stack<GameObject>();
+
     private int vertexIndex = 0;
 
-    private InputActionControls inputActions;
-
-    private void Awake()
+    private void Start()
     {
-        // input action manager may be requried
-        inputActions = new InputActionControls();
+        inputActionManager = InputActionManager.Instance;
     }
 
     private void OnEnable()
     {
-        inputActions.Player.Blockout.Enable();
-        inputActions.Player.Blockout.performed += DoBlockOut;
+        inputActionManager.playerInputActions.Player.Blockout.performed += DoBlockout;
+        inputActionManager.playerInputActions.Player.UndoBlockout.performed += UndoBlockout;
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Blockout.performed -= DoBlockOut;
-        inputActions.Player.Blockout.Disable();
+        inputActionManager.playerInputActions.Player.Blockout.performed -= DoBlockout;
+        inputActionManager.playerInputActions.Player.UndoBlockout.performed -= UndoBlockout;
     }
 
-    private void DoBlockOut(InputAction.CallbackContext obj)
+    private void DoBlockout(InputAction.CallbackContext obj)
     {
         // Clear vertex Spheres if necessary
         if (vertexIndex == 0 && vertexSpheres.Count == vertexPositions.Length)
@@ -71,6 +72,11 @@ public class ObjectBlockout : MonoBehaviour
             CreateBlockoutFromVertices(vertexPositions);
             vertexIndex = 0;
         }
+    }
+    private void UndoBlockout(InputAction.CallbackContext obj)
+    {
+        GameObject deletedObject = blockouts.Pop();
+        Destroy(deletedObject);
     }
 
     private void CreateBlockoutFromVertices(Vector3[] positions)
@@ -238,18 +244,20 @@ public class ObjectBlockout : MonoBehaviour
 			0, 1, 6
         };
 
-        GameObject blouckout = new GameObject("blockout " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer));
-        blouckout.transform.SetParent(this.transform);
+        GameObject blockout = new GameObject("blockout " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider));
+        blockout.transform.SetParent(this.transform);
+        blockouts.Push(blockout);
 
-        Mesh mesh = blouckout.GetComponent<MeshFilter>().mesh;
+        Mesh mesh = blockout.GetComponent<MeshFilter>().mesh;
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.Optimize();
         mesh.RecalculateNormals();
 
-        // REMAP MATERIAL
-        blouckout.GetComponent<MeshFilter>().mesh = mesh;
-        blouckout.GetComponent<MeshRenderer>().material = blockoutMaterial;
+        // Potentially need to remap material
+        blockout.GetComponent<MeshFilter>().mesh = mesh;
+        blockout.GetComponent<MeshRenderer>().material = blockoutMaterial;
+        blockout.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 }
