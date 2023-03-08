@@ -15,16 +15,25 @@ public class GameTimer : MonoBehaviour
     public int timeInMinutes;
     public int timeInSeconds;
 
+    private bool complete = false;
+
     private void Start()
     {
         timer = (minutes * 60) + seconds;
     }
 
     public event Action OnTimerValueChange;
+    public event Action OnTimerComplete;
     void Update()
     {
-        if (timeMultiplier < 0 && timer <= 0)
+        if (complete)
             return;
+
+        if (timeMultiplier < 0 && timer <= 0)
+        {
+            OnTimerComplete?.Invoke();
+            complete = true;
+        }
 
         int previousTime = timeInSeconds;
 
