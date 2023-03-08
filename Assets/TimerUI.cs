@@ -5,15 +5,44 @@ using TMPro;
 
 public class TimerUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private GameTimer timer;
+    [SerializeField] private TMP_Text  timerText;
 
-    void Start()
+    private void OnEnable()
     {
-        
+        timer.OnTimerValueChange += UpdateText;
     }
 
-    void Update()
+    private void UpdateText()
     {
-        timerText.text = GameTimer.timerInSeconds.ToString();
+        Debug.Log($"{timer.timeInMinutes} : {timer.timeInSeconds}");
+
+        if (timer.timeInMinutes < 10)
+        {
+            if (timer.timeInSeconds < 10)
+            {
+                timerText.text = $"00:0{timer.timeInMinutes}:0{timer.timeInSeconds}";
+            }
+            else
+            {
+                timerText.text = $"00:0{timer.timeInMinutes}:{timer.timeInSeconds}";
+            }
+        }
+        else
+        {
+            if (timer.timeInSeconds < 10)
+            {
+                timerText.text = $"00:{timer.timeInMinutes}:0{timer.timeInSeconds}";
+            }
+            else
+            {
+                timerText.text = $"00:{timer.timeInMinutes}:{timer.timeInSeconds}";
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        timer.OnTimerValueChange -= UpdateText;
     }
 }
