@@ -32,7 +32,10 @@ public class Matchbox : MonoBehaviour
 
     private void DoIgnite(InputAction.CallbackContext obj)
     {
-        _matchstick.Ignite();
+        if(_isCollidingWithMatchstick)
+        {
+            _matchstick.Ignite();
+        }
     }
 
     private void Update()
@@ -41,8 +44,6 @@ public class Matchbox : MonoBehaviour
         {
             transform.position = _startPosition;
         }
-        
-        if(!_isCollidingWithMatchstick) { return; }
     }
 
 
