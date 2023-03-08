@@ -28,11 +28,13 @@ public class ObjectBlockout : MonoBehaviour
 
     private void Start()
     {
-        inputActionManager = InputActionManager.Instance;
+
     }
 
     private void OnEnable()
     {
+        inputActionManager = InputActionManager.Instance;
+
         inputActionManager.playerInputActions.Player.Blockout.performed += DoBlockout;
         inputActionManager.playerInputActions.Player.UndoBlockout.performed += UndoBlockout;
     }

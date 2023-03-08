@@ -14,14 +14,14 @@ public class Matchbox : MonoBehaviour
 
     private void Start()
     {
-        inputActionManager = InputActionManager.Instance;
-
         debugText.text = "";
         _startPosition = transform.position;
     }
 
     private void OnEnable()
     {
+        inputActionManager = InputActionManager.Instance;
+
         inputActionManager.playerInputActions.Player.Interact.performed += DoIgnite;
     }
 
