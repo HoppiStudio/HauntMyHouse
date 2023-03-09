@@ -15,7 +15,7 @@ public class TimerUI : MonoBehaviour
 
     private void UpdateText()
     {
-        Debug.Log($"{timer.timeInMinutes} : {timer.timeInSeconds}");
+        //Debug.Log($"{timer.timeInMinutes} : {timer.timeInSeconds}");
 
         if (timer.timeInMinutes < 10)
         {

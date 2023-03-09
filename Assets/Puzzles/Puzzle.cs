@@ -12,7 +12,7 @@ public class Puzzle : MonoBehaviour
         return completed;
     }
 
-    public event Action OnPuzzleComplete;
+    public static event Action OnPuzzleComplete;
     public void Complete()
     {
         completed = true;

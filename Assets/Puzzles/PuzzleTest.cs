@@ -8,7 +8,7 @@ public class PuzzleTest : MonoBehaviour
 
     void Start()
     {
-        puzzle.OnPuzzleComplete += BanishGhost;
+        //puzzle.OnPuzzleComplete += BanishGhost;
     }
 
     void Update()
@@ -23,6 +23,6 @@ public class PuzzleTest : MonoBehaviour
 
     private void OnDisable()
     {
-        puzzle.OnPuzzleComplete -= BanishGhost;
+        //puzzle.OnPuzzleComplete -= BanishGhost;
     }
 }
