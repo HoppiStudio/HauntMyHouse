@@ -21,22 +21,22 @@ public class TimerUI : MonoBehaviour
         {
             if (timer.timeInSeconds < 10)
             {
-                timerText.text = $"00:0{timer.timeInMinutes}:0{timer.timeInSeconds}";
+                timerText.text = $"{timer.timeInMinutes}:0{timer.timeInSeconds}";
             }
             else
             {
-                timerText.text = $"00:0{timer.timeInMinutes}:{timer.timeInSeconds}";
+                timerText.text = $"{timer.timeInMinutes}:{timer.timeInSeconds}";
             }
         }
         else
         {
             if (timer.timeInSeconds < 10)
             {
-                timerText.text = $"00:{timer.timeInMinutes}:0{timer.timeInSeconds}";
+                timerText.text = $"{timer.timeInMinutes}:0{timer.timeInSeconds}";
             }
             else
             {
-                timerText.text = $"00:{timer.timeInMinutes}:{timer.timeInSeconds}";
+                timerText.text = $"{timer.timeInMinutes}:{timer.timeInSeconds}";
             }
         }
     }

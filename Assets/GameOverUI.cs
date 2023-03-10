@@ -27,7 +27,7 @@ public class GameOverUI : MonoBehaviour
     private void GameOverCanvas()
     {
         gameOverContainer.SetActive(true);
-        scoreText.text = $"SCORE: {ScoreManager.Score}";
+        scoreText.text = $"{ScoreManager.Score}";
 
     }
 
