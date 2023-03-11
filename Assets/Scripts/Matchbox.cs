@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Matchbox : MonoBehaviour
 {
-    private InputActionManager inputActionManager;
-
     [SerializeField] private TMP_Text debugText;
+    private InputActionManager _inputActionManager;
     private Matchstick _matchstick;
     private Vector3 _startPosition;
     private bool _isCollidingWithMatchstick;
@@ -16,18 +15,13 @@ public class Matchbox : MonoBehaviour
     {
         debugText.text = "";
         _startPosition = transform.position;
-    }
-
-    private void OnEnable()
-    {
-        inputActionManager = InputActionManager.Instance;
-
-        inputActionManager.playerInputActions.Player.Interact.performed += DoIgnite;
+        _inputActionManager = InputActionManager.Instance;
+        _inputActionManager.playerInputActions.Player.Interact.performed += DoIgnite;
     }
 
     private void OnDisable()
     {
-        inputActionManager.playerInputActions.Player.Interact.performed -= DoIgnite;
+        _inputActionManager.playerInputActions.Player.Interact.performed -= DoIgnite;
     }
 
     private void DoIgnite(InputAction.CallbackContext obj)
@@ -45,8 +39,6 @@ public class Matchbox : MonoBehaviour
             transform.position = _startPosition;
         }
     }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
