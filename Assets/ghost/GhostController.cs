@@ -34,6 +34,7 @@ public class GhostController : MonoBehaviour
         _targetPos = target.position + Vector3.down*0.80f;
         Renderer = GetComponent<Renderer>();
     }
+
     
     void Update()
     {
@@ -95,40 +96,64 @@ public class GhostController : MonoBehaviour
         transform.LookAt(_targetPos);
 
 
-        //Banishment Rules
+        /*//Banishment Rules
         if (this.Orange_Ghost_Banishment_Rules == true)
         {
             if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.White)
             {
+                Ghost_Spawn_and_Control Ghost_Control_Manager = FindObjectOfType<Ghost_Spawn_and_Control>();
+                Ghost_Control_Manager.Clear_Podiums_First_Ghost_Eliminated();
+
+
                 Destroy(gameObject, 2);
                 GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
                 this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
                 Orange_Ghost_Banishment_Rules = false;
+
+                
             }
         }
 
         if (this.Purple_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Purple)
+            Symbol_Puzzle_Controller PUZZLE_SYMBOL = FindObjectOfType<Symbol_Puzzle_Controller>();
+            if (PUZZLE_SYMBOL.Ghost_Banished_by_Symbol_Puzzle == true)
             {
-                Destroy(gameObject,2);
+                GameObject[] go = GameObject.FindGameObjectsWithTag("Symbol_Animation");
+                //if the tree exist then destroy it
+                if (go[0] != null)
+                {
+                    for(int i = 0; i < go.Length; i++)
+                    {
+                        Destroy(go[i]);
+                    }
+                }
+                  
+                Destroy(gameObject, 2);
                 GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
                 this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
                 Purple_Ghost_Banishment_Rules = false;
             }
+
         }
 
         if (this.Green_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Green)
-            {
-                Destroy(gameObject, 2);
-                GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
-                this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
-                Green_Ghost_Banishment_Rules = false;
-            }
-        }
 
+            Ghost_Spawn_and_Control Ghost_Control_Manager = FindObjectOfType<Ghost_Spawn_and_Control>();
+            Ghost_Control_Manager.Clear_Podiums_First_Ghost_Eliminated();
+
+
+            Destroy(gameObject, 2);
+            GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
+            this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
+            Green_Ghost_Banishment_Rules = false;
+        }*/
+
+
+        //For Debugging Symbol Puzzle
+    /*    Ghost_Spawn_and_Control Ghost_Control_Manager = FindObjectOfType<Ghost_Spawn_and_Control>();
+        Ghost_Control_Manager.Clear_Podiums_First_Ghost_Eliminated();*/
     }
 
     IEnumerator Rotate_Around_Randomly()

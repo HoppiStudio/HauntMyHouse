@@ -35,11 +35,13 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
     GameObject Secound_Ghost;
     GameObject Third_Ghost;
 
+    [SerializeField ]GameObject Symbol_Game;
     //End Game
     [SerializeField] Canvas End_Game_Canvas;
     private void Start()
     {
         End_Game_Canvas.enabled = false;
+        //Symbol_Game.SetActive(false);
     }
     void Update()
     {
@@ -199,5 +201,25 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
 
         yield return new WaitForSeconds(4f);
         //Application.Quit();
+    }
+
+
+    public void Clear_Podiums_First_Ghost_Eliminated()
+    {
+        Podium[] Found_Podiums = FindObjectsOfType<Podium>();
+        if (Found_Podiums != null)
+        {
+            for (int i = 0; i < Found_Podiums.Length; i++)
+            {
+                Destroy(Found_Podiums[i].gameObject);
+
+
+            }
+        }
+
+        GameObject destroy = GameObject.Find("(!)Environment");
+        Destroy(destroy.gameObject);
+
+        Symbol_Game.SetActive(true);
     }
 }
