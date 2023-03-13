@@ -13,6 +13,11 @@ public class TimerUI : MonoBehaviour
         timer.OnTimerValueChange += UpdateText;
     }
 
+    private void Start()
+    {
+        UpdateText();
+    }
+
     private void UpdateText()
     {
         //Debug.Log($"{timer.timeInMinutes} : {timer.timeInSeconds}");

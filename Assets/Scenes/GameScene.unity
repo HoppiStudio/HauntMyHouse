@@ -639,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &125689970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3029,6 +3029,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1519673250}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &775254099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3483,7 +3495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &880690671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4604,7 +4616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1018779756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5931,9 +5943,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c966ff7c94fa597488602b21d9b2e8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutes: 1
-  seconds: 30
-  timeMultiplier: -1
+  startMinutes: 1
+  startSeconds: 30
+  timeMultiplier: 1
   timeInMinutes: 0
   timeInSeconds: 0
 --- !u!1 &1295651124
@@ -6529,9 +6541,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1519673245}
   - component: {fileID: 1519673246}
+  - component: {fileID: 1519673250}
+  - component: {fileID: 1519673249}
   - component: {fileID: 1519673248}
   - component: {fileID: 1519673247}
-  - component: {fileID: 1519673249}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -6602,6 +6615,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e27b0c1f15d57468d7390fe3a498c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorePerPuzzleComplete: 10
+--- !u!114 &1519673250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519673244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3122584a37775d4d98372ca6f68bf9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 1199675805}
 --- !u!1 &1527249042
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,7 +7441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1785373508
 RectTransform:
   m_ObjectHideFlags: 0

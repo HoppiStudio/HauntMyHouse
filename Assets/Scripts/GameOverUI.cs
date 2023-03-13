@@ -11,7 +11,7 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
-        timer.OnTimerComplete += GameOverCanvas;
+        GameManager.Instance.OnGameOver += GameOverCanvas;
 
         if (gameOverContainer.activeInHierarchy)
         {
@@ -33,6 +33,6 @@ public class GameOverUI : MonoBehaviour
 
     private void OnDisable()
     {
-        timer.OnTimerComplete -= GameOverCanvas;
+        GameManager.Instance.OnGameOver -= GameOverCanvas;
     }
 }

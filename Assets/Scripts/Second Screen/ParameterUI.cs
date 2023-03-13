@@ -6,7 +6,7 @@ using TMPro;
 
 public class ParameterUI : MonoBehaviour
 {
-    [Header("Game Manager")]
+    /*[Header("Game Manager")]
     [SerializeField] private GameManager gameManager;
     
     [Header("Current Time")]
@@ -83,5 +83,5 @@ public class ParameterUI : MonoBehaviour
         hauntMeterSlider = hauntMeterSlider.GetComponent<Slider>();
         hauntMeterSlider.maxValue = gameManager.hauntMeterMaxValue;
         hauntMeterSlider.value = gameManager.hauntMeterCurrentValue;
-    }    
+    }*/
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RadarUI : MonoBehaviour
 {
-    [Header("Game Manager")]
+    /*[Header("Game Manager")]
     [SerializeField] private GameManager gameManager;
 
     [Header("Radar")]
@@ -108,6 +108,6 @@ public class RadarUI : MonoBehaviour
         {
             Debug.Log("Blip Not Found!");
         }
-    }
+    }*/
 
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] private int scorePerPuzzleComplete = 10;
     public static int Score = 0;
 
     void Start()
@@ -18,7 +19,7 @@ public class ScoreManager : MonoBehaviour
 
     private void IncreaseScore()
     {
-        Score += 10;
+        Score += scorePerPuzzleComplete;
     }
 
     private void OnDisable()

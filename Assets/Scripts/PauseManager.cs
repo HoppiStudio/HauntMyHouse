@@ -37,12 +37,11 @@ public class PauseManager : MonoBehaviour
         ChangePauseState();
     }
 
-    public event Action<bool> OnPauseStateChanged;
+    public event Action<bool> OnPauseStateToggled;
     public void ChangePauseState()
     {
         Paused = !Paused;
-        Time.timeScale = Paused ? 0 : 1;
-        OnPauseStateChanged?.Invoke(Paused);
+        OnPauseStateToggled?.Invoke(Paused);
     }
 
     private void OnDisable()

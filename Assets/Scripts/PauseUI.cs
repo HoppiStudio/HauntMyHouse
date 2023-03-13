@@ -8,7 +8,7 @@ public class PauseUI : MonoBehaviour
 
     private void Start()
     {
-        PauseManager.Instance.OnPauseStateChanged += SetUIActive;
+        PauseManager.Instance.OnPauseStateToggled += SetUIActive;
 
         if(pauseUIContainer.activeInHierarchy)
         {
@@ -23,6 +23,6 @@ public class PauseUI : MonoBehaviour
 
     private void OnDisable()
     {
-        PauseManager.Instance.OnPauseStateChanged -= SetUIActive;
+        PauseManager.Instance.OnPauseStateToggled -= SetUIActive;
     }
 }

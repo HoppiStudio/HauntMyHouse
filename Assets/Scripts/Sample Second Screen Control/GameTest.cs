@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTest : MonoBehaviour
 {
-    [Header("Game Manager")]
+    /*[Header("Game Manager")]
     [SerializeField] private GameManager gameManager;
 
     [Header("Radar UI")]
@@ -43,5 +43,5 @@ public class GameTest : MonoBehaviour
             radarUI.DeleteBlip(ghostIDForDelete);
             executeDeleteBlip = false;
         }        
-    }
+    }*/
 }
