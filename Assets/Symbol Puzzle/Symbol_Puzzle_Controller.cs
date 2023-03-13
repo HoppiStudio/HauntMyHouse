@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Symbol_Puzzle_Controller : MonoBehaviour
+public class Symbol_Puzzle_Controller : Puzzle
 {
     public GameObject Symbol_Puzzle_All;
     public int TotalValue = 0;
@@ -183,6 +183,10 @@ public class Symbol_Puzzle_Controller : MonoBehaviour
                 Card_1.Card_Number = Card_1.Card_Number + 100;
                 Ghost_Banished_by_Symbol_Puzzle = true;
                 Symbol_Puzzle_All.SetActive(false);
+
+                //Sucsessfully Completed
+                Complete();
+
             }
 
         }
