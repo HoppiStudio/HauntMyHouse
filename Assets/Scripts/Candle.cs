@@ -8,7 +8,11 @@ public class Candle : Flammable
 
     private Color _originalCandleColour;
 
-    private void Awake() => _originalCandleColour = GetComponent<MeshRenderer>().material.color;
+    private void Awake()
+    {
+        _originalCandleColour = GetComponent<MeshRenderer>().material.color;
+        Ignite(); // Ideally should be called in Start, but this causes issues. Shall be investigated later.
+    }
 
     protected override void Update()
     {

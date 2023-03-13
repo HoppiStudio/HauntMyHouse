@@ -69,6 +69,11 @@ public class Podium : MonoBehaviour
         {
             PlaceCandleOnPodium();
         }
+        else if (_isCandleInRange && _isOccupied)
+        {
+           RemoveCandleFromPodium();
+           PlaceCandleOnPodium();
+        }
     }
     
     private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
@@ -85,15 +90,7 @@ public class Podium : MonoBehaviour
         _inputActionManager = InputActionManager.Instance;
         _inputActionManager.playerInputActions.Player.Grab.canceled += DoPlaceCandle;
     }
-
-    private void Update()
-    {
-        /*if (_isCandleInRange && _isOccupied)
-        {
-            RemoveCandleFromPodium();
-        }*/
-    }
-
+    
     private void OnTriggerStay(Collider other)
     {
         // If podium comes into contact with a candle and podium isn't occupied
@@ -137,6 +134,10 @@ public class Podium : MonoBehaviour
 
     private void RemoveCandleFromPodium()
     {
+        if (_placedCandle == null)
+        {
+            return;
+        }
         Destroy(_placedCandle.gameObject);
         OnCandleRemoved?.Invoke();
         startingCandle = null;

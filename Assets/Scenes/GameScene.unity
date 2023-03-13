@@ -7401,7 +7401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 685437738}
+  startingCandle: {fileID: 685437738}
   currentPodiumColour: 6
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -7575,7 +7575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 1957403814}
+  startingCandle: {fileID: 1957403814}
   currentPodiumColour: 2
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -7938,7 +7938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 904933407}
+  startingCandle: {fileID: 904933407}
   currentPodiumColour: 2
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -12729,7 +12729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 761930240}
+  startingCandle: {fileID: 761930240}
   currentPodiumColour: 3
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -13521,7 +13521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 1324706255}
+  startingCandle: {fileID: 1324706255}
   currentPodiumColour: 0
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -14053,7 +14053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 52212948}
+  startingCandle: {fileID: 52212948}
   currentPodiumColour: 5
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -58416,7 +58416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 4
   candleHolderPos: {fileID: 4753863849700723342}
   flameIconSprite:
@@ -58451,7 +58451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 6
   candleHolderPos: {fileID: 4753863849731436544}
   flameIconSprite:
@@ -58530,7 +58530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 0
   candleHolderPos: {fileID: 4753863849262420964}
   flameIconSprite:
@@ -58596,7 +58596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 3
   candleHolderPos: {fileID: 4753863847810747812}
   flameIconSprite:
@@ -58680,7 +58680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 5
   candleHolderPos: {fileID: 4753863847691761350}
   flameIconSprite:
@@ -58728,7 +58728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 2
   candleHolderPos: {fileID: 4753863847932466172}
   flameIconSprite:
@@ -65165,7 +65165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 1
   candleHolderPos: {fileID: 858609676}
   flameIconSprite:
@@ -68166,7 +68166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 0
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -68231,7 +68231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 4
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -68301,7 +68301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 2
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -68379,7 +68379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 5
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -68486,7 +68486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 1
   candleHolderPos: {fileID: 0}
   flameIconSprite:
@@ -68580,7 +68580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
+  startingCandle: {fileID: 0}
   currentPodiumColour: 3
   candleHolderPos: {fileID: 0}
   flameIconSprite:

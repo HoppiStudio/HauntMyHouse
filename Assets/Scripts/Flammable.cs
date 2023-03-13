@@ -53,11 +53,11 @@ public abstract class Flammable : MonoBehaviour
         if (other.GetComponent<Flammable>() != null)
         {
             // If this object is on fire, ignite other unlit flammable objects 
-            if (!other.GetComponent<Flammable>()._isOnFire && _isOnFire)
+            var otherFlammable = other.GetComponent<Flammable>();
+            if (!otherFlammable._isOnFire && _isOnFire)
             {
-                var flammable = other.GetComponent<Flammable>();
-                flammable.flameColour = flameColour;
-                flammable.Ignite();
+                otherFlammable.flameColour = flameColour;
+                otherFlammable.Ignite();
             }
         }
     }

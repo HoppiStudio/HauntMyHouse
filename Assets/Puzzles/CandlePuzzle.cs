@@ -1,17 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CandlePuzzle : Puzzle
 {
-    [SerializeField] private List<GameObject> placedCandles = new List<GameObject>();
+    [SerializeField] private List<GameObject> placedCandles = new();
 
-    void Start()
+    private void Start()
     {
 
     }
 
-    void Update()
+    private void Update()
     {
         if(placedCandles.Count == 3)
         {
@@ -19,8 +18,8 @@ public class CandlePuzzle : Puzzle
         }
     }
 
-    public void CheckPuzzleComplete()
+    /*public void CheckPuzzleComplete()
     {
 
-    }
+    }*/
 }
