@@ -6,14 +6,16 @@ public static class FlameColourMixingRules
 {
     private static readonly Dictionary<Tuple<FlameColour, FlameColour>, FlameColour> RulesDictionary = new()
     {
-        {Tuple.Create(FlameColour.Red, FlameColour.Blue), FlameColour.Orange},
-        {Tuple.Create(FlameColour.Blue, FlameColour.Red), FlameColour.Orange},
+        // Rule 1
+        {Tuple.Create(FlameColour.Red, FlameColour.Yellow), FlameColour.Blue},
+        {Tuple.Create(FlameColour.Yellow, FlameColour.Red), FlameColour.Blue},
         
-        {Tuple.Create(FlameColour.Blue, FlameColour.Yellow), FlameColour.Purple},
-        {Tuple.Create(FlameColour.Yellow, FlameColour.Blue), FlameColour.Purple},
+        // Rule 2 etc...
+        {Tuple.Create(FlameColour.Red, FlameColour.Orange), FlameColour.Purple},
+        {Tuple.Create(FlameColour.Orange, FlameColour.Red), FlameColour.Purple},
         
-        {Tuple.Create(FlameColour.Yellow, FlameColour.Red), FlameColour.Green},
-        {Tuple.Create(FlameColour.Red, FlameColour.Yellow), FlameColour.Green}
+        {Tuple.Create(FlameColour.Orange, FlameColour.Yellow), FlameColour.Green},
+        {Tuple.Create(FlameColour.Yellow, FlameColour.Orange), FlameColour.Green}
     };
     
     private static readonly Dictionary<FlameColour, string> ColourDictionary = new()

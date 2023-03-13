@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public enum PodiumColour
@@ -17,17 +20,19 @@ public enum PodiumColour
 public class Podium : MonoBehaviour
 {
     public event Action OnCandlePlaced;
-    //public event Action OnCandleRemoved;
+    public event Action OnCandleRemoved;
     public Candle HasCandle => _candleInRange;
 
-    [SerializeField] public Candle placedCandle;
+    [FormerlySerializedAs("placedCandle")] [SerializeField] public Candle startingCandle;
     [SerializeField] public PodiumColour currentPodiumColour;
 
     [Header("Reference Configuration")]
     [SerializeField] private Transform candleHolderPos;
     [SerializeField] private List<SpriteRenderer> flameIconSprite;
+    
+    private InputActionManager _inputActionManager;
     private Candle _candleInRange;
-    private float _groundOffset;
+    private Candle _placedCandle;
     private bool _isCandleInRange;
     private bool _isOccupied;
 
@@ -53,38 +58,48 @@ public class Podium : MonoBehaviour
         {PodiumColour.Yellow, Color.yellow}
     };
 
+    private void OnDisable()
+    {
+        _inputActionManager.playerInputActions.Player.Grab.canceled -= DoPlaceCandle;
+    }
+    
+    private void DoPlaceCandle(InputAction.CallbackContext obj)
+    {
+        if(_isCandleInRange && !_isOccupied)
+        {
+            PlaceCandleOnPodium();
+        }
+    }
+    
     private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
 
     private void Start()
     {
-        _groundOffset = 1.06f;
-        
-        if (placedCandle != null)
+        if (startingCandle != null)
         {
-            placedCandle.Ignite();
-            _candleInRange = placedCandle;
+            startingCandle.Ignite();
+            _candleInRange = startingCandle;
             PlaceCandleOnPodium();
         }
+        
+        _inputActionManager = InputActionManager.Instance;
+        _inputActionManager.playerInputActions.Player.Grab.canceled += DoPlaceCandle;
     }
 
     private void Update()
     {
-        if (_isCandleInRange && !_isOccupied)
+        /*if (_isCandleInRange && _isOccupied)
         {
-            if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
-            {
-                PlaceCandleOnPodium();
-            }
-        }
+            RemoveCandleFromPodium();
+        }*/
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // If podiums comes into contact with a candle and podium is not occupied
+        // If podium comes into contact with a candle and podium isn't occupied
         if(other.GetComponent<Candle>() != null && !_isOccupied)
         {
             var candle = other.GetComponent<Candle>();
-            
             if (candle.GetFlameColour() == _podiumToFlameColoursDict[currentPodiumColour]) 
             {
                 candle.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -104,18 +119,10 @@ public class Podium : MonoBehaviour
         {
             var candle = other.GetComponent<Candle>();
             candle.GetComponent<MeshRenderer>().material.color = candle.GetOriginalMaterialColour();
-
-            if (_isOccupied)
-            {
-                /*var candle = other.GetComponent<Candle>();
-                 candle.transform.position = transform.position;
-                 OnCandleRemoved?.Invoke();
-                 _isOccupied = false;*/
-            }
             _isCandleInRange = false;
         }
     }
-    
+
     private void PlaceCandleOnPodium()
     {
         _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
@@ -124,7 +131,20 @@ public class Podium : MonoBehaviour
         _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         Destroy(_candleInRange.GetComponent<XRGrabInteractable>());
         OnCandlePlaced?.Invoke();
-        placedCandle = _candleInRange;
+        _placedCandle = _candleInRange;
         _isOccupied = true;
+    }
+
+    private void RemoveCandleFromPodium()
+    {
+        Destroy(_placedCandle.gameObject);
+        OnCandleRemoved?.Invoke();
+        startingCandle = null;
+        _isOccupied = false;
+        /*_placedCandle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        _placedCandle.AddComponent<XRGrabInteractable>();
+        OnCandleRemoved?.Invoke();
+        startingCandle = null;
+        _isOccupied = false;*/
     }
 }

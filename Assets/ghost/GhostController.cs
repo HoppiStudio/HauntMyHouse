@@ -98,7 +98,7 @@ public class GhostController : MonoBehaviour
         //Banishment Rules
         if (this.Orange_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.White)
+            if (this.Attached_Podium.startingCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.White)
             {
                 Destroy(gameObject, 2);
                 GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
@@ -109,7 +109,7 @@ public class GhostController : MonoBehaviour
 
         if (this.Purple_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Purple)
+            if (this.Attached_Podium.startingCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Purple)
             {
                 Destroy(gameObject,2);
                 GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
@@ -120,7 +120,7 @@ public class GhostController : MonoBehaviour
 
         if (this.Green_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Green)
+            if (this.Attached_Podium.startingCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.Green)
             {
                 Destroy(gameObject, 2);
                 GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
