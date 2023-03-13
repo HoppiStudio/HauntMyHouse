@@ -1,11 +1,8 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Matchbox : MonoBehaviour
 {
-    [SerializeField] private TMP_Text debugText;
     private InputActionManager _inputActionManager;
     private Matchstick _matchstick;
     private Vector3 _startPosition;
@@ -13,7 +10,6 @@ public class Matchbox : MonoBehaviour
 
     private void Start()
     {
-        debugText.text = "";
         _startPosition = transform.position;
         _inputActionManager = InputActionManager.Instance;
         _inputActionManager.playerInputActions.Player.Interact.performed += DoIgnite;
@@ -47,7 +43,6 @@ public class Matchbox : MonoBehaviour
             _matchstick = other.GetComponent<Matchstick>();
             if (!_matchstick.IsOnFire())
             {
-                debugText.text = "Press A to light the match";
                 _isCollidingWithMatchstick = true;
                 _matchstick.SetFlameColour(FlameColour.Orange);
             }
@@ -58,7 +53,6 @@ public class Matchbox : MonoBehaviour
     {
         if (other.GetComponent<Matchstick>() != null)
         {
-            debugText.text = "";
             _matchstick = null;
             _isCollidingWithMatchstick = false;
         }

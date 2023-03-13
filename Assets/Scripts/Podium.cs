@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using OculusSampleFramework;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public enum PodiumColour
 {
@@ -22,13 +22,14 @@ public class Podium : MonoBehaviour
 
     [SerializeField] public Candle placedCandle;
     [SerializeField] public PodiumColour currentPodiumColour;
+
+    [Header("Reference Configuration")]
+    [SerializeField] private Transform candleHolderPos;
     [SerializeField] private List<SpriteRenderer> flameIconSprite;
     private Candle _candleInRange;
     private float _groundOffset;
     private bool _isCandleInRange;
     private bool _isOccupied;
-    //True if used for banishing the ghost
-    [SerializeField] private bool _isBanishmentPodium = false;
 
     private readonly Dictionary<PodiumColour, FlameColour> _podiumToFlameColoursDict = new()
     {
@@ -52,14 +53,7 @@ public class Podium : MonoBehaviour
         {PodiumColour.Yellow, Color.yellow}
     };
 
-    private void OnValidate()
-    {
-        if(flameIconSprite != null && _isBanishmentPodium == false)
-        {
-            flameIconSprite.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
-
-        }
-    }
+    private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
 
     private void Start()
     {
@@ -125,10 +119,10 @@ public class Podium : MonoBehaviour
     private void PlaceCandleOnPodium()
     {
         _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
-        _candleInRange.transform.position = transform.position + Vector3.up * _groundOffset;
+        _candleInRange.transform.position = candleHolderPos.position;
         _candleInRange.transform.rotation = transform.rotation;
         _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        Destroy(_candleInRange.GetComponent<DistanceGrabbable>());
+        Destroy(_candleInRange.GetComponent<XRGrabInteractable>());
         OnCandlePlaced?.Invoke();
         placedCandle = _candleInRange;
         _isOccupied = true;
