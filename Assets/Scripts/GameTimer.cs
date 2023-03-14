@@ -69,7 +69,7 @@ public class GameTimer : MonoBehaviour
     {
         while(!complete)
         {
-            if (timer <= 0)
+            if (timer < 0)
             {
                 OnTimerComplete?.Invoke();
                 complete = true;
