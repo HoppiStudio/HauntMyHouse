@@ -1,25 +1,84 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class CandlePuzzle : Puzzle
+namespace Puzzles
 {
-    [SerializeField] private List<GameObject> placedCandles = new();
-
-    private void Start()
+    public class CandlePuzzle : Puzzle
     {
+        [SerializeField] private List<Podium> podiums = new();
+        private List<Tuple<PodiumColour, Podium>> _selectedSolution = new();
+        private List<List<Tuple<PodiumColour, Podium>>> _preDeterminedSolutions;
 
-    }
-
-    private void Update()
-    {
-        if(placedCandles.Count == 3)
+        private void Start()
         {
-            Complete();
+            _preDeterminedSolutions = new List<List<Tuple<PodiumColour, Podium>>>
+            {
+                // Solution 1
+                new List<Tuple<PodiumColour, Podium>>
+                {
+                    Tuple.Create(PodiumColour.Orange, podiums[0]),
+                    Tuple.Create(PodiumColour.Orange, podiums[1]),
+                    Tuple.Create(PodiumColour.Yellow, podiums[2]),
+                    Tuple.Create(PodiumColour.Red, podiums[3]),
+                    Tuple.Create(PodiumColour.Blue, podiums[4]),
+                    Tuple.Create(PodiumColour.Yellow, podiums[5]),
+                    Tuple.Create(PodiumColour.Red, podiums[6])
+                },
+
+                // Solution 2
+                new List<Tuple<PodiumColour, Podium>>
+                {
+                    Tuple.Create(PodiumColour.Red, podiums[0]),
+                    Tuple.Create(PodiumColour.Yellow, podiums[1]),
+                    Tuple.Create(PodiumColour.Red, podiums[2]),
+                    Tuple.Create(PodiumColour.Green, podiums[3]),
+                    Tuple.Create(PodiumColour.Yellow, podiums[4]),
+                    Tuple.Create(PodiumColour.Red, podiums[5]),
+                    Tuple.Create(PodiumColour.Green, podiums[6])
+                },
+
+                // Solution 3
+                new List<Tuple<PodiumColour, Podium>>
+                {
+                    Tuple.Create(PodiumColour.Yellow, podiums[0]),
+                    Tuple.Create(PodiumColour.Purple, podiums[1]),
+                    Tuple.Create(PodiumColour.Red, podiums[2]),
+                    Tuple.Create(PodiumColour.Blue, podiums[3]),
+                    Tuple.Create(PodiumColour.Purple, podiums[4]),
+                    Tuple.Create(PodiumColour.Red, podiums[5]),
+                    Tuple.Create(PodiumColour.Blue, podiums[6])
+                }
+            };
+
+            // Randomly select one of the pre-determined solutions
+            var selectedSolution = Random.Range(0, _preDeterminedSolutions.Count);
+            _selectedSolution = _preDeterminedSolutions[selectedSolution];
+            
+            // Pick the ruleset for the flame colour mixing combinations
+            FlameColourMixingRules.SetRuleset(selectedSolution);
+
+            // Set the podium colours according to the selected solution
+            foreach (var (newPodiumColour, podium) in _selectedSolution)
+            {
+                podium.SetPodiumColour(newPodiumColour);
+            }
+        }
+
+        private void Update()
+        {
+            if (CheckPuzzleCompleted())
+            {
+                Debug.Log("<color=green>Puzzle completed!</color>");
+                Complete();
+            }
+        }
+
+        private bool CheckPuzzleCompleted()
+        {
+            return podiums.All(podium => podium.HasCandle);
         }
     }
-
-    /*public void CheckPuzzleComplete()
-    {
-
-    }*/
 }

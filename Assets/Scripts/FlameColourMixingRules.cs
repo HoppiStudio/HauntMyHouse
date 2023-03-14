@@ -6,7 +6,7 @@ public static class FlameColourMixingRules
 {
     private static readonly Dictionary<Tuple<FlameColour, FlameColour>, FlameColour> RulesDictionary = new()
     {
-        // Rule 1
+        /*// Rule 1
         {Tuple.Create(FlameColour.Red, FlameColour.Yellow), FlameColour.Blue},
         {Tuple.Create(FlameColour.Yellow, FlameColour.Red), FlameColour.Blue},
         
@@ -15,7 +15,7 @@ public static class FlameColourMixingRules
         {Tuple.Create(FlameColour.Orange, FlameColour.Red), FlameColour.Purple},
         
         {Tuple.Create(FlameColour.Orange, FlameColour.Yellow), FlameColour.Green},
-        {Tuple.Create(FlameColour.Yellow, FlameColour.Orange), FlameColour.Green}
+        {Tuple.Create(FlameColour.Yellow, FlameColour.Orange), FlameColour.Green}*/
     };
     
     private static readonly Dictionary<FlameColour, string> ColourDictionary = new()
@@ -25,7 +25,8 @@ public static class FlameColourMixingRules
         {FlameColour.Green, "green"},
         {FlameColour.Blue, "cyan"},
         {FlameColour.Orange, "orange"},
-        {FlameColour.Purple, "purple"}
+        {FlameColour.Purple, "purple"},
+        {FlameColour.Yellow, "yellow"},
     };
 
     public static FlameColour CombineColours(FlameColour colour1, FlameColour colour2)
@@ -59,6 +60,50 @@ public static class FlameColourMixingRules
         else
         {
             Debug.Log($"<color=red>ERROR!</color> ({colourPairRule.Item1} + {colourPairRule.Item2} rule already exists!)");
+        }
+    }
+
+    public static void SetRuleset(int rulesetID)
+    {
+        switch (rulesetID)
+        {
+            case 0:
+                // Ruleset 1
+                /*CreateRule(FlameColour.Red, FlameColour.Yellow, FlameColour.Blue);
+                CreateRule(FlameColour.Yellow, FlameColour.Red, FlameColour.Blue);
+                
+                CreateRule(FlameColour.Red, FlameColour.Orange, FlameColour.Purple);
+                CreateRule(FlameColour.Orange, FlameColour.Red, FlameColour.Purple);
+                
+                CreateRule(FlameColour.Orange, FlameColour.Yellow, FlameColour.Green);
+                CreateRule(FlameColour.Yellow, FlameColour.Orange, FlameColour.Green);*/
+
+                // Ruleset 1
+                CreateRule(FlameColour.Orange, FlameColour.Blue, FlameColour.Red);
+                CreateRule(FlameColour.Blue, FlameColour.Orange, FlameColour.Red);
+                
+                CreateRule(FlameColour.Green, FlameColour.Blue, FlameColour.Yellow);
+                CreateRule(FlameColour.Blue, FlameColour.Green, FlameColour.Yellow);
+                break;
+            case 1:
+                // Ruleset 2
+                CreateRule(FlameColour.Orange, FlameColour.Green, FlameColour.Red);
+                CreateRule(FlameColour.Green, FlameColour.Orange, FlameColour.Red);
+                
+                CreateRule(FlameColour.Green, FlameColour.Orange, FlameColour.Yellow);
+                CreateRule(FlameColour.Orange, FlameColour.Green, FlameColour.Yellow);
+                break;
+            case 2:
+                // Ruleset 3
+                CreateRule(FlameColour.Blue, FlameColour.Green, FlameColour.Red);
+                CreateRule(FlameColour.Green, FlameColour.Blue, FlameColour.Red);
+                
+                CreateRule(FlameColour.Orange, FlameColour.Blue, FlameColour.Yellow);
+                CreateRule(FlameColour.Blue, FlameColour.Orange, FlameColour.Yellow);
+                
+                CreateRule(FlameColour.Red, FlameColour.Blue, FlameColour.Purple);
+                CreateRule(FlameColour.Blue, FlameColour.Red, FlameColour.Purple);
+                break;
         }
     }
 }

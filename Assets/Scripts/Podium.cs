@@ -21,10 +21,10 @@ public class Podium : MonoBehaviour
 {
     public event Action OnCandlePlaced;
     public event Action OnCandleRemoved;
-    public Candle HasCandle => _candleInRange;
+    public Candle HasCandle => _placedCandle;
 
     [FormerlySerializedAs("placedCandle")] [SerializeField] public Candle startingCandle;
-    [SerializeField] public PodiumColour currentPodiumColour;
+    [FormerlySerializedAs("currentPodiumColour")] [SerializeField] private PodiumColour _currentPodiumColour;
 
     [Header("Reference Configuration")]
     [SerializeField] private Transform candleHolderPos;
@@ -76,7 +76,7 @@ public class Podium : MonoBehaviour
         }
     }
     
-    private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPodiumColour]);
+    private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[_currentPodiumColour]);
 
     private void Start()
     {
@@ -97,7 +97,7 @@ public class Podium : MonoBehaviour
         if(other.GetComponent<Candle>() != null && !_isOccupied)
         {
             var candle = other.GetComponent<Candle>();
-            if (candle.GetFlameColour() == _podiumToFlameColoursDict[currentPodiumColour]) 
+            if (candle.GetFlameColour() == _podiumToFlameColoursDict[_currentPodiumColour]) 
             {
                 candle.GetComponent<MeshRenderer>().material.color = Color.green;
                 _candleInRange = candle;
@@ -147,5 +147,16 @@ public class Podium : MonoBehaviour
         OnCandleRemoved?.Invoke();
         startingCandle = null;
         _isOccupied = false;*/
+    }
+
+    public void SetPodiumColour(PodiumColour podiumColour)
+    {
+        _currentPodiumColour = podiumColour;
+        flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[_currentPodiumColour]);
+    }
+
+    public PodiumColour GetPodiumColour()
+    {
+        return _currentPodiumColour;
     }
 }
