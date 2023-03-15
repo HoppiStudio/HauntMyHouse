@@ -67,8 +67,8 @@ public static class FlameColourMixingRules
                 CreateRule(FlameColour.Orange, FlameColour.Green, FlameColour.Red);
                 CreateRule(FlameColour.Green, FlameColour.Orange, FlameColour.Red);
                 
-                CreateRule(FlameColour.Green, FlameColour.Orange, FlameColour.Yellow);
-                CreateRule(FlameColour.Orange, FlameColour.Green, FlameColour.Yellow);
+                CreateRule(FlameColour.Green, FlameColour.Red, FlameColour.Yellow);
+                CreateRule(FlameColour.Red, FlameColour.Green, FlameColour.Yellow);
                 break;
             case 2:
                 // Ruleset 3

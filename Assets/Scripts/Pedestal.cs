@@ -130,6 +130,7 @@ public class Pedestal : MonoBehaviour
 
     private void PlaceCandleOnPedestal()
     {
+        flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
         _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
         _candleInRange.transform.position = candleHolderPos.position;
         _candleInRange.transform.rotation = transform.rotation;
@@ -167,7 +168,7 @@ public class Pedestal : MonoBehaviour
     public void SetPedestalColour(PedestalColour pedestalColour)
     {
         currentPedestalColour = pedestalColour;
-        flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
+        //flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
     }
 
     public PedestalColour GetPedestalColour()
