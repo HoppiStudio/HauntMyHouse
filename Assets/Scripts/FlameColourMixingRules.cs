@@ -4,20 +4,7 @@ using UnityEngine;
 
 public static class FlameColourMixingRules
 {
-    private static readonly Dictionary<Tuple<FlameColour, FlameColour>, FlameColour> RulesDictionary = new()
-    {
-        /*// Rule 1
-        {Tuple.Create(FlameColour.Red, FlameColour.Yellow), FlameColour.Blue},
-        {Tuple.Create(FlameColour.Yellow, FlameColour.Red), FlameColour.Blue},
-        
-        // Rule 2 etc...
-        {Tuple.Create(FlameColour.Red, FlameColour.Orange), FlameColour.Purple},
-        {Tuple.Create(FlameColour.Orange, FlameColour.Red), FlameColour.Purple},
-        
-        {Tuple.Create(FlameColour.Orange, FlameColour.Yellow), FlameColour.Green},
-        {Tuple.Create(FlameColour.Yellow, FlameColour.Orange), FlameColour.Green}*/
-    };
-    
+    private static readonly Dictionary<Tuple<FlameColour, FlameColour>, FlameColour> RulesDictionary = new();
     private static readonly Dictionary<FlameColour, string> ColourDictionary = new()
     {
         {FlameColour.White, "white"},
@@ -48,8 +35,8 @@ public static class FlameColourMixingRules
         Debug.Log($"<color=red>ERROR!</color> ({colourPair.Item1} + {colourPair.Item2} is not an existing rule!)");
         return false;
     }
-    
-    public static void CreateRule(FlameColour colour1, FlameColour colour2, FlameColour mixedColour)
+
+    private static void CreateRule(FlameColour colour1, FlameColour colour2, FlameColour mixedColour)
     {
         var colourPairRule = Tuple.Create(colour1, colour2);
         if (!RulesDictionary.ContainsKey(colourPairRule))
@@ -68,16 +55,6 @@ public static class FlameColourMixingRules
         switch (rulesetID)
         {
             case 0:
-                // Ruleset 1
-                /*CreateRule(FlameColour.Red, FlameColour.Yellow, FlameColour.Blue);
-                CreateRule(FlameColour.Yellow, FlameColour.Red, FlameColour.Blue);
-                
-                CreateRule(FlameColour.Red, FlameColour.Orange, FlameColour.Purple);
-                CreateRule(FlameColour.Orange, FlameColour.Red, FlameColour.Purple);
-                
-                CreateRule(FlameColour.Orange, FlameColour.Yellow, FlameColour.Green);
-                CreateRule(FlameColour.Yellow, FlameColour.Orange, FlameColour.Green);*/
-
                 // Ruleset 1
                 CreateRule(FlameColour.Orange, FlameColour.Blue, FlameColour.Red);
                 CreateRule(FlameColour.Blue, FlameColour.Orange, FlameColour.Red);

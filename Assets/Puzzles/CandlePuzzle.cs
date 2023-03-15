@@ -59,6 +59,30 @@ namespace Puzzles
             
             // Pick the ruleset for the flame colour mixing combinations
             FlameColourMixingRules.SetRuleset(selectedSolution);
+            
+            // Display podium shapes according to selected solutions - TODO: Refactor
+            // Square(0), Triangle(1), Pentagon(2), Star(3), Circle(4)
+            switch (selectedSolution)
+            {
+                case 0:
+                    podiums.ForEach(podium => podium.SetPodiumShapeIcon(5));
+                    podiums[0].SetPodiumShapeIcon(3);
+                    podiums[3].SetPodiumShapeIcon(4);
+                    podiums[5].SetPodiumShapeIcon(1);
+                    break;
+                case 1:
+                    podiums.ForEach(podium => podium.SetPodiumShapeIcon(5));
+                    podiums[1].SetPodiumShapeIcon(2);
+                    podiums[4].SetPodiumShapeIcon(1);
+                    podiums[6].SetPodiumShapeIcon(0);
+                    break;
+                case 2:
+                    podiums.ForEach(podium => podium.SetPodiumShapeIcon(5));
+                    podiums[2].SetPodiumShapeIcon(4);
+                    podiums[4].SetPodiumShapeIcon(3);
+                    podiums[6].SetPodiumShapeIcon(0);
+                    break;
+            }
 
             // Set the podium colours according to the selected solution
             foreach (var (newPodiumColour, podium) in _selectedSolution)

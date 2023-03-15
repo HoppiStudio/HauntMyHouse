@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -29,6 +28,7 @@ public class Podium : MonoBehaviour
     [Header("Reference Configuration")]
     [SerializeField] private Transform candleHolderPos;
     [SerializeField] private List<SpriteRenderer> flameIconSprite;
+    [SerializeField] private List<SpriteRenderer> shapeIconSprites;
     
     private InputActionManager _inputActionManager;
     private Candle _candleInRange;
@@ -147,6 +147,14 @@ public class Podium : MonoBehaviour
         OnCandleRemoved?.Invoke();
         startingCandle = null;
         _isOccupied = false;*/
+    }
+
+    public void SetPodiumShapeIcon(int shapeIndex)
+    {
+        // Square(0), Triangle(1), Pentagon(2), Star(3), Circle(4)
+        shapeIconSprites.ForEach(sprite => sprite.gameObject.SetActive(false));
+        if (shapeIndex > 4) { return; }
+        shapeIconSprites[shapeIndex].gameObject.SetActive(true);
     }
 
     public void SetPodiumColour(PodiumColour podiumColour)
