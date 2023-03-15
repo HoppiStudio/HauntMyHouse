@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public enum PodiumColour
+public enum PedestalColour
 {
     White,
     Red,
@@ -16,14 +15,24 @@ public enum PodiumColour
     Yellow
 }
 
-public class Podium : MonoBehaviour
+public enum ShapeIcon
+{
+    Square = 0,
+    Triangle = 1, 
+    Pentagon = 2,
+    Star = 3,
+    Circle = 4,
+    None = 5
+}
+
+public class Pedestal : MonoBehaviour
 {
     public event Action OnCandlePlaced;
     public event Action OnCandleRemoved;
     public Candle HasCandle => _placedCandle;
 
-    [FormerlySerializedAs("placedCandle")] [SerializeField] public Candle startingCandle;
-    [FormerlySerializedAs("currentPodiumColour")] [SerializeField] private PodiumColour _currentPodiumColour;
+    [SerializeField] public Candle startingCandle;
+    [SerializeField] private PedestalColour currentPedestalColour;
 
     [Header("Reference Configuration")]
     [SerializeField] private Transform candleHolderPos;
@@ -36,26 +45,26 @@ public class Podium : MonoBehaviour
     private bool _isCandleInRange;
     private bool _isOccupied;
 
-    private readonly Dictionary<PodiumColour, FlameColour> _podiumToFlameColoursDict = new()
+    private readonly Dictionary<PedestalColour, FlameColour> _pedestalToFlameColoursDict = new()
     {
-        {PodiumColour.White, FlameColour.White},
-        {PodiumColour.Red, FlameColour.Red},
-        {PodiumColour.Green, FlameColour.Green},
-        {PodiumColour.Blue, FlameColour.Blue},
-        {PodiumColour.Orange, FlameColour.Orange},
-        {PodiumColour.Purple, FlameColour.Purple},
-        {PodiumColour.Yellow, FlameColour.Yellow}
+        {PedestalColour.White, FlameColour.White},
+        {PedestalColour.Red, FlameColour.Red},
+        {PedestalColour.Green, FlameColour.Green},
+        {PedestalColour.Blue, FlameColour.Blue},
+        {PedestalColour.Orange, FlameColour.Orange},
+        {PedestalColour.Purple, FlameColour.Purple},
+        {PedestalColour.Yellow, FlameColour.Yellow}
     };
 
-    private readonly Dictionary<PodiumColour, Color> _flameIconColourDict = new()
+    private readonly Dictionary<PedestalColour, Color> _flameIconColourDict = new()
     {
-        {PodiumColour.White, Color.white},
-        {PodiumColour.Red, Color.red},
-        {PodiumColour.Green, Color.green},
-        {PodiumColour.Blue, Color.cyan},
-        {PodiumColour.Orange, new Color(1,0.5f,0)},
-        {PodiumColour.Purple, new Color(0.5f, 0, 1)},
-        {PodiumColour.Yellow, Color.yellow}
+        {PedestalColour.White, Color.white},
+        {PedestalColour.Red, Color.red},
+        {PedestalColour.Green, Color.green},
+        {PedestalColour.Blue, Color.cyan},
+        {PedestalColour.Orange, new Color(1,0.5f,0)},
+        {PedestalColour.Purple, new Color(0.5f, 0, 1)},
+        {PedestalColour.Yellow, Color.yellow}
     };
 
     private void OnDisable()
@@ -67,16 +76,16 @@ public class Podium : MonoBehaviour
     {
         if(_isCandleInRange && !_isOccupied)
         {
-            PlaceCandleOnPodium();
+            PlaceCandleOnPedestal();
         }
         else if (_isCandleInRange && _isOccupied)
         {
-           RemoveCandleFromPodium();
-           PlaceCandleOnPodium();
+           RemoveCandleFromPedestal();
+           PlaceCandleOnPedestal();
         }
     }
     
-    private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[_currentPodiumColour]);
+    private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
 
     private void Start()
     {
@@ -84,7 +93,7 @@ public class Podium : MonoBehaviour
         {
             startingCandle.Ignite();
             _candleInRange = startingCandle;
-            PlaceCandleOnPodium();
+            PlaceCandleOnPedestal();
         }
         
         _inputActionManager = InputActionManager.Instance;
@@ -93,11 +102,10 @@ public class Podium : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        // If podium comes into contact with a candle and podium isn't occupied
         if(other.GetComponent<Candle>() != null && !_isOccupied)
         {
             var candle = other.GetComponent<Candle>();
-            if (candle.GetFlameColour() == _podiumToFlameColoursDict[_currentPodiumColour]) 
+            if (candle.GetFlameColour() == _pedestalToFlameColoursDict[currentPedestalColour]) 
             {
                 candle.GetComponent<MeshRenderer>().material.color = Color.green;
                 _candleInRange = candle;
@@ -120,7 +128,7 @@ public class Podium : MonoBehaviour
         }
     }
 
-    private void PlaceCandleOnPodium()
+    private void PlaceCandleOnPedestal()
     {
         _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
         _candleInRange.transform.position = candleHolderPos.position;
@@ -132,7 +140,7 @@ public class Podium : MonoBehaviour
         _isOccupied = true;
     }
 
-    private void RemoveCandleFromPodium()
+    private void RemoveCandleFromPedestal()
     {
         if (_placedCandle == null)
         {
@@ -149,22 +157,21 @@ public class Podium : MonoBehaviour
         _isOccupied = false;*/
     }
 
-    public void SetPodiumShapeIcon(int shapeIndex)
+    public void SetPedestalShapeIcon(ShapeIcon shapeIcon)
     {
-        // Square(0), Triangle(1), Pentagon(2), Star(3), Circle(4)
         shapeIconSprites.ForEach(sprite => sprite.gameObject.SetActive(false));
-        if (shapeIndex > 4) { return; }
-        shapeIconSprites[shapeIndex].gameObject.SetActive(true);
+        if ((int) shapeIcon > 4) { return; }
+        shapeIconSprites[(int)shapeIcon].gameObject.SetActive(true);
     }
 
-    public void SetPodiumColour(PodiumColour podiumColour)
+    public void SetPedestalColour(PedestalColour pedestalColour)
     {
-        _currentPodiumColour = podiumColour;
-        flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[_currentPodiumColour]);
+        currentPedestalColour = pedestalColour;
+        flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
     }
 
-    public PodiumColour GetPodiumColour()
+    public PedestalColour GetPedestalColour()
     {
-        return _currentPodiumColour;
+        return currentPedestalColour;
     }
 }

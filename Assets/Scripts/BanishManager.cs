@@ -9,7 +9,7 @@ public class BanishManager : MonoBehaviour
     public event Action<int> OnCandlesPlacedCountChange;
 
     private List<Candle> _candles = new();
-    private List<Podium> _podiums = new();
+    private List<Pedestal> _podiums = new();
     private int _candlesOnPodiums;
     private int _candlesLit;
     private bool _ghostsBanished;
@@ -30,7 +30,7 @@ public class BanishManager : MonoBehaviour
     private void Awake()
     {
         _candles.AddRange(FindObjectsOfType<Candle>());
-        _podiums.AddRange(FindObjectsOfType<Podium>());
+        _podiums.AddRange(FindObjectsOfType<Pedestal>());
     }
 
     private void Update()
