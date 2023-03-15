@@ -4,11 +4,15 @@ using UnityEngine;
 public class CandleSpawner : MonoBehaviour
 {
     public static event Action<Candle> OnCandleSpawned;
+    
     [SerializeField] private GameObject candlePrefab;
+    [SerializeField] private PushableButton pushableButton;
 
-    private void Start() => InvokeRepeating(nameof(SpawnNewCandle), 1, 10.0f);
+    private void OnEnable() => pushableButton.OnPushed += SpawnNewCandle;
+    private void OnDisable() => pushableButton.OnPushed -= SpawnNewCandle;
+    private void Start() => SpawnNewCandle();
 
-    public void SpawnNewCandle()
+    private void SpawnNewCandle()
     {
         var candleObject = Instantiate(candlePrefab, transform.position, Quaternion.identity);
         candleObject.transform.rotation *= Quaternion.LookRotation(Vector3.up);
