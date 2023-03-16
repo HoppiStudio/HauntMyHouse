@@ -12,7 +12,7 @@ namespace CandlePuzzle
 
         private void Awake()
         {
-            _originalCandleColour = GetComponent<MeshRenderer>().material.color;
+            _originalCandleColour = GetComponentInChildren<MeshRenderer>().material.color;
             Ignite(); // Ideally should be called in Start, but this causes issues. Shall be investigated later.
         }
 

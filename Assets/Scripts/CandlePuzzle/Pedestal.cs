@@ -109,13 +109,13 @@ namespace CandlePuzzle
                 var candle = other.GetComponent<Candle>();
                 if (candle.GetFlameColour() == _pedestalToFlameColoursDict[currentPedestalColour]) 
                 {
-                    candle.GetComponent<MeshRenderer>().material.color = Color.green;
+                    candle.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
                     _candleInRange = candle;
                     _isCandleInRange = true;
                 }
                 else
                 {
-                    candle.GetComponent<MeshRenderer>().material.color = Color.red;
+                    candle.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace CandlePuzzle
             if(other.GetComponent<Candle>() != null)
             {
                 var candle = other.GetComponent<Candle>();
-                candle.GetComponent<MeshRenderer>().material.color = candle.GetOriginalMaterialColour();
+                candle.GetComponentInChildren<MeshRenderer>().material.color = candle.GetOriginalMaterialColour();
                 _isCandleInRange = false;
             }
         }
@@ -133,9 +133,9 @@ namespace CandlePuzzle
         private void PlaceCandleOnPedestal()
         {
             flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
-            _candleInRange.GetComponent<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
+            _candleInRange.GetComponentInChildren<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
             _candleInRange.transform.position = candleHolderPos.position;
-            _candleInRange.transform.rotation = transform.rotation;
+            _candleInRange.transform.rotation = Quaternion.LookRotation(Vector3.left);
             _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             Destroy(_candleInRange.GetComponent<XRGrabInteractable>());
             OnCandlePlaced?.Invoke();

@@ -5398,82 +5398,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017701538}
   m_CullTransparentMesh: 1
---- !u!1001 &3375510085560424681
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.824
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369949, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247140260739369950, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Puzzle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6841308933174603287, guid: 665c329969301de4e8fb2575a1ca564a,
-        type: 3}
-      propertyPath: m_InteractionManager
-      value: 
-      objectReference: {fileID: 3680607433127796674}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 665c329969301de4e8fb2575a1ca564a, type: 3}
 --- !u!1 &3680607432603037602
 GameObject:
   m_ObjectHideFlags: 0
@@ -6245,3 +6169,79 @@ Transform:
   m_Father: {fileID: 3680607433035253861}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4547439202907126351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3112929374597572984, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Puzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.824
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112929374597572987, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706818768935652529, guid: 665c329969301de4e8fb2575a1ca564a,
+        type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 3680607433127796674}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 665c329969301de4e8fb2575a1ca564a, type: 3}

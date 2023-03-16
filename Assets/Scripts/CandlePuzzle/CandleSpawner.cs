@@ -17,8 +17,6 @@ namespace CandlePuzzle
         private void SpawnNewCandle()
         {
             var candleObject = Instantiate(candlePrefab, transform.position, Quaternion.identity);
-            candleObject.transform.rotation *= Quaternion.LookRotation(Vector3.up);
-        
             var candle = candleObject.GetComponent<Candle>();
             candle.Extinguish();
             OnCandleSpawned?.Invoke(candle);
