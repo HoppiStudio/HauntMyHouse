@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CandlePuzzle;
 using UnityEngine;
 
 public class BanishManager : MonoBehaviour
