@@ -71,7 +71,8 @@ namespace CandlePuzzle
 
         private void OnDisable()
         {
-            _inputActionManager.playerInputActions.Player.Grab.canceled -= DoPlaceCandle;
+            _inputActionManager.playerInputActions.Player.GrabLeft.canceled -= DoPlaceCandle;
+            _inputActionManager.playerInputActions.Player.GrabRight.canceled -= DoPlaceCandle;
         }
     
         private void DoPlaceCandle(InputAction.CallbackContext obj)
@@ -99,7 +100,8 @@ namespace CandlePuzzle
             }
         
             _inputActionManager = InputActionManager.Instance;
-            _inputActionManager.playerInputActions.Player.Grab.canceled += DoPlaceCandle;
+            _inputActionManager.playerInputActions.Player.GrabLeft.canceled += DoPlaceCandle;
+            _inputActionManager.playerInputActions.Player.GrabRight.canceled += DoPlaceCandle;
         }
     
         private void OnTriggerStay(Collider other)

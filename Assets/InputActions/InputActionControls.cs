@@ -28,7 +28,16 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
             ""id"": ""58738e5e-24bf-452c-b935-c535306b4877"",
             ""actions"": [
                 {
-                    ""name"": ""Grab"",
+                    ""name"": ""GrabLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""07e86192-2879-421a-a20c-bb84c51ee2cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GrabRight"",
                     ""type"": ""Button"",
                     ""id"": ""f9a35a6a-75f4-4b84-b9e2-14dee59c4b24"",
                     ""expectedControlType"": ""Button"",
@@ -67,17 +76,6 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""94f97c2b-b748-4c2e-80d4-f7b5d6139657"",
-                    ""path"": ""<XRController>/gripPressed"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Grab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""92a28d61-b193-4269-8bf7-ddc620e65441"",
                     ""path"": ""<XRController>/triggerPressed"",
                     ""interactions"": """",
@@ -108,6 +106,28 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bcc44d8-4778-486a-b6fa-4e3a6f3d5ee3"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GrabLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f78bed3-b1c4-418d-ac02-c38e4afbbd05"",
+                    ""path"": ""<XRController>{RightHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GrabRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -116,7 +136,8 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
+        m_Player_GrabLeft = m_Player.FindAction("GrabLeft", throwIfNotFound: true);
+        m_Player_GrabRight = m_Player.FindAction("GrabRight", throwIfNotFound: true);
         m_Player_Blockout = m_Player.FindAction("Blockout", throwIfNotFound: true);
         m_Player_UndoBlockout = m_Player.FindAction("UndoBlockout", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
@@ -179,7 +200,8 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Grab;
+    private readonly InputAction m_Player_GrabLeft;
+    private readonly InputAction m_Player_GrabRight;
     private readonly InputAction m_Player_Blockout;
     private readonly InputAction m_Player_UndoBlockout;
     private readonly InputAction m_Player_Interact;
@@ -187,7 +209,8 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
     {
         private @InputActionControls m_Wrapper;
         public PlayerActions(@InputActionControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Grab => m_Wrapper.m_Player_Grab;
+        public InputAction @GrabLeft => m_Wrapper.m_Player_GrabLeft;
+        public InputAction @GrabRight => m_Wrapper.m_Player_GrabRight;
         public InputAction @Blockout => m_Wrapper.m_Player_Blockout;
         public InputAction @UndoBlockout => m_Wrapper.m_Player_UndoBlockout;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
@@ -200,9 +223,12 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @Grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @Grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @GrabLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabLeft;
+                @GrabLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabLeft;
+                @GrabLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabLeft;
+                @GrabRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabRight;
+                @GrabRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabRight;
+                @GrabRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabRight;
                 @Blockout.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlockout;
                 @Blockout.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlockout;
                 @Blockout.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlockout;
@@ -216,9 +242,12 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Grab.started += instance.OnGrab;
-                @Grab.performed += instance.OnGrab;
-                @Grab.canceled += instance.OnGrab;
+                @GrabLeft.started += instance.OnGrabLeft;
+                @GrabLeft.performed += instance.OnGrabLeft;
+                @GrabLeft.canceled += instance.OnGrabLeft;
+                @GrabRight.started += instance.OnGrabRight;
+                @GrabRight.performed += instance.OnGrabRight;
+                @GrabRight.canceled += instance.OnGrabRight;
                 @Blockout.started += instance.OnBlockout;
                 @Blockout.performed += instance.OnBlockout;
                 @Blockout.canceled += instance.OnBlockout;
@@ -234,7 +263,8 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnGrab(InputAction.CallbackContext context);
+        void OnGrabLeft(InputAction.CallbackContext context);
+        void OnGrabRight(InputAction.CallbackContext context);
         void OnBlockout(InputAction.CallbackContext context);
         void OnUndoBlockout(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
