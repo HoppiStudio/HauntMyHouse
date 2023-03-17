@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzleTest : MonoBehaviour
+public class PuzzleManager : MonoBehaviour
 {
     //[SerializeField] private Puzzle puzzle;
-
 
     public GameObject BlockoutCanvas;
     public GameObject GameOverCanvas;
     public GameObject rayInteractor;
 
-
     public GameObject candlePuzzle;
     public GameObject glyphPuzzle;
     public GameObject leverPuzzle;
 
-    private GameObject selectedPuzzle;
+    private GameObject currentPuzzle;
 
-    private List<GameObject> puzzlesToSpawn;
+    [SerializeField] private List<GameObject> puzzlePrefabs;
 
 
 //After Continue button is pressed, adds all puzzles to the list and spawns a random puzzle
@@ -29,11 +27,11 @@ public void addPuzzlesToListAndSpawnPuzzle()
         BlockoutCanvas.SetActive(false);
         rayInteractor.SetActive(false);
 
-        puzzlesToSpawn.Add(candlePuzzle);
-        puzzlesToSpawn.Add(glyphPuzzle);
-        puzzlesToSpawn.Add(leverPuzzle);
+        puzzlePrefabs.Add(candlePuzzle);
+        puzzlePrefabs.Add(glyphPuzzle);
+        puzzlePrefabs.Add(leverPuzzle);
 
-        Debug.Log(puzzlesToSpawn);
+        Debug.Log("Puzzle prefabs: " + puzzlePrefabs);
 
         spawnPuzzle();
     }
@@ -42,15 +40,18 @@ public void addPuzzlesToListAndSpawnPuzzle()
     public void selectRandomPuzzle()
     {
         //Goes through each puzzle in the list and selects a random one. Removes it from the list and selects another puzzle
-        if (puzzlesToSpawn.Count != 0)
+        if (puzzlePrefabs.Count != 0)
         {
             //Destroy and remove puzzle from list
-            selectedPuzzle.SetActive(false);
-            puzzlesToSpawn.Remove(selectedPuzzle);
+            Destroy(currentPuzzle);
+            puzzlePrefabs.Remove(currentPuzzle);
+            currentPuzzle.SetActive(false);
+            Debug.Log("Puzzle prefabs: " + puzzlePrefabs);
 
             //Spawn puzzle
             spawnPuzzle();
         }
+
         //No more puzzles in list - Game won
         else
         {
@@ -63,21 +64,21 @@ public void addPuzzlesToListAndSpawnPuzzle()
 
     private void spawnPuzzle()
     {
-        int r = UnityEngine.Random.Range(1, 2);
+        int r = Random.Range(0, puzzlePrefabs.Count);
 
-        Debug.Log(r);
+        Debug.Log("Random number in list: " + r);
 
-        GameObject selectedPuzzle = ((GameObject)puzzlesToSpawn[r]);
-        Debug.Log(selectedPuzzle);
+        currentPuzzle = Instantiate(puzzlePrefabs[r]);
+        currentPuzzle.SetActive(true);
 
-        selectedPuzzle.SetActive(true);
+        Debug.Log("Current puzzle: " + currentPuzzle);
     }
 
 
 
     void Start()
     {
-        //puzzle.OnPuzzleComplete += BanishGhost;
+        Puzzle.OnPuzzleComplete += CompletePuzzle;
     }
 
     private void Update()
@@ -85,13 +86,14 @@ public void addPuzzlesToListAndSpawnPuzzle()
 
     }
 
-    private void BanishGhost()
+    private void CompletePuzzle()
     {
-        Debug.Log(this + " check");
+        Destroy(currentPuzzle);
+        spawnPuzzle();
     }
 
-    /*private void OnDisable()
+    private void OnDisable()
     {
-        //puzzle.OnPuzzleComplete -= BanishGhost;
-    }*/
+        Puzzle.OnPuzzleComplete -= CompletePuzzle;
+    }
 }

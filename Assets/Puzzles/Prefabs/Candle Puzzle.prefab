@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
+  ghost: {fileID: 0}
   placedCandles: []
 --- !u!114 &7943460081444837417
 MonoBehaviour:

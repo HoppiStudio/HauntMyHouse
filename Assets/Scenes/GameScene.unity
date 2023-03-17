@@ -3218,7 +3218,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1751047078}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PuzzleTest, Assembly-CSharp
         m_MethodName: addPuzzlesToListAndSpawnPuzzle
         m_Mode: 1
@@ -7682,7 +7682,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1751047072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc8cad32e33eaa4da84a007c1895241, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d24812069e688c4e9c164e7f4d69b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BlockoutCanvas: {fileID: 1751047072}
@@ -7691,6 +7691,10 @@ MonoBehaviour:
   candlePuzzle: {fileID: 784703699}
   glyphPuzzle: {fileID: 437382462}
   leverPuzzle: {fileID: 78229016}
+  puzzlePrefabs:
+  - {fileID: 784703699}
+  - {fileID: 437382462}
+  - {fileID: 78229016}
 --- !u!1 &1785373507
 GameObject:
   m_ObjectHideFlags: 0
