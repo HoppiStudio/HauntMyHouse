@@ -13,7 +13,8 @@ public class Puzzle : MonoBehaviour
     }
 
     public event Action OnPuzzleComplete;
-    public void Complete()
+
+    protected void Complete()
     {
         completed = true;
         Debug.Log(this + " completed");

@@ -1,6 +1,7 @@
 using AiDirector.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using CandlePuzzle;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
@@ -26,9 +27,9 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
     private int Counter = 0;
 
     //Attached Podiums for Ghosts
-    [SerializeField] Podium Attached_Podium_for_Red_Ghost;
-    [SerializeField] Podium Attached_Podium_for_Blue_Ghost;
-    [SerializeField] Podium Attached_Podium_for_Purple_Ghost;
+    [SerializeField] Pedestal Attached_Podium_for_Red_Ghost;
+    [SerializeField] Pedestal Attached_Podium_for_Blue_Ghost;
+    [SerializeField] Pedestal Attached_Podium_for_Purple_Ghost;
 
 
     GameObject First_Ghost;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using CandlePuzzle;
 using UnityEngine;
 
 public enum GhostState
@@ -23,7 +24,7 @@ public class GhostController : MonoBehaviour
     private Vector3 _targetPos;
     private int counter = 0;
 
-    [SerializeField] public Podium Attached_Podium;
+    [SerializeField] public Pedestal Attached_Podium;
     [SerializeField] public bool Orange_Ghost_Banishment_Rules = false;
     [SerializeField] public bool Purple_Ghost_Banishment_Rules = false;
     [SerializeField] public bool Green_Ghost_Banishment_Rules = false;
@@ -99,7 +100,7 @@ public class GhostController : MonoBehaviour
         /*//Banishment Rules
         if (this.Orange_Ghost_Banishment_Rules == true)
         {
-            if (this.Attached_Podium.placedCandle != null && this.Attached_Podium.currentPodiumColour == PodiumColour.White)
+            if (this.Attached_Podium.startingCandle != null && this.Attached_Podium.GetPedestalColour() == PedestalColour.White)
             {
                 Ghost_Spawn_and_Control Ghost_Control_Manager = FindObjectOfType<Ghost_Spawn_and_Control>();
                 Ghost_Control_Manager.Clear_Podiums_First_Ghost_Eliminated();
@@ -116,8 +117,7 @@ public class GhostController : MonoBehaviour
 
         if (this.Purple_Ghost_Banishment_Rules == true)
         {
-            Symbol_Puzzle_Controller PUZZLE_SYMBOL = FindObjectOfType<Symbol_Puzzle_Controller>();
-            if (PUZZLE_SYMBOL.Ghost_Banished_by_Symbol_Puzzle == true)
+            if (this.Attached_Podium.startingCandle != null && this.Attached_Podium.GetPedestalColour() == PedestalColour.Purple)
             {
                 GameObject[] go = GameObject.FindGameObjectsWithTag("Symbol_Animation");
                 //if the tree exist then destroy it
@@ -139,6 +139,14 @@ public class GhostController : MonoBehaviour
 
         if (this.Green_Ghost_Banishment_Rules == true)
         {
+            if (this.Attached_Podium.startingCandle != null && this.Attached_Podium.GetPedestalColour() == PedestalColour.Green)
+            {
+                Destroy(gameObject, 2);
+                GetComponent<AudioSource>().PlayOneShot(Stunned_Voice);
+                this.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 255, 255, 10));
+                Green_Ghost_Banishment_Rules = false;
+            }
+        }
 
             Ghost_Spawn_and_Control Ghost_Control_Manager = FindObjectOfType<Ghost_Spawn_and_Control>();
             Ghost_Control_Manager.Clear_Podiums_First_Ghost_Eliminated();
