@@ -11,9 +11,9 @@ public class PuzzleManager : MonoBehaviour
     public GameObject GameOverCanvas;
     public GameObject rayInteractor;
 
-    public GameObject candlePuzzle;
+/*    public GameObject candlePuzzle;
     public GameObject glyphPuzzle;
-    public GameObject leverPuzzle;
+    public GameObject leverPuzzle;*/
 
     private GameObject currentPuzzle;
 
@@ -21,15 +21,15 @@ public class PuzzleManager : MonoBehaviour
 
 
 //After Continue button is pressed, adds all puzzles to the list and spawns a random puzzle
-public void addPuzzlesToListAndSpawnPuzzle()
+public void spawnFirstPuzzle()
     {
         //Disables canvas and ray interactor
         BlockoutCanvas.SetActive(false);
         rayInteractor.SetActive(false);
 
-        puzzlePrefabs.Add(candlePuzzle);
+        /*puzzlePrefabs.Add(candlePuzzle);
         puzzlePrefabs.Add(glyphPuzzle);
-        puzzlePrefabs.Add(leverPuzzle);
+        puzzlePrefabs.Add(leverPuzzle);*/
 
         Debug.Log("Puzzle prefabs: " + puzzlePrefabs);
 
@@ -89,8 +89,7 @@ public void addPuzzlesToListAndSpawnPuzzle()
 
     private void CompletePuzzle()
     {
-        Destroy(currentPuzzle);
-        spawnPuzzle();
+        selectRandomPuzzle();
     }
 
     private void OnDisable()

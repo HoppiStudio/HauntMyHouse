@@ -203,8 +203,8 @@ extern void Puzzle_IsCompleted_m430C11CD3AE5347904BF9B2B86F6D95AD76D9512 (void);
 extern void Puzzle_Complete_m7C2AF809471E2A51FE291A1094986DAC528E6845 (void);
 // 0x00000062 System.Void Puzzle::.ctor()
 extern void Puzzle__ctor_mBEDAF970C17CDBA75E6813C73A24C1683536C9A4 (void);
-// 0x00000063 System.Void PuzzleManager::addPuzzlesToListAndSpawnPuzzle()
-extern void PuzzleManager_addPuzzlesToListAndSpawnPuzzle_mDB17EBD8DC7924229DD7B2A1C56BBD9329130AE5 (void);
+// 0x00000063 System.Void PuzzleManager::spawnFirstPuzzle()
+extern void PuzzleManager_spawnFirstPuzzle_m1E12305DCF46CB1693689F314186D2757F8FD3E1 (void);
 // 0x00000064 System.Void PuzzleManager::selectRandomPuzzle()
 extern void PuzzleManager_selectRandomPuzzle_mEE1E1590C58C12C1E50498B955DD584D4A512FD7 (void);
 // 0x00000065 System.Void PuzzleManager::spawnPuzzle()
@@ -980,7 +980,7 @@ static Il2CppMethodPointer s_methodPointers[440] =
 	Puzzle_IsCompleted_m430C11CD3AE5347904BF9B2B86F6D95AD76D9512,
 	Puzzle_Complete_m7C2AF809471E2A51FE291A1094986DAC528E6845,
 	Puzzle__ctor_mBEDAF970C17CDBA75E6813C73A24C1683536C9A4,
-	PuzzleManager_addPuzzlesToListAndSpawnPuzzle_mDB17EBD8DC7924229DD7B2A1C56BBD9329130AE5,
+	PuzzleManager_spawnFirstPuzzle_m1E12305DCF46CB1693689F314186D2757F8FD3E1,
 	PuzzleManager_selectRandomPuzzle_mEE1E1590C58C12C1E50498B955DD584D4A512FD7,
 	PuzzleManager_spawnPuzzle_m6868498C1B838CFF89130678BF07562FDCF947BE,
 	PuzzleManager_Start_mB17B884D56EDF37856E67B44987390676F5F9FA1,

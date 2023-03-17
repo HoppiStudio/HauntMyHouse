@@ -3220,7 +3220,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1751047078}
         m_TargetAssemblyTypeName: PuzzleManager, Assembly-CSharp
-        m_MethodName: addPuzzlesToListAndSpawnPuzzle
+        m_MethodName: spawnFirstPuzzle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7688,9 +7688,6 @@ MonoBehaviour:
   BlockoutCanvas: {fileID: 1751047072}
   GameOverCanvas: {fileID: 1785373507}
   rayInteractor: {fileID: 972310482}
-  candlePuzzle: {fileID: 784703699}
-  glyphPuzzle: {fileID: 437382462}
-  leverPuzzle: {fileID: 78229016}
   puzzlePrefabs:
   - {fileID: 784703699}
   - {fileID: 437382462}

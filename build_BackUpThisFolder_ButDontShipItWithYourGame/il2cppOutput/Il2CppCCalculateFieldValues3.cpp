@@ -18170,16 +18170,10 @@ struct PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7  : public MonoBeh
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameOverCanvas_5;
 	// UnityEngine.GameObject PuzzleManager::rayInteractor
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___rayInteractor_6;
-	// UnityEngine.GameObject PuzzleManager::candlePuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___candlePuzzle_7;
-	// UnityEngine.GameObject PuzzleManager::glyphPuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___glyphPuzzle_8;
-	// UnityEngine.GameObject PuzzleManager::leverPuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___leverPuzzle_9;
 	// UnityEngine.GameObject PuzzleManager::currentPuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___currentPuzzle_10;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___currentPuzzle_7;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> PuzzleManager::puzzlePrefabs
-	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___puzzlePrefabs_11;
+	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___puzzlePrefabs_8;
 };
 
 // Photon.Pun.Demo.Cockpit.RegionListCell
@@ -22512,9 +22506,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable9713[2] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable9714[3] = 
 {
 	static_cast<int32_t>(offsetof(Puzzle_t5E3B384FE8E2BB85F655E43EC5B50F585AE912A6, ___completed_4)),static_cast<int32_t>(offsetof(Puzzle_t5E3B384FE8E2BB85F655E43EC5B50F585AE912A6, ___ghost_5)),static_cast<int32_t>(offsetof(Puzzle_t5E3B384FE8E2BB85F655E43EC5B50F585AE912A6_StaticFields, ___OnPuzzleComplete_6)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable9715[8] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable9715[5] = 
 {
-	static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___BlockoutCanvas_4)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___GameOverCanvas_5)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___rayInteractor_6)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___candlePuzzle_7)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___glyphPuzzle_8)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___leverPuzzle_9)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___currentPuzzle_10)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___puzzlePrefabs_11)),};
+	static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___BlockoutCanvas_4)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___GameOverCanvas_5)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___rayInteractor_6)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___currentPuzzle_7)),static_cast<int32_t>(offsetof(PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7, ___puzzlePrefabs_8)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable9716[2] = 
 {
 	static_cast<int32_t>(offsetof(DirectorBuildUpState_tC23783384EF71EE734627525299CEBA719A57B6D, ____director_0)),static_cast<int32_t>(offsetof(DirectorBuildUpState_tC23783384EF71EE734627525299CEBA719A57B6D, ____stateMachine_1)),};

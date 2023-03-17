@@ -4285,16 +4285,10 @@ struct PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7  : public MonoBeh
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameOverCanvas_5;
 	// UnityEngine.GameObject PuzzleManager::rayInteractor
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___rayInteractor_6;
-	// UnityEngine.GameObject PuzzleManager::candlePuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___candlePuzzle_7;
-	// UnityEngine.GameObject PuzzleManager::glyphPuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___glyphPuzzle_8;
-	// UnityEngine.GameObject PuzzleManager::leverPuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___leverPuzzle_9;
 	// UnityEngine.GameObject PuzzleManager::currentPuzzle
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___currentPuzzle_10;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___currentPuzzle_7;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> PuzzleManager::puzzlePrefabs
-	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___puzzlePrefabs_11;
+	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___puzzlePrefabs_8;
 };
 
 // RadarUI
@@ -5956,6 +5950,8 @@ inline GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* Object_Instantiate_
 }
 // System.Void Puzzle::add_OnPuzzleComplete(System.Action)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Puzzle_add_OnPuzzleComplete_m4517EC594564B3469144398300DF3630FCFAF68E (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___value0, const RuntimeMethod* method) ;
+// System.Void PuzzleManager::selectRandomPuzzle()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_selectRandomPuzzle_mEE1E1590C58C12C1E50498B955DD584D4A512FD7 (PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7* __this, const RuntimeMethod* method) ;
 // System.Void Puzzle::remove_OnPuzzleComplete(System.Action)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Puzzle_remove_OnPuzzleComplete_mAC8E3C6A370205F544CF5887FAAF201E3886F42C (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___value0, const RuntimeMethod* method) ;
 // System.Void AiDirector.DirectorEventBus::Publish(AiDirector.Scripts.DirectorEvent)
@@ -11492,14 +11488,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Puzzle__ctor_mBEDAF970C17CDBA75E6813C73A
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// System.Void PuzzleManager::addPuzzlesToListAndSpawnPuzzle()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_addPuzzlesToListAndSpawnPuzzle_mDB17EBD8DC7924229DD7B2A1C56BBD9329130AE5 (PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7* __this, const RuntimeMethod* method) 
+// System.Void PuzzleManager::spawnFirstPuzzle()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_spawnFirstPuzzle_m1E12305DCF46CB1693689F314186D2757F8FD3E1 (PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral10AC6BA900CBB5D1D5DE4A68EE869A2333758A21);
 		s_Il2CppMethodInitialized = true;
 	}
@@ -11518,54 +11513,39 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_addPuzzlesToListAndSpawnPu
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1 = __this->___rayInteractor_6;
 		NullCheck(L_1);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_1, (bool)0, NULL);
-		// puzzlePrefabs.Add(candlePuzzle);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_2 = __this->___puzzlePrefabs_11;
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = __this->___candlePuzzle_7;
-		NullCheck(L_2);
-		List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_inline(L_2, L_3, List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_RuntimeMethod_var);
-		// puzzlePrefabs.Add(glyphPuzzle);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_4 = __this->___puzzlePrefabs_11;
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_5 = __this->___glyphPuzzle_8;
-		NullCheck(L_4);
-		List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_inline(L_4, L_5, List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_RuntimeMethod_var);
-		// puzzlePrefabs.Add(leverPuzzle);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_6 = __this->___puzzlePrefabs_11;
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_7 = __this->___leverPuzzle_9;
-		NullCheck(L_6);
-		List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_inline(L_6, L_7, List_1_Add_m43FBF207375C6E06B8C45ECE614F9B8008FB686E_RuntimeMethod_var);
 		// Debug.Log("Puzzle prefabs: " + puzzlePrefabs);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_8 = __this->___puzzlePrefabs_11;
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_9 = L_8;
-		G_B1_0 = L_9;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_2 = __this->___puzzlePrefabs_8;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_3 = L_2;
+		G_B1_0 = L_3;
 		G_B1_1 = _stringLiteral10AC6BA900CBB5D1D5DE4A68EE869A2333758A21;
-		if (L_9)
+		if (L_3)
 		{
-			G_B2_0 = L_9;
+			G_B2_0 = L_3;
 			G_B2_1 = _stringLiteral10AC6BA900CBB5D1D5DE4A68EE869A2333758A21;
-			goto IL_005d;
+			goto IL_002a;
 		}
 	}
 	{
 		G_B3_0 = ((String_t*)(NULL));
 		G_B3_1 = G_B1_1;
-		goto IL_0062;
+		goto IL_002f;
 	}
 
-IL_005d:
+IL_002a:
 	{
 		NullCheck(G_B2_0);
-		String_t* L_10;
-		L_10 = VirtualFuncInvoker0< String_t* >::Invoke(3 /* System.String System.Object::ToString() */, G_B2_0);
-		G_B3_0 = L_10;
+		String_t* L_4;
+		L_4 = VirtualFuncInvoker0< String_t* >::Invoke(3 /* System.String System.Object::ToString() */, G_B2_0);
+		G_B3_0 = L_4;
 		G_B3_1 = G_B2_1;
 	}
 
-IL_0062:
+IL_002f:
 	{
-		String_t* L_11;
-		L_11 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(G_B3_1, G_B3_0, NULL);
+		String_t* L_5;
+		L_5 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(G_B3_1, G_B3_0, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_11, NULL);
+		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_5, NULL);
 		// spawnPuzzle();
 		PuzzleManager_spawnPuzzle_m6868498C1B838CFF89130678BF07562FDCF947BE(__this, NULL);
 		// }
@@ -11593,7 +11573,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_selectRandomPuzzle_mEE1E15
 	String_t* G_B4_1 = NULL;
 	{
 		// if (puzzlePrefabs.Count != 0)
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_0 = __this->___puzzlePrefabs_11;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_0 = __this->___puzzlePrefabs_8;
 		NullCheck(L_0);
 		int32_t L_1;
 		L_1 = List_1_get_Count_m4C37ED2D928D63B80F55AF434730C2D64EEB9F22_inline(L_0, List_1_get_Count_m4C37ED2D928D63B80F55AF434730C2D64EEB9F22_RuntimeMethod_var);
@@ -11604,21 +11584,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_selectRandomPuzzle_mEE1E15
 	}
 	{
 		// currentPuzzle.SetActive(false);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_2 = __this->___currentPuzzle_10;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_2 = __this->___currentPuzzle_7;
 		NullCheck(L_2);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_2, (bool)0, NULL);
 		// Destroy(currentPuzzle);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = __this->___currentPuzzle_10;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = __this->___currentPuzzle_7;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_3, NULL);
 		// puzzlePrefabs.Remove(currentPuzzle);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_4 = __this->___puzzlePrefabs_11;
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_5 = __this->___currentPuzzle_10;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_4 = __this->___puzzlePrefabs_8;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_5 = __this->___currentPuzzle_7;
 		NullCheck(L_4);
 		bool L_6;
 		L_6 = List_1_Remove_mCCE85D4D5326536C4B214C73D07030F4CCD18485(L_4, L_5, List_1_Remove_mCCE85D4D5326536C4B214C73D07030F4CCD18485_RuntimeMethod_var);
 		// Debug.Log("Puzzle prefabs: " + puzzlePrefabs);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_7 = __this->___puzzlePrefabs_11;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_7 = __this->___puzzlePrefabs_8;
 		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_8 = L_7;
 		G_B2_0 = L_8;
 		G_B2_1 = _stringLiteral10AC6BA900CBB5D1D5DE4A68EE869A2333758A21;
@@ -11693,7 +11673,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_spawnPuzzle_m6868498C1B838
 	String_t* G_B3_1 = NULL;
 	{
 		// int r = Random.Range(0, puzzlePrefabs.Count);
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_0 = __this->___puzzlePrefabs_11;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_0 = __this->___puzzlePrefabs_8;
 		NullCheck(L_0);
 		int32_t L_1;
 		L_1 = List_1_get_Count_m4C37ED2D928D63B80F55AF434730C2D64EEB9F22_inline(L_0, List_1_get_Count_m4C37ED2D928D63B80F55AF434730C2D64EEB9F22_RuntimeMethod_var);
@@ -11708,24 +11688,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_spawnPuzzle_m6868498C1B838
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_4, NULL);
 		// currentPuzzle = puzzlePrefabs[r];
-		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_5 = __this->___puzzlePrefabs_11;
+		List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* L_5 = __this->___puzzlePrefabs_8;
 		int32_t L_6 = V_0;
 		NullCheck(L_5);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_7;
 		L_7 = List_1_get_Item_mE8DBE527F24D9CFED839C34216C475B716169979(L_5, L_6, List_1_get_Item_mE8DBE527F24D9CFED839C34216C475B716169979_RuntimeMethod_var);
-		__this->___currentPuzzle_10 = L_7;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___currentPuzzle_10), (void*)L_7);
+		__this->___currentPuzzle_7 = L_7;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___currentPuzzle_7), (void*)L_7);
 		// Instantiate(currentPuzzle);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_8 = __this->___currentPuzzle_10;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_8 = __this->___currentPuzzle_7;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_9;
 		L_9 = Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3(L_8, Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
 		// currentPuzzle.SetActive(true);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_10 = __this->___currentPuzzle_10;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_10 = __this->___currentPuzzle_7;
 		NullCheck(L_10);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_10, (bool)1, NULL);
 		// Debug.Log("Current puzzle: " + currentPuzzle);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_11 = __this->___currentPuzzle_10;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_11 = __this->___currentPuzzle_7;
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_12 = L_11;
 		G_B1_0 = L_12;
 		G_B1_1 = _stringLiteralFBAE36FED45F2824B2665B505D97761566DE22DC;
@@ -11792,19 +11772,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_Update_mF3C13F27BE0B2B9052
 // System.Void PuzzleManager::CompletePuzzle()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PuzzleManager_CompletePuzzle_mB31C4210D492C606115C77721AF855E47765E682 (PuzzleManager_t3D8A589EB9E0B7EE52D07774FBB8938039A362B7* __this, const RuntimeMethod* method) 
 {
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// Destroy(currentPuzzle);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___currentPuzzle_10;
-		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
-		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_0, NULL);
-		// spawnPuzzle();
-		PuzzleManager_spawnPuzzle_m6868498C1B838CFF89130678BF07562FDCF947BE(__this, NULL);
+		// selectRandomPuzzle();
+		PuzzleManager_selectRandomPuzzle_mEE1E1590C58C12C1E50498B955DD584D4A512FD7(__this, NULL);
 		// }
 		return;
 	}
