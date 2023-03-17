@@ -207,7 +207,7 @@ public class Ghost_Spawn_and_Control : MonoBehaviour
 
     public void Clear_Podiums_First_Ghost_Eliminated()
     {
-        Podium[] Found_Podiums = FindObjectsOfType<Podium>();
+        Pedestal[] Found_Podiums = FindObjectsOfType<Pedestal>();
         if (Found_Podiums != null)
         {
             for (int i = 0; i < Found_Podiums.Length; i++)
