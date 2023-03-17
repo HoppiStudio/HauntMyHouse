@@ -43,9 +43,9 @@ public void addPuzzlesToListAndSpawnPuzzle()
         if (puzzlePrefabs.Count != 0)
         {
             //Destroy and remove puzzle from list
+            currentPuzzle.SetActive(false);
             Destroy(currentPuzzle);
             puzzlePrefabs.Remove(currentPuzzle);
-            currentPuzzle.SetActive(false);
             Debug.Log("Puzzle prefabs: " + puzzlePrefabs);
 
             //Spawn puzzle
@@ -68,7 +68,8 @@ public void addPuzzlesToListAndSpawnPuzzle()
 
         Debug.Log("Random number in list: " + r);
 
-        currentPuzzle = Instantiate(puzzlePrefabs[r]);
+        currentPuzzle = puzzlePrefabs[r];
+        Instantiate(currentPuzzle);
         currentPuzzle.SetActive(true);
 
         Debug.Log("Current puzzle: " + currentPuzzle);
