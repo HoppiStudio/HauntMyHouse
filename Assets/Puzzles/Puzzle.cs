@@ -6,18 +6,20 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     [SerializeField] private bool completed = false;
+    [SerializeField] private GameObject ghost;
 
     public bool IsCompleted()
     {
         return completed;
     }
 
-    public event Action OnPuzzleComplete;
-
-    protected void Complete()
+    public static event Action OnPuzzleComplete;
+    public void Complete()
     {
         completed = true;
         Debug.Log(this + " completed");
         OnPuzzleComplete?.Invoke();
+        Destroy(ghost);
     }
+
 }

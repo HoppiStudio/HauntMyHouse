@@ -7233,6 +7233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
+  ghost: {fileID: 0}
   podiums:
   - {fileID: 3834983482379505198}
   - {fileID: 3834983482983132618}

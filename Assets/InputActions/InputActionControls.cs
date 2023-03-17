@@ -71,6 +71,15 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause/Unpause"",
+                    ""type"": ""Button"",
+                    ""id"": ""55e5bf81-3c16-4f68-a956-a716329c9efe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -109,6 +118,28 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""bf3e60dd-4d96-4998-991b-607aaa11790e"",
+                    ""path"": ""<XRController>{RightHand}/menuButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause/Unpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""defb4553-370c-427a-b7e9-36e3897ca075"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause/Unpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3bcc44d8-4778-486a-b6fa-4e3a6f3d5ee3"",
                     ""path"": ""<XRController>{LeftHand}/gripPressed"",
                     ""interactions"": """",
@@ -141,6 +172,7 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
         m_Player_Blockout = m_Player.FindAction("Blockout", throwIfNotFound: true);
         m_Player_UndoBlockout = m_Player.FindAction("UndoBlockout", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_PauseUnpause = m_Player.FindAction("Pause/Unpause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +237,7 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Blockout;
     private readonly InputAction m_Player_UndoBlockout;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_PauseUnpause;
     public struct PlayerActions
     {
         private @InputActionControls m_Wrapper;
@@ -214,6 +247,7 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
         public InputAction @Blockout => m_Wrapper.m_Player_Blockout;
         public InputAction @UndoBlockout => m_Wrapper.m_Player_UndoBlockout;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @PauseUnpause => m_Wrapper.m_Player_PauseUnpause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -238,6 +272,9 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @PauseUnpause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseUnpause;
+                @PauseUnpause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseUnpause;
+                @PauseUnpause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseUnpause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -257,6 +294,9 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @PauseUnpause.started += instance.OnPauseUnpause;
+                @PauseUnpause.performed += instance.OnPauseUnpause;
+                @PauseUnpause.canceled += instance.OnPauseUnpause;
             }
         }
     }
@@ -268,5 +308,6 @@ public partial class @InputActionControls : IInputActionCollection2, IDisposable
         void OnBlockout(InputAction.CallbackContext context);
         void OnUndoBlockout(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPauseUnpause(InputAction.CallbackContext context);
     }
 }
