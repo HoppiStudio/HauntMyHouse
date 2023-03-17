@@ -4298,6 +4298,8 @@ MonoBehaviour:
   rayInteractor: {fileID: 972310482}
   puzzlePrefabs:
   - {fileID: 3112929374597572984, guid: 665c329969301de4e8fb2575a1ca564a, type: 3}
+  - {fileID: 5909672555218997655, guid: 0b8388b7283db4541a105791256c9a44, type: 3}
+  - {fileID: 5565397317226505212, guid: 420fada90beceb848bfee3de8bbc7410, type: 3}
 --- !u!1 &1527249042
 GameObject:
   m_ObjectHideFlags: 0
