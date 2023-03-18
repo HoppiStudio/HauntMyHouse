@@ -27,11 +27,11 @@ namespace CandlePuzzle
         None = 5
     }
 
-    public class Pedestal : MonoBehaviour
+    public class Pedestal : MonoBehaviour // TODO: Refactor responsibilities  
     {
         public event Action OnCandlePlaced;
         public event Action OnCandleRemoved;
-        public Candle HasCandle => _placedCandle;
+        public Candle HasCandle { get; private set; }
 
         [SerializeField] public Candle startingCandle;
         [SerializeField] private PedestalColour currentPedestalColour;
@@ -40,10 +40,8 @@ namespace CandlePuzzle
         [SerializeField] private Transform candleHolderPos;
         [SerializeField] private List<SpriteRenderer> flameIconSprite;
         [SerializeField] private List<SpriteRenderer> shapeIconSprites;
-    
         private InputActionManager _inputActionManager;
         private Candle _candleInRange;
-        private Candle _placedCandle;
         private bool _isCandleInRange;
         private bool _isOccupied;
 
@@ -141,25 +139,25 @@ namespace CandlePuzzle
             _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             Destroy(_candleInRange.GetComponent<XRGrabInteractable>());
             OnCandlePlaced?.Invoke();
-            _placedCandle = _candleInRange;
+            HasCandle = _candleInRange;
             _isOccupied = true;
         }
 
         private void RemoveCandleFromPedestal()
         {
-            if (_placedCandle == null)
+            if (HasCandle == null)
             {
                 return;
             }
-            Destroy(_placedCandle.gameObject);
+            Destroy(HasCandle.gameObject);
             OnCandleRemoved?.Invoke();
             startingCandle = null;
             _isOccupied = false;
             /*_placedCandle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        _placedCandle.AddComponent<XRGrabInteractable>();
-        OnCandleRemoved?.Invoke();
-        startingCandle = null;
-        _isOccupied = false;*/
+            _placedCandle.AddComponent<XRGrabInteractable>();
+            OnCandleRemoved?.Invoke();
+            startingCandle = null;
+            _isOccupied = false;*/
         }
 
         public void SetPedestalShapeIcon(ShapeIcon shapeIcon)

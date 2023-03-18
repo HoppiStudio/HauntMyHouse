@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace CandlePuzzle
 {
     public static class FlameColourMixingRules
     {
-        private static readonly Dictionary<Tuple<FlameColour, FlameColour>, FlameColour> RulesDictionary = new();
+        private static readonly Dictionary<(FlameColour, FlameColour), FlameColour> RulesDictionary = new();
         private static readonly Dictionary<FlameColour, string> ColourDictionary = new()
         {
             {FlameColour.White, "white"},
@@ -18,17 +17,23 @@ namespace CandlePuzzle
             {FlameColour.Yellow, "yellow"},
         };
 
+        /// <summary>
+        /// Returns the result of two mixed colours if a rule exists for it.
+        /// </summary>
+        /// <returns>The mixed colour.</returns>
         public static FlameColour CombineColours(FlameColour colour1, FlameColour colour2)
         {
-            // TODO: Optimise - Inefficient to create a new tuple each time this method is called
-            var colourPair = Tuple.Create(colour1, colour2);
+            var colourPair = (colour1, colour2);
             return RulesDictionary[colourPair];
         }
 
+        /// <summary>
+        /// Checks to see if a queried rule exists in the rule dictionary.
+        /// </summary>
+        /// <returns>True if the rule exists, and false if it doesn't.</returns>
         public static bool CheckRule(FlameColour colour1, FlameColour colour2)
         {
-            // TODO: Optimise - Inefficient to create a new tuple each time this method is called
-            var colourPair = Tuple.Create(colour1, colour2);
+            var colourPair = (colour1, colour2);
             if (RulesDictionary.ContainsKey(colourPair))
             {
                 Debug.Log($"<color=lime>RULE FOUND!</color> ({colourPair.Item1} + {colourPair.Item2} = <color={ColourDictionary[RulesDictionary[colourPair]]}>{RulesDictionary[colourPair]}</color>)");
@@ -38,9 +43,15 @@ namespace CandlePuzzle
             return false;
         }
 
+        /// <summary>
+        /// Creates a colour mixing rule that gets added to the rule dictionary. 
+        /// </summary>
+        /// <param name="colour1">The first colour to be combined.</param>
+        /// <param name="colour2">The second colour to be combined.</param>
+        /// <param name="mixedColour">The colour you want to produce from the two combined colours.</param>
         private static void CreateRule(FlameColour colour1, FlameColour colour2, FlameColour mixedColour)
         {
-            var colourPairRule = Tuple.Create(colour1, colour2);
+            var colourPairRule = (colour1, colour2);
             if (!RulesDictionary.ContainsKey(colourPairRule))
             {
                 RulesDictionary.Add(colourPairRule, mixedColour);
@@ -52,6 +63,11 @@ namespace CandlePuzzle
             }
         }
 
+        /// <summary>
+        /// Defines the set of pre-determined rules to be added to the rule dictionary.
+        /// NOTE: Calling this more than once will NOT remove previous ruleset rules. 
+        /// </summary>
+        /// <param name="rulesetID"></param>
         public static void SetRuleset(int rulesetID)
         {
             switch (rulesetID)

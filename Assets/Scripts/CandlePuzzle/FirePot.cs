@@ -13,7 +13,7 @@ namespace CandlePuzzle
         {
             if (other.GetComponent<Flammable>() != null)
             {
-                // If this object is on fire, ignite other unlit flammable objects
+                // If this firepot is on fire, ignite other unlit flammable objects
                 if (!other.GetComponent<Flammable>().IsOnFire() && IsOnFire())
                 {
                     var flammable = other.GetComponent<Flammable>();

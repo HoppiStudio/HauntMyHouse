@@ -1493,6 +1493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
+  ghost: {fileID: 0}
   levers:
   - {fileID: 5909672554449947869}
   - {fileID: 5909672555616416863}
