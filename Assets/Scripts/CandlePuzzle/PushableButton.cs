@@ -9,10 +9,13 @@ namespace CandlePuzzle
         public event Action OnPushed;
 
         [SerializeField] private GameObject buttonModel;
+        private AudioSource _buttonPushSound;
         private const float MoveTime = 0.5f;
         private const float MoveDistance = 0.05f;
         private Vector3 _startingPosition;
         private bool _isPressed = false;
+
+        private void Awake() => _buttonPushSound = GetComponent<AudioSource>();
 
         private void Start() => _startingPosition = buttonModel.transform.position;
 
@@ -30,6 +33,7 @@ namespace CandlePuzzle
         IEnumerator PushButtonAnimation()
         {
             _isPressed = true;
+            _buttonPushSound.Play();
 
             // Calculate the target position for the button to move down to
             Vector3 targetPosition = _startingPosition - new Vector3(0, MoveDistance, 0);

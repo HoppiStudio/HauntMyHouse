@@ -27,7 +27,7 @@ namespace CandlePuzzle
         None = 5
     }
 
-    public class Pedestal : MonoBehaviour // TODO: Refactor responsibilities  
+    public class Pedestal : MonoBehaviour 
     {
         public event Action OnCandlePlaced;
         public event Action OnCandleRemoved;

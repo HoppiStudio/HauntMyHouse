@@ -790,9 +790,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 192824674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab357c12ed74b14aa1ec262313b2d4d, type: 3}
+  m_Script: {fileID: 11500000, guid: fed39efce86d91a409c2c7d9b174b5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 1199675805}
+  timerText: {fileID: 834042323}
 --- !u!1 &214649286
 GameObject:
   m_ObjectHideFlags: 0
