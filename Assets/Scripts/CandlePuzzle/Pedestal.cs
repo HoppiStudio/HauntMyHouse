@@ -11,10 +11,12 @@ namespace CandlePuzzle
         White,
         Red,
         Green,
-        Blue,
+        DarkBlue,
+        Cyan,
+        Yellow,
         Orange,
         Purple,
-        Yellow
+        Pink
     }
 
     public enum ShapeIcon
@@ -50,10 +52,12 @@ namespace CandlePuzzle
             {PedestalColour.White, FlameColour.White},
             {PedestalColour.Red, FlameColour.Red},
             {PedestalColour.Green, FlameColour.Green},
-            {PedestalColour.Blue, FlameColour.Blue},
+            {PedestalColour.DarkBlue, FlameColour.DarkBlue},
+            {PedestalColour.Cyan, FlameColour.Cyan},
+            {PedestalColour.Yellow, FlameColour.Yellow},
             {PedestalColour.Orange, FlameColour.Orange},
             {PedestalColour.Purple, FlameColour.Purple},
-            {PedestalColour.Yellow, FlameColour.Yellow}
+            {PedestalColour.Pink, FlameColour.Pink}
         };
 
         private readonly Dictionary<PedestalColour, Color> _flameIconColourDict = new()
@@ -61,10 +65,12 @@ namespace CandlePuzzle
             {PedestalColour.White, Color.white},
             {PedestalColour.Red, Color.red},
             {PedestalColour.Green, Color.green},
-            {PedestalColour.Blue, Color.cyan},
+            {PedestalColour.DarkBlue, Color.blue},
+            {PedestalColour.Cyan, Color.cyan},
+            {PedestalColour.Yellow, Color.yellow},
             {PedestalColour.Orange, new Color(1,0.5f,0)},
             {PedestalColour.Purple, new Color(0.5f, 0, 1)},
-            {PedestalColour.Yellow, Color.yellow}
+            {PedestalColour.Pink, Color.magenta}
         };
 
         private void OnDisable()

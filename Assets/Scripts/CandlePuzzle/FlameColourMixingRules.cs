@@ -11,10 +11,12 @@ namespace CandlePuzzle
             {FlameColour.White, "white"},
             {FlameColour.Red, "red"},
             {FlameColour.Green, "green"},
-            {FlameColour.Blue, "cyan"},
+            {FlameColour.DarkBlue, "darkblue"},
+            {FlameColour.Cyan, "cyan"},
+            {FlameColour.Yellow, "yellow"},
             {FlameColour.Orange, "orange"},
             {FlameColour.Purple, "purple"},
-            {FlameColour.Yellow, "yellow"},
+            {FlameColour.Pink, "magenta"}
         };
 
         /// <summary>
@@ -52,8 +54,10 @@ namespace CandlePuzzle
         private static void CreateRule(FlameColour colour1, FlameColour colour2, FlameColour mixedColour)
         {
             var colourPairRule = (colour1, colour2);
+            var colourPairReversed = (colour2, colour1);
             if (!RulesDictionary.ContainsKey(colourPairRule))
             {
+                RulesDictionary.Add(colourPairReversed, mixedColour);
                 RulesDictionary.Add(colourPairRule, mixedColour);
                 Debug.Log($"<color=cyan>RULE CREATED!</color> ({colourPairRule.Item1} + {colourPairRule.Item2} = <color={ColourDictionary[RulesDictionary[colourPairRule]]}>{RulesDictionary[colourPairRule]}</color>)");
             }
@@ -73,33 +77,49 @@ namespace CandlePuzzle
             switch (rulesetID)
             {
                 case 0:
-                    // Ruleset 1
-                    CreateRule(FlameColour.Orange, FlameColour.Blue, FlameColour.Red);
-                    CreateRule(FlameColour.Blue, FlameColour.Orange, FlameColour.Red);
-                
-                    CreateRule(FlameColour.Green, FlameColour.Blue, FlameColour.Yellow);
-                    CreateRule(FlameColour.Blue, FlameColour.Green, FlameColour.Yellow);
+                    // RULESET 1
+                    
+                    // Rule complexity level 1 (requiring only starting colours) 
+                    CreateRule(FlameColour.Orange, FlameColour.Cyan, FlameColour.Red);
+                    CreateRule(FlameColour.Orange, FlameColour.Green, FlameColour.DarkBlue);
+                    
+                    // Rule complexity level 2 (requiring one colour that needs to be created first)
+                    CreateRule(FlameColour.DarkBlue, FlameColour.Cyan, FlameColour.Yellow);
+                    
+                    // Rule complexity level 3 (requiring two colours that need to be created first)
+                    CreateRule(FlameColour.DarkBlue, FlameColour.Yellow, FlameColour.Purple);
+                    CreateRule(FlameColour.Yellow, FlameColour.Purple, FlameColour.Pink);
                     break;
                 case 1:
-                    // Ruleset 2
+                    // RULESET 2
+                    
+                    // Rule complexity level 1 (requiring only starting colours) 
                     CreateRule(FlameColour.Orange, FlameColour.Green, FlameColour.Red);
-                    CreateRule(FlameColour.Green, FlameColour.Orange, FlameColour.Red);
-                
-                    CreateRule(FlameColour.Green, FlameColour.Red, FlameColour.Yellow);
-                    CreateRule(FlameColour.Red, FlameColour.Green, FlameColour.Yellow);
+                    CreateRule(FlameColour.Orange, FlameColour.Cyan, FlameColour.DarkBlue);
+                    
+                    // Rule complexity level 2 (requiring one colour that needs to be created first)
+                    CreateRule(FlameColour.DarkBlue, FlameColour.Green, FlameColour.Yellow);
+                    
+                    // Rule complexity level 3 (requiring two colours that need to be created first)
+                    CreateRule(FlameColour.Red, FlameColour.Yellow, FlameColour.Pink);
+                    CreateRule(FlameColour.Red, FlameColour.Pink, FlameColour.Purple);
                     break;
                 case 2:
-                    // Ruleset 3
-                    CreateRule(FlameColour.Blue, FlameColour.Green, FlameColour.Red);
-                    CreateRule(FlameColour.Green, FlameColour.Blue, FlameColour.Red);
-                
-                    CreateRule(FlameColour.Orange, FlameColour.Blue, FlameColour.Yellow);
-                    CreateRule(FlameColour.Blue, FlameColour.Orange, FlameColour.Yellow);
-                
-                    CreateRule(FlameColour.Red, FlameColour.Blue, FlameColour.Purple);
-                    CreateRule(FlameColour.Blue, FlameColour.Red, FlameColour.Purple);
+                    // RULESET 3
+                    
+                    // Rule complexity level 1 (requiring only starting colours) 
+                    CreateRule(FlameColour.Green, FlameColour.Cyan, FlameColour.Red);
+                    
+                    // Rule complexity level 2 (requiring one colour that needs to be created first)
+                    CreateRule(FlameColour.Orange, FlameColour.Red, FlameColour.DarkBlue);
+                    CreateRule(FlameColour.DarkBlue, FlameColour.Orange, FlameColour.Yellow);
+                    
+                    // Rule complexity level 3 (requiring two colours that need to be created first)
+                    CreateRule(FlameColour.Red, FlameColour.DarkBlue, FlameColour.Purple);
+                    CreateRule(FlameColour.DarkBlue, FlameColour.Purple, FlameColour.Pink);
                     break;
             }
         }
     }
 }
+

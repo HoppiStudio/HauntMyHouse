@@ -21,12 +21,12 @@ namespace Puzzles
                 new List<Tuple<PedestalColour, Pedestal>>
                 {
                     Tuple.Create(PedestalColour.Orange, podiums[0]),
-                    Tuple.Create(PedestalColour.Orange, podiums[1]),
+                    Tuple.Create(PedestalColour.Cyan, podiums[1]),
                     Tuple.Create(PedestalColour.Yellow, podiums[2]),
                     Tuple.Create(PedestalColour.Red, podiums[3]),
-                    Tuple.Create(PedestalColour.Blue, podiums[4]),
-                    Tuple.Create(PedestalColour.Yellow, podiums[5]),
-                    Tuple.Create(PedestalColour.Red, podiums[6])
+                    Tuple.Create(PedestalColour.DarkBlue, podiums[4]),
+                    Tuple.Create(PedestalColour.Pink, podiums[5]),
+                    Tuple.Create(PedestalColour.Purple, podiums[6])
                 },
 
                 // Solution 2
@@ -34,11 +34,11 @@ namespace Puzzles
                 {
                     Tuple.Create(PedestalColour.Red, podiums[0]),
                     Tuple.Create(PedestalColour.Yellow, podiums[1]),
-                    Tuple.Create(PedestalColour.Red, podiums[2]),
+                    Tuple.Create(PedestalColour.Pink, podiums[2]),
                     Tuple.Create(PedestalColour.Green, podiums[3]),
-                    Tuple.Create(PedestalColour.Yellow, podiums[4]),
-                    Tuple.Create(PedestalColour.Red, podiums[5]),
-                    Tuple.Create(PedestalColour.Green, podiums[6])
+                    Tuple.Create(PedestalColour.Cyan, podiums[4]),
+                    Tuple.Create(PedestalColour.Purple, podiums[5]),
+                    Tuple.Create(PedestalColour.Orange, podiums[6])
                 },
 
                 // Solution 3
@@ -47,10 +47,10 @@ namespace Puzzles
                     Tuple.Create(PedestalColour.Yellow, podiums[0]),
                     Tuple.Create(PedestalColour.Purple, podiums[1]),
                     Tuple.Create(PedestalColour.Red, podiums[2]),
-                    Tuple.Create(PedestalColour.Blue, podiums[3]),
-                    Tuple.Create(PedestalColour.Purple, podiums[4]),
-                    Tuple.Create(PedestalColour.Red, podiums[5]),
-                    Tuple.Create(PedestalColour.Blue, podiums[6])
+                    Tuple.Create(PedestalColour.Pink, podiums[3]),
+                    Tuple.Create(PedestalColour.Green, podiums[4]),
+                    Tuple.Create(PedestalColour.Cyan, podiums[5]),
+                    Tuple.Create(PedestalColour.DarkBlue, podiums[6])
                 }
             };
 

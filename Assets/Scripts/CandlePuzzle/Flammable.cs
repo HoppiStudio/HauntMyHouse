@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace CandlePuzzle
@@ -9,10 +8,12 @@ namespace CandlePuzzle
         White,
         Red,
         Green,
-        Blue,
+        DarkBlue,
+        Cyan,
+        Yellow,
         Orange,
         Purple,
-        Yellow
+        Pink
     }
 
     public abstract class Flammable : MonoBehaviour
@@ -30,10 +31,12 @@ namespace CandlePuzzle
             {FlameColour.White, Color.white},
             {FlameColour.Red, Color.red},
             {FlameColour.Green, Color.green},
-            {FlameColour.Blue, Color.cyan},
-            {FlameColour.Orange, new Color(1,0.1265772f,0)}, // Yes it's orange for some reason
-            {FlameColour.Purple, new Color(0.5f, 0, 1)},
-            {FlameColour.Yellow, Color.yellow}
+            {FlameColour.DarkBlue, new Color(0, 0.045f, 1)},
+            {FlameColour.Cyan, Color.cyan},
+            {FlameColour.Yellow, Color.yellow},
+            {FlameColour.Orange, new Color(1, 0.1265772f, 0)}, // weird but it's orange
+            {FlameColour.Purple, new Color(0.057f, 0, 1)}, // weird but it's purple
+            {FlameColour.Pink, Color.magenta}
         };
 
         private void OnValidate()

@@ -7286,7 +7286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3112929374597572987
 Transform:
   m_ObjectHideFlags: 0
@@ -35257,7 +35257,7 @@ GameObject:
   - component: {fileID: 6343927787370510931}
   - component: {fileID: 8664066537866072154}
   m_Layer: 0
-  m_Name: FirePot (blue)
+  m_Name: FirePot (cyan)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35354,7 +35354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69b3bb1d137447ca97d79670bbd9b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameColour: 3
+  flameColour: 4
   firePS: {fileID: 4547439203760450829}
   lightSource: {fileID: 4547439204109390642}
   lightVolumes:
@@ -39859,7 +39859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac3ac69e1d6451090d31e1621dd340c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameColour: 4
+  flameColour: 6
   firePS: {fileID: 6292532367024800316}
   lightSource: {fileID: 8402370286572989165}
   lightVolumes: []
