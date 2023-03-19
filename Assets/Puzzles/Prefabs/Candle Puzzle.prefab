@@ -7286,7 +7286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3112929374597572987
 Transform:
   m_ObjectHideFlags: 0
@@ -7386,8 +7386,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &3834983482276394144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7458,8 +7458,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &3834983482379505198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7530,8 +7530,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &3834983482983132618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7602,8 +7602,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &3834983483597752552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7674,8 +7674,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &3834983483612885898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7746,8 +7746,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &3834983483776609746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10817,7 +10817,6 @@ GameObject:
   - component: {fileID: 4547439203156992579}
   - component: {fileID: 4547439203156992576}
   - component: {fileID: 4547439203156992577}
-  - component: {fileID: 4547439203156992578}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -10890,19 +10889,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4547439203156992578
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4547439203156992580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4547439203193216632
 GameObject:
   m_ObjectHideFlags: 0
@@ -39027,8 +39013,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.0024621158}
-  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.04769787}
+  m_Size: {x: 0.0043592933, y: 0.0044417568, z: 0.004}
+  m_Center: {x: -0.0117, y: -0.000013442338, z: 0.0485}
 --- !u!114 &8413151622024521250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40100,7 +40086,6 @@ GameObject:
   - component: {fileID: 9143048482198796267}
   - component: {fileID: 9143048482198796264}
   - component: {fileID: 9143048482198796265}
-  - component: {fileID: 9143048482198796266}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -40173,19 +40158,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9143048482198796266
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143048482198796268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9143048482285407374
 GameObject:
   m_ObjectHideFlags: 0
@@ -40197,7 +40169,6 @@ GameObject:
   - component: {fileID: 9143048482285407369}
   - component: {fileID: 9143048482285407370}
   - component: {fileID: 9143048482285407371}
-  - component: {fileID: 9143048482285407368}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -40270,19 +40241,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9143048482285407368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143048482285407374}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9143048482311956916
 GameObject:
   m_ObjectHideFlags: 0
@@ -40294,7 +40252,6 @@ GameObject:
   - component: {fileID: 9143048482311956915}
   - component: {fileID: 9143048482311956912}
   - component: {fileID: 9143048482311956913}
-  - component: {fileID: 9143048482311956914}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -40367,19 +40324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9143048482311956914
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143048482311956916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9143048483164219820
 GameObject:
   m_ObjectHideFlags: 0
@@ -40391,7 +40335,6 @@ GameObject:
   - component: {fileID: 9143048483164219819}
   - component: {fileID: 9143048483164219816}
   - component: {fileID: 9143048483164219817}
-  - component: {fileID: 9143048483164219818}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -40464,19 +40407,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9143048483164219818
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143048483164219820}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9143048483531223238
 GameObject:
   m_ObjectHideFlags: 0
@@ -40488,7 +40418,6 @@ GameObject:
   - component: {fileID: 9143048483531223233}
   - component: {fileID: 9143048483531223234}
   - component: {fileID: 9143048483531223235}
-  - component: {fileID: 9143048483531223232}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -40561,19 +40490,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9143048483531223232
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143048483531223238}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9143048483767765576
 GameObject:
   m_ObjectHideFlags: 0
@@ -40585,7 +40501,6 @@ GameObject:
   - component: {fileID: 9143048483767765583}
   - component: {fileID: 9143048483767765580}
   - component: {fileID: 9143048483767765581}
-  - component: {fileID: 9143048483767765582}
   m_Layer: 0
   m_Name: CandleHolderPosition
   m_TagString: Untagged
@@ -40658,16 +40573,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9143048483767765582
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143048483767765576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
