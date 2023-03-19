@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace CandlePuzzle
 {
     public class Matchbox : MonoBehaviour
     {
+        private AudioSource _matchStrikeSound;
         private InputActionManager _inputActionManager;
         private Matchstick _matchstick;
         private Vector3 _startPosition;
         private bool _isCollidingWithMatchstick;
+
+        private void Awake() => _matchStrikeSound = GetComponent<AudioSource>();
 
         private void Start()
         {
@@ -27,6 +31,7 @@ namespace CandlePuzzle
             if(_isCollidingWithMatchstick)
             {
                 _matchstick.Ignite();
+                _matchStrikeSound.Play();
             }
         }
 

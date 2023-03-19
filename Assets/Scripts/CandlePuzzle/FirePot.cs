@@ -4,8 +4,9 @@ namespace CandlePuzzle
 {
     public class FirePot : Flammable
     {
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Ignite(); // Ideally should be called in Start, but this causes issues. Shall be investigated later.
         }
 

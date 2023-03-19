@@ -8,10 +8,13 @@ namespace CandlePuzzle
         public event Action OnCandleLit;
         //public event Action OnCandleUnlit;
 
+        private AudioSource _candleIgniteSound;
         private Color _originalCandleColour;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            _candleIgniteSound = GetComponent<AudioSource>();
             _originalCandleColour = GetComponentInChildren<MeshRenderer>().material.color;
             Ignite(); // Ideally should be called in Start, but this causes issues. Shall be investigated later.
         }
@@ -35,6 +38,7 @@ namespace CandlePuzzle
                     var flammable = other.GetComponent<Flammable>();
                     flammable.SetFlameColour(GetFlameColour());
                     flammable.Ignite();
+                    _candleIgniteSound.Play();
                     return;
                 }
             }
@@ -65,6 +69,7 @@ namespace CandlePuzzle
                     return;
                 }
                 matchstick.Ignite();
+                _candleIgniteSound.Play();
             }
         }
 

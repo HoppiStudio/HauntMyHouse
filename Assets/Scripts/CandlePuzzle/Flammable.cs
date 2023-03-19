@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CandlePuzzle
@@ -20,6 +21,7 @@ namespace CandlePuzzle
         [SerializeField] private ParticleSystem firePS;
         [SerializeField] private Light lightSource;
         [SerializeField] private List<GameObject> lightVolumes;
+        private AudioSource _fireIgniteSound;
         private Vector3 _startPosition;
         private bool _isOnFire;
 
@@ -39,6 +41,8 @@ namespace CandlePuzzle
             firePS.startColor = _flameColourDictionary[flameColour];
             lightSource.color = _flameColourDictionary[flameColour];
         }
+
+        protected virtual void Awake() => _fireIgniteSound = GetComponent<AudioSource>();
 
         protected virtual void Start() => _startPosition = transform.position;
 
@@ -66,6 +70,7 @@ namespace CandlePuzzle
 
         public virtual void Ignite()
         {
+            _fireIgniteSound.Play();
             firePS.startColor = _flameColourDictionary[flameColour];
             lightSource.color = _flameColourDictionary[flameColour];
             firePS.Play();
