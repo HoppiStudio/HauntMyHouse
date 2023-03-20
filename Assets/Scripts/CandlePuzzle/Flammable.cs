@@ -78,7 +78,7 @@ namespace CandlePuzzle
             lightSource.color = _flameColourDictionary[flameColour];
             firePS.Play();
             lightSource.enabled = true;
-            lightVolumes.ForEach(ctx => ctx.SetActive(true));
+            //lightVolumes.ForEach(ctx => ctx.SetActive(true));
             _isOnFire = true;
         }
 
@@ -86,7 +86,7 @@ namespace CandlePuzzle
         {
             firePS.Stop();
             lightSource.enabled = false;
-            lightVolumes.ForEach(ctx => ctx.SetActive(false));
+            //lightVolumes.ForEach(ctx => ctx.SetActive(false));
             _isOnFire = false;
         }
 
