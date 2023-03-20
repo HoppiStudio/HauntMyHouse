@@ -12,6 +12,7 @@ namespace Puzzles
         [SerializeField] private List<GameObject> puzzlePrefabs;
         private GameTimer _gameTimer; // Temporary, timer should probably be accessed statically 
         private AudioSource _puzzleCompletedSound;
+        private int _lastPuzzleIndex;
 
         private void Awake()
         {
@@ -29,7 +30,15 @@ namespace Puzzles
         private void SpawnRandomPuzzle_OnPuzzleComplete()
         {
             Destroy(FindObjectOfType<Puzzle>().gameObject);
-            Instantiate(puzzlePrefabs[Random.Range(0, puzzlePrefabs.Count)]);
+
+            // Ensure the same puzzle isn't selected again
+            var selectedPuzzleIndex = Random.Range(0, puzzlePrefabs.Count);
+            while (selectedPuzzleIndex == _lastPuzzleIndex)
+            {
+                selectedPuzzleIndex = Random.Range(0, puzzlePrefabs.Count);
+            }
+            _lastPuzzleIndex = selectedPuzzleIndex;
+            Instantiate(puzzlePrefabs[selectedPuzzleIndex]);
             _puzzleCompletedSound.Play();
         }
         
