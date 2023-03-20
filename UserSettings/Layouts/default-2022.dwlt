@@ -23,7 +23,7 @@ MonoBehaviour:
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 1
+  m_Maximized: 0
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: ecf20100
       m_LastClickedID: 0
       m_ExpandedIDs: c8bcffff84bdffffb4c6ffff26c7ffff08d0ffff0cd0ffff14d0ffff22d0ffff30d0ffff56e7ffff16e8ffff06f1ffffccf1ffff22fbffff
       m_RenameOverlay:
