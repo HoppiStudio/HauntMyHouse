@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Puzzles
@@ -10,15 +11,11 @@ namespace Puzzles
         [SerializeField] private GameObject gameOverCanvas;
         [SerializeField] private GameObject rayInteractor;
         [SerializeField] private List<GameObject> puzzlePrefabs;
+        [SerializeField] private AudioSource puzzleCompletedSound;
         private GameTimer _gameTimer; // Temporary, timer should probably be accessed statically 
-        private AudioSource _puzzleCompletedSound;
         private int _lastPuzzleIndex;
 
-        private void Awake()
-        {
-            _gameTimer = FindObjectOfType<GameTimer>();
-            _puzzleCompletedSound = GetComponent<AudioSource>();
-        }
+        private void Awake() => _gameTimer = FindObjectOfType<GameTimer>();
 
         private void OnDisable() => Puzzle.OnPuzzleComplete -= SpawnRandomPuzzle_OnPuzzleComplete;
         private void Start()
@@ -39,7 +36,7 @@ namespace Puzzles
             }
             _lastPuzzleIndex = selectedPuzzleIndex;
             Instantiate(puzzlePrefabs[selectedPuzzleIndex]);
-            _puzzleCompletedSound.Play();
+            puzzleCompletedSound.Play();
         }
         
         public void SpawnFirstPuzzle_OnContinuePressed() 

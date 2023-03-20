@@ -21,7 +21,6 @@ namespace CandlePuzzle
         [SerializeField] private FlameColour flameColour;
         [SerializeField] private ParticleSystem firePS;
         [SerializeField] private Light lightSource;
-        [SerializeField] private List<GameObject> lightVolumes;
         private AudioSource _fireIgniteSound;
         private Vector3 _startPosition;
         private bool _isOnFire;
@@ -73,12 +72,14 @@ namespace CandlePuzzle
 
         public virtual void Ignite()
         {
-            _fireIgniteSound.Play();
-            firePS.startColor = _flameColourDictionary[flameColour];
-            lightSource.color = _flameColourDictionary[flameColour];
+            var newFlameColour = _flameColourDictionary[flameColour];
+            firePS.startColor = newFlameColour;
+            lightSource.color = newFlameColour;
+            
             firePS.Play();
+            _fireIgniteSound.Play();
+            
             lightSource.enabled = true;
-            //lightVolumes.ForEach(ctx => ctx.SetActive(true));
             _isOnFire = true;
         }
 
@@ -86,7 +87,6 @@ namespace CandlePuzzle
         {
             firePS.Stop();
             lightSource.enabled = false;
-            //lightVolumes.ForEach(ctx => ctx.SetActive(false));
             _isOnFire = false;
         }
 
