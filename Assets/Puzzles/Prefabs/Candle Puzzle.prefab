@@ -7316,7 +7316,7 @@ Transform:
   - {fileID: 8598313354869180528}
   - {fileID: 5324167747801480912}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3112929374597572986
 MonoBehaviour:
@@ -7331,7 +7331,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
-  ghost: {fileID: 0}
   podiums:
   - {fileID: 3834983482379505198}
   - {fileID: 3834983482983132618}
@@ -8914,7 +8913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4547439202756263005
 Transform:
   m_ObjectHideFlags: 0
@@ -16154,7 +16153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4547439203362499832
 Transform:
   m_ObjectHideFlags: 0
@@ -28603,7 +28602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4547439204285268724
 Transform:
   m_ObjectHideFlags: 0

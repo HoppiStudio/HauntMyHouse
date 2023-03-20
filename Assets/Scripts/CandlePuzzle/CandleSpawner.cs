@@ -1,4 +1,5 @@
 using System;
+using Puzzles;
 using UnityEngine;
 
 namespace CandlePuzzle
@@ -17,6 +18,7 @@ namespace CandlePuzzle
         private void SpawnNewCandle()
         {
             var candleObject = Instantiate(candlePrefab, transform.position, Quaternion.identity);
+            candleObject.transform.SetParent(FindObjectOfType<Puzzle>().transform);
             var candle = candleObject.GetComponent<Candle>();
             candle.Extinguish();
             OnCandleSpawned?.Invoke(candle);

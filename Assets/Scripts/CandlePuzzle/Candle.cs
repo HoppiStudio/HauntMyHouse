@@ -16,6 +16,7 @@ namespace CandlePuzzle
             base.Awake();
             _candleIgniteSound = GetComponent<AudioSource>();
             _originalCandleColour = GetComponentInChildren<MeshRenderer>().material.color;
+            Ignite();
         }
 
         protected override void Update()

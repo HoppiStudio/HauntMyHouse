@@ -1,23 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace CandlePuzzle
 {
     public static class FlameColourMixingRules
     {
         private static readonly Dictionary<(FlameColour, FlameColour), FlameColour> RulesDictionary = new();
-        private static readonly Dictionary<FlameColour, string> ColourDictionary = new()
-        {
-            {FlameColour.White, "white"},
-            {FlameColour.Red, "red"},
-            {FlameColour.Green, "green"},
-            {FlameColour.DarkBlue, "darkblue"},
-            {FlameColour.Cyan, "cyan"},
-            {FlameColour.Yellow, "yellow"},
-            {FlameColour.Orange, "orange"},
-            {FlameColour.Purple, "purple"},
-            {FlameColour.Pink, "magenta"}
-        };
 
         /// <summary>
         /// Returns the result of two mixed colours if a rule exists for it.
@@ -38,10 +25,8 @@ namespace CandlePuzzle
             var colourPair = (colour1, colour2);
             if (RulesDictionary.ContainsKey(colourPair))
             {
-                Debug.Log($"<color=lime>RULE FOUND!</color> ({colourPair.Item1} + {colourPair.Item2} = <color={ColourDictionary[RulesDictionary[colourPair]]}>{RulesDictionary[colourPair]}</color>)");
                 return true;
             }
-            Debug.Log($"<color=red>ERROR!</color> ({colourPair.Item1} + {colourPair.Item2} is not an existing rule!)");
             return false;
         }
 
@@ -59,11 +44,6 @@ namespace CandlePuzzle
             {
                 RulesDictionary.Add(colourPairReversed, mixedColour);
                 RulesDictionary.Add(colourPairRule, mixedColour);
-                Debug.Log($"<color=cyan>RULE CREATED!</color> ({colourPairRule.Item1} + {colourPairRule.Item2} = <color={ColourDictionary[RulesDictionary[colourPairRule]]}>{RulesDictionary[colourPairRule]}</color>)");
-            }
-            else
-            {
-                Debug.Log($"<color=red>ERROR!</color> ({colourPairRule.Item1} + {colourPairRule.Item2} rule already exists!)");
             }
         }
 

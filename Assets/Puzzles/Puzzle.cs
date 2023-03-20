@@ -1,26 +1,24 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Puzzle : MonoBehaviour
+namespace Puzzles
 {
-    [SerializeField] private bool completed = false;
-    [SerializeField] private GameObject ghost;
-
-    public bool IsCompleted()
+    public abstract class Puzzle : MonoBehaviour
     {
-        return completed;
+        [SerializeField] private bool completed = false;
+
+        public bool IsCompleted()
+        {
+            return completed;
+        }
+
+        public static event Action OnPuzzleComplete;
+
+        protected void Complete()
+        {
+            completed = true;
+            Debug.Log(this + " <color=green>completed!</color>");
+            OnPuzzleComplete?.Invoke();
+        }
     }
-
-    public static event Action OnPuzzleComplete;
-
-    protected void Complete()
-    {
-        completed = true;
-        Debug.Log(this + " completed");
-        OnPuzzleComplete?.Invoke();
-        Destroy(ghost);
-    }
-
 }

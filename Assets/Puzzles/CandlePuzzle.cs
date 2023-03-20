@@ -9,9 +9,12 @@ namespace Puzzles
 {
     public class CandlePuzzle : Puzzle
     {
-        [SerializeField] private List<Pedestal> podiums = new();
+        [SerializeField] private List<Pedestal> podiums;
         private List<Tuple<PedestalColour, Pedestal>> _selectedSolution = new();
         private List<List<Tuple<PedestalColour, Pedestal>>> _preDeterminedSolutions;
+        
+        //private void OnEnable() => podiums.ForEach(podium => podium.OnCandlePlaced += CheckPuzzleCompleted_OnCandlePlaced);
+        //private void OnDisable() => podiums.ForEach(podium => podium.OnCandlePlaced -= CheckPuzzleCompleted_OnCandlePlaced);
 
         private void Start()
         {
@@ -91,16 +94,20 @@ namespace Puzzles
             }
         }
 
-        private void Update()
+        private void Update() // TODO: Make event based
         {
-            if (CheckPuzzleCompleted())
+            CheckPuzzleCompleted_OnCandlePlaced();
+        }
+
+        private void CheckPuzzleCompleted_OnCandlePlaced()
+        {
+            if (IsPuzzleCompleted())
             {
-                Debug.Log("<color=green>Puzzle completed!</color>");
                 Complete();
             }
         }
 
-        private bool CheckPuzzleCompleted()
+        private bool IsPuzzleCompleted()
         {
             return podiums.All(podium => podium.HasCandle);
         }
