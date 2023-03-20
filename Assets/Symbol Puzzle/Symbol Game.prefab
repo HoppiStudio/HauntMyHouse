@@ -818,6 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5565397317226505213}
+  - component: {fileID: 6246101573646447911}
   m_Layer: 0
   m_Name: Symbol Game
   m_TagString: Untagged
@@ -842,8 +843,47 @@ Transform:
   - {fileID: 5565397318508073842}
   - {fileID: 5565397317741259218}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6246101573646447911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565397317226505212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbaad8c0aa6702449beaf16ca321b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  Symbol_Puzzle_All: {fileID: 5565397317226505212}
+  TotalValue: 0
+  Symbol_1: {fileID: 5565397318431790521}
+  Symbol_2: {fileID: 5565397318424227673}
+  Symbol_3: {fileID: 5565397317803042554}
+  Symbol_4: {fileID: 5565397317888288929}
+  Symbol_5: {fileID: 5565397317975809198}
+  Symbol_6: {fileID: 5565397318596557964}
+  Symbol_7: {fileID: 5565397317192178102}
+  Symbol_8: {fileID: 5565397317962050714}
+  Symbol_9: {fileID: 5565397317264006831}
+  Socket_1: {fileID: 5565397318935006394}
+  Socket_2: {fileID: 5565397317126592511}
+  Socket_3: {fileID: 5565397317132549570}
+  Card_1: {fileID: 5565397317818436483}
+  Card_2: {fileID: 5565397317893858499}
+  Card_3: {fileID: 5565397317104931587}
+  Card_4: {fileID: 5565397317050861938}
+  Card_5: {fileID: 5565397318444899659}
+  Card_Image_1_Points: {fileID: 2800000, guid: c873829b4a9875f4fa088fb9f5469b5f, type: 3}
+  Card_Image_2_Points: {fileID: 2800000, guid: 0645966bee9dfbe4998658ce05028e26, type: 3}
+  Card_Image_3_Points: {fileID: 2800000, guid: 81e2968654c680946814f3ac379aba52, type: 3}
+  Card_Image_4_Points: {fileID: 2800000, guid: 2b0b267f81f252a4f890ad53467bbb98, type: 3}
+  Card_Image_5_Points: {fileID: 2800000, guid: edaf58b00ecc08847af4514afd63d9a2, type: 3}
+  Card_Image_6_Points: {fileID: 2800000, guid: f7c3b61f400e08149879b267ff97e98e, type: 3}
+  Ghost_Banished_by_Symbol_Puzzle: 0
 --- !u!1 &5565397317264006831
 GameObject:
   m_ObjectHideFlags: 0
