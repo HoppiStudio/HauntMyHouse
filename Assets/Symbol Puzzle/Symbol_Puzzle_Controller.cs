@@ -176,19 +176,14 @@ public class Symbol_Puzzle_Controller : Puzzle
         //Win State
         if(TotalValue == Socket_1.Socket_Number + Socket_2.Socket_Number + Socket_3.Socket_Number) 
         {
-            //Debug.Log("Ghost Banished by the Symbol Game");
-            GhostController ghostController = FindObjectOfType<GhostController>();
-            if(ghostController != null)
-            {
+
                 //ghostController.Purple_Ghost_Banishment_Rules = true; -> Comented out
                 Card_1.Card_Number = Card_1.Card_Number + 100;
                 Ghost_Banished_by_Symbol_Puzzle = true;
-                Symbol_Puzzle_All.SetActive(false);
+
 
                 //Sucsessfully Completed
                 Complete();
-
-            }
 
         }
 
