@@ -14,8 +14,8 @@ public class ObjectBlockout : MonoBehaviour
     private Vector3[] vertices;
 
     // vertex spheres
-    [SerializeField] private float vertexSphereScale = 0.1f;
-    [SerializeField] private List<GameObject> vertexSpheres = new List<GameObject>();
+    //[SerializeField] private float vertexSphereScale = 0.1f;
+    //[SerializeField] private List<GameObject> vertexSpheres = new List<GameObject>();
 
     [SerializeField] private Material blockoutMaterial;
 
@@ -47,23 +47,23 @@ public class ObjectBlockout : MonoBehaviour
     private void DoBlockout(InputAction.CallbackContext obj)
     {
         // Clear vertex Spheres if necessary
-        if (vertexIndex == 0 && vertexSpheres.Count == vertexPositions.Length)
+        /*if (vertexIndex == 0 && vertexSpheres.Count == vertexPositions.Length)
         {
             for (int i = 0; i < vertexSpheres.Count; i++)
             {
                 Destroy(vertexSpheres[i]);
             }
             vertexSpheres.Clear();
-        }
+        }*/
 
         // Set vertex position to position of controller in world space
         vertexPositions[vertexIndex] = controller.transform.position;
 
         // create sphere at vertex position
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        /*(GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.transform.localScale = new Vector3(vertexSphereScale, vertexSphereScale, vertexSphereScale);
         sphere.transform.position = vertexPositions[vertexIndex];
-        vertexSpheres.Add(sphere);
+        vertexSpheres.Add(sphere);*/
 
         vertexIndex++;
 
