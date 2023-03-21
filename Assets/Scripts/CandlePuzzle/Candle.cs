@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CandlePuzzle
@@ -8,14 +9,17 @@ namespace CandlePuzzle
         public event Action OnCandleLit;
         //public event Action OnCandleUnlit;
 
+        [SerializeField] private List<Material> candleMaterials;
+        private MeshRenderer _meshRenderer;
         private AudioSource _candleIgniteSound;
         private Color _originalCandleColour;
 
         protected override void Awake()
         {
             base.Awake();
+            _meshRenderer = GetComponentInChildren<MeshRenderer>();
             _candleIgniteSound = GetComponent<AudioSource>();
-            _originalCandleColour = GetComponentInChildren<MeshRenderer>().material.color;
+            _originalCandleColour = _meshRenderer.material.color;
             Ignite();
         }
 
@@ -84,10 +88,17 @@ namespace CandlePuzzle
             base.Extinguish();
             //OnCandleUnlit?.Invoke();
         }
-
-        public Color GetOriginalMaterialColour()
+        
+        public void Highlight(Color color)
         {
-            return _originalCandleColour;
+            _meshRenderer.sharedMaterial = candleMaterials[1];
+            _meshRenderer.material.color = color;
+        }
+
+        public void Unhighlight()
+        {
+            _meshRenderer.sharedMaterial = candleMaterials[0];
+            _meshRenderer.material.color = _originalCandleColour;
         }
     }
 }

@@ -115,13 +115,13 @@ namespace CandlePuzzle
                 var candle = other.GetComponent<Candle>();
                 if (candle.GetFlameColour() == _pedestalToFlameColoursDict[currentPedestalColour]) 
                 {
-                    candle.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                    candle.Highlight(new Color(0,1,0,0.85f));
                     _candleInRange = candle;
                     _isCandleInRange = true;
                 }
                 else
                 {
-                    candle.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                    candle.Highlight(new Color(1,0,0,0.85f));
                 }
             }
         }
@@ -131,7 +131,7 @@ namespace CandlePuzzle
             if(other.GetComponent<Candle>() != null)
             {
                 var candle = other.GetComponent<Candle>();
-                candle.GetComponentInChildren<MeshRenderer>().material.color = candle.GetOriginalMaterialColour();
+                candle.Unhighlight();
                 _isCandleInRange = false;
             }
         }
@@ -139,7 +139,7 @@ namespace CandlePuzzle
         private void PlaceCandleOnPedestal()
         {
             flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
-            _candleInRange.GetComponentInChildren<MeshRenderer>().material.color = _candleInRange.GetOriginalMaterialColour();
+            _candleInRange.Unhighlight();
             _candleInRange.transform.position = candleHolderPos.position;
             _candleInRange.transform.rotation = Quaternion.LookRotation(Vector3.left);
             _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
