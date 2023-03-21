@@ -169,7 +169,7 @@ public class Symbol_Puzzle_Controller : Puzzle
 
     }
 
-
+    public GameObject[] Animation_Objects;
 
     private void Update()
     {
@@ -180,7 +180,13 @@ public class Symbol_Puzzle_Controller : Puzzle
                 //ghostController.Purple_Ghost_Banishment_Rules = true; -> Comented out
                 Card_1.Card_Number = Card_1.Card_Number + 100;
                 Ghost_Banished_by_Symbol_Puzzle = true;
+                Animation_Objects = GameObject.FindGameObjectsWithTag("Symbol_Animation");
 
+
+                for(int i = 0; i < Animation_Objects.Length; i++)
+                {
+                    Destroy(Animation_Objects[i]);
+                }
 
                 //Sucsessfully Completed
                 Complete();
