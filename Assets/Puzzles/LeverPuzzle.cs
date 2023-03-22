@@ -101,11 +101,11 @@ namespace Puzzles
         private List<LeverSolution> possibleSolutions = new List<LeverSolution>();
         [SerializeField]
         
-        public GameObject Lever_1_Head;
-        public GameObject Lever_2_Head;
-        public GameObject Lever_3_Head;
-        public GameObject Lever_4_Head;
-        public GameObject Lever_5_Head;
+        public GameObject LeverHead0;
+        public GameObject LeverHead1;
+        public GameObject LeverHead2;
+        public GameObject LeverHead3;
+        public GameObject LeverHead4;
         void Start()
         {
             foreach (var lever in levers)
@@ -164,29 +164,29 @@ namespace Puzzles
                 if (possibleSolutions[index].solutionNumber==1) 
                  {
                      Debug.Log("Changing Colours ");
-                     Lever_1_Head.GetComponent<Renderer>().material.color = new Color32(255, 49, 5,115);
-                     Lever_2_Head.GetComponent<Renderer>().material.color = new Color32(138, 255, 5,115);
-                     Lever_3_Head.GetComponent<Renderer>().material.color = new Color32(255, 222, 5,115);
-                     Lever_4_Head.GetComponent<Renderer>().material.color = new Color32(255, 49, 5,115);
-                     Lever_5_Head.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
+                     LeverHead0.GetComponent<Renderer>().material.color = new Color32(255, 49, 5,115);
+                     LeverHead1.GetComponent<Renderer>().material.color = new Color32(138, 255, 5,115);
+                     LeverHead2.GetComponent<Renderer>().material.color = new Color32(255, 222, 5,115);
+                     LeverHead3.GetComponent<Renderer>().material.color = new Color32(255, 49, 5,115);
+                     LeverHead4.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
                  }
                  else if (possibleSolutions[index].solutionNumber == 2)
                  {
                      Debug.Log("Changing Colours ");
-                     Lever_1_Head.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
-                     Lever_2_Head.GetComponent<Renderer>().material.color = new Color32(255, 222, 5, 115);
-                     Lever_3_Head.GetComponent<Renderer>().material.color = new Color32(255, 49, 5, 115);
-                     Lever_4_Head.GetComponent<Renderer>().material.color = new Color32(138, 255, 5, 115);
-                     Lever_5_Head.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
+                     LeverHead0.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
+                     LeverHead1.GetComponent<Renderer>().material.color = new Color32(255, 222, 5, 115);
+                     LeverHead2.GetComponent<Renderer>().material.color = new Color32(255, 49, 5, 115);
+                     LeverHead3.GetComponent<Renderer>().material.color = new Color32(138, 255, 5, 115);
+                     LeverHead4.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
                  }
                  else if (possibleSolutions[index].solutionNumber == 3)
                  {
                      Debug.Log("Changing Colours ");
-                     Lever_1_Head.GetComponent<Renderer>().material.color = new Color32(255, 222, 5, 115);
-                     Lever_2_Head.GetComponent<Renderer>().material.color = new Color32(255, 49, 5, 115);
-                     Lever_3_Head.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
-                     Lever_4_Head.GetComponent<Renderer>().material.color = new Color32(138, 255, 5, 115);
-                     Lever_5_Head.GetComponent<Renderer>().material.color = new Color32(255, 222, 5, 115);
+                     LeverHead0.GetComponent<Renderer>().material.color = new Color32(255, 222, 5, 115);
+                     LeverHead1.GetComponent<Renderer>().material.color = new Color32(255, 49, 5, 115);
+                     LeverHead2.GetComponent<Renderer>().material.color = new Color32(5, 29, 255, 115);
+                     LeverHead3.GetComponent<Renderer>().material.color = new Color32(138, 255, 5, 115);
+                     LeverHead4.GetComponent<Renderer>().material.color = new Color32(255, 222, 5, 115);
                  }
 
 

@@ -6086,6 +6086,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3481033495229152207, guid: 0d88a33edeedfe14db001c1f6b53454e,
         type: 3}
+      propertyPath: LeverHead0
+      value: 
+      objectReference: {fileID: 1849809844}
+    - target: {fileID: 3481033495229152207, guid: 0d88a33edeedfe14db001c1f6b53454e,
+        type: 3}
+      propertyPath: LeverHead1
+      value: 
+      objectReference: {fileID: 523929958}
+    - target: {fileID: 3481033495229152207, guid: 0d88a33edeedfe14db001c1f6b53454e,
+        type: 3}
+      propertyPath: LeverHead2
+      value: 
+      objectReference: {fileID: 990458424}
+    - target: {fileID: 3481033495229152207, guid: 0d88a33edeedfe14db001c1f6b53454e,
+        type: 3}
+      propertyPath: LeverHead3
+      value: 
+      objectReference: {fileID: 1273143458}
+    - target: {fileID: 3481033495229152207, guid: 0d88a33edeedfe14db001c1f6b53454e,
+        type: 3}
+      propertyPath: LeverHead4
+      value: 
+      objectReference: {fileID: 1790917195}
+    - target: {fileID: 3481033495229152207, guid: 0d88a33edeedfe14db001c1f6b53454e,
+        type: 3}
       propertyPath: Lever_1_Head
       value: 
       objectReference: {fileID: 1849809844}
