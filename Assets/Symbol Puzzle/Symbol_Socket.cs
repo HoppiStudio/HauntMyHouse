@@ -32,11 +32,11 @@ public class Symbol_Socket : MonoBehaviour
 
     private void Update()
     {
-        if(this.enabled == false)
+        if(this.enabled == false && Fire_Effect != null)
         {
             Fire_Effect.SetActive(false);
         }
-        else
+        else if( Fire_Effect != null)
         {
             Fire_Effect.SetActive(true);
         }
