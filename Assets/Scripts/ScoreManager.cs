@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Puzzles;
@@ -11,15 +12,22 @@ public class ScoreManager : MonoBehaviour
     private static int previousHighscore;
     public static int Highscore = 0;
 
+    private void Awake()
+    {
+        Score = 0;
+    }
+
     void Start()
     {
         Puzzle.OnPuzzleComplete += IncreaseScore;
         GameManager.Instance.OnGameOver += HighscoreOnGameOver;
     }
 
+    public static event Action OnScoreIncrease;
     private void IncreaseScore()
     {
         Score += scorePerPuzzleComplete;
+        OnScoreIncrease?.Invoke();
     }
 
     private void Update()
