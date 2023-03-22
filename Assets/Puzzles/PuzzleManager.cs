@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
 using Random = UnityEngine.Random;
 
 namespace Puzzles
@@ -26,6 +27,19 @@ namespace Puzzles
 
         private void SpawnRandomPuzzle_OnPuzzleComplete()
         {
+            /*XRDirectInteractor[] xrDirectInteractors = FindObjectsOfType<XRDirectInteractor>();
+            foreach (XRDirectInteractor interactor in xrDirectInteractors)
+            {
+                if(interactor.attachTransform.GetChildCount() > 0)
+                {
+                    Destroy(interactor.attachTransform.GetChild(0).gameObject);
+                }
+            }*/
+
+            foreach (var item in FindObjectsOfType<XRGrabInteractable>())
+            {
+                Destroy(item.gameObject);
+            }
             Destroy(FindObjectOfType<Puzzle>().gameObject);
 
             // Ensure the same puzzle isn't selected again
