@@ -154,15 +154,14 @@ namespace Puzzles
          {
              if (possibleSolutions.Count > 0)
              {
-                 int index = Random.Range(0, possibleSolutions.Count);
-                 LeverSolution temp = possibleSolutions[0];
-                 possibleSolutions[0] = possibleSolutions[index];
-                 possibleSolutions[index] = temp;
-                 Debug.Log("Randomizing");
+               
+                int index = Random.Range(0, possibleSolutions.Count);
+                LeverSolution randomSolution = possibleSolutions[index];
+                possibleSolutions[0] = randomSolution;
+                Debug.Log("Randomizing");
 
-
-                 //Colour of the lever handle 
-                 if (possibleSolutions[index].solutionNumber==1) 
+                //Colour of the lever handle 
+                if (possibleSolutions[index].solutionNumber==1) 
                  {
                      Debug.Log("Changing Colours ");
                      Lever_1_Head.GetComponent<Renderer>().material.color = new Color32(255, 49, 5,115);
