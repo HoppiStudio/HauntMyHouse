@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Puzzles
 {
@@ -16,6 +17,12 @@ namespace Puzzles
 
         protected void Complete()
         {
+            XRDirectInteractor[] xrDirectInteractors = FindObjectsOfType<XRDirectInteractor>();
+            foreach (XRDirectInteractor interactor in xrDirectInteractors)
+            {
+                Destroy(interactor.attachTransform.GetChild(0).gameObject);
+            }
+
             completed = true;
             Debug.Log(this + " <color=green>completed!</color>");
             OnPuzzleComplete?.Invoke();
