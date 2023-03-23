@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Puzzles
@@ -17,11 +16,26 @@ namespace Puzzles
 
         private void Awake() => _gameTimer = FindObjectOfType<GameTimer>();
 
-        private void OnDisable() => Puzzle.OnPuzzleComplete -= SpawnRandomPuzzle_OnPuzzleComplete;
+        private void OnDisable()
+        {
+            PauseManager.Instance.OnPauseStateToggled -= SetRayInteractorVisibility_OnPauseState;
+            Puzzle.OnPuzzleComplete -= SpawnRandomPuzzle_OnPuzzleComplete;
+            _gameTimer.OnTimerComplete -= DisplayGameOverUi_OnTimerComplete;
+        }
+
         private void Start()
         {
+            PauseManager.Instance.OnPauseStateToggled += SetRayInteractorVisibility_OnPauseState;
             Puzzle.OnPuzzleComplete += SpawnRandomPuzzle_OnPuzzleComplete;
             _gameTimer.OnTimerComplete += DisplayGameOverUi_OnTimerComplete;
+        }
+
+        private void SetRayInteractorVisibility_OnPauseState(bool visible)
+        {
+            if (GameManager.GameStarted)
+            {
+                rayInteractor.SetActive(visible);
+            }
         }
 
         private void SpawnRandomPuzzle_OnPuzzleComplete()
