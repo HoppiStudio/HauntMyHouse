@@ -97,7 +97,7 @@
                 {
                     "name": "",
                     "id": "bf3e60dd-4d96-4998-991b-607aaa11790e",
-                    "path": "<XRController>{LeftHand}/menu",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
