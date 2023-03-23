@@ -46,14 +46,14 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log($"New highscore: {Score}");
             Highscore = Score;
+
+            PlayerPrefs.SetInt("highscore", Highscore);
+            PlayerPrefs.Save();
         }
         else
         {
             Debug.Log("No new highscore");
         }
-
-        PlayerPrefs.SetInt("highscore", Highscore);
-        PlayerPrefs.Save();
     }
 
     private void OnDisable()

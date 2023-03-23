@@ -21,13 +21,14 @@ public class ObjectBlockout : MonoBehaviour
 
     [SerializeField] private XRController controller;
 
+    private GameObject blockoutContainer;
     [SerializeField] private Stack<GameObject> blockouts = new Stack<GameObject>();
 
     private int vertexIndex = 0;
 
     private void Start()
     {
-
+        blockoutContainer = new GameObject("Blockout Container");
     }
 
     private void OnEnable()
@@ -246,7 +247,7 @@ public class ObjectBlockout : MonoBehaviour
         };
 
         GameObject blockout = new GameObject("blockout " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider));
-        blockout.transform.SetParent(this.transform);
+        blockout.transform.SetParent(blockoutContainer.transform);
         blockouts.Push(blockout);
 
         Mesh mesh = blockout.GetComponent<MeshFilter>().mesh;
