@@ -22,9 +22,10 @@ public class GameManager : MonoBehaviour
     [Tooltip("Max Visible Distance in Radar")]
     [SerializeField] public Vector2 ghostMaxVisibleDistance;*/
 
-    [SerializeField] private GameTimer timer;
-
     public static GameManager Instance { get; private set; }
+    public static bool GameStarted { get; private set; }
+    
+    [SerializeField] private GameTimer timer;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        GameStarted = false;
         timer.OnTimerComplete += GameOver;
     }
 
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("GAME STARTED");
+        GameStarted = true;
         OnGameStart?.Invoke();
     }
 
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("GAME OVER");
+        GameStarted = false;
         OnGameOver?.Invoke();
     }
 }
