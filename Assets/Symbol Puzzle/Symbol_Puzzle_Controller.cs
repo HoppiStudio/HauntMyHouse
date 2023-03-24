@@ -9,6 +9,7 @@ public class Symbol_Puzzle_Controller : Puzzle
 {
     public GameObject Symbol_Puzzle_All;
     public int TotalValue = 0;
+    public GameObject Symbol_Game_Prefab;
 
     public GameObject Symbol_1;
     public GameObject Symbol_2;
@@ -168,22 +169,24 @@ public class Symbol_Puzzle_Controller : Puzzle
         }
 
     }
-
+    private bool end_state = false;
     public GameObject[] Animation_Objects;
 
     private void Update()
     {
-        //Win State
-        if(TotalValue == Socket_1.Socket_Number + Socket_2.Socket_Number + Socket_3.Socket_Number) 
+        if(end_state == false)
         {
-
+            //Win State
+            if ((TotalValue == Socket_1.Socket_Number + Socket_2.Socket_Number + Socket_3.Socket_Number) && Socket_1.Symbol_Attached == true && Socket_2.Symbol_Attached == true && Socket_3.Symbol_Attached == true)
+            {
+                end_state = true;
                 //ghostController.Purple_Ghost_Banishment_Rules = true; -> Comented out
                 Card_1.Card_Number = Card_1.Card_Number + 100;
                 Ghost_Banished_by_Symbol_Puzzle = true;
                 Animation_Objects = GameObject.FindGameObjectsWithTag("Symbol_Animation");
 
 
-                for(int i = 0; i < Animation_Objects.Length; i++)
+                for (int i = 0; i < Animation_Objects.Length; i++)
                 {
                     Destroy(Animation_Objects[i]);
                 }
@@ -191,15 +194,26 @@ public class Symbol_Puzzle_Controller : Puzzle
                 //Sucsessfully Completed
                 Complete();
 
+            }
+
+
+            if ((TotalValue != 0 && TotalValue != Socket_1.Socket_Number + Socket_2.Socket_Number + Socket_3.Socket_Number) && Socket_1.Symbol_Attached == true && Socket_2.Symbol_Attached == true && Socket_3.Symbol_Attached == true)
+            {
+                end_state = true;
+                Animation_Objects = GameObject.FindGameObjectsWithTag("Symbol_Animation");
+
+
+                for (int i = 0; i < Animation_Objects.Length; i++)
+                {
+                    Destroy(Animation_Objects[i]);
+                }
+                //Wrong Placement
+                Instantiate(Symbol_Game_Prefab, this.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+
+
+            }
         }
 
-        
-        if(TotalValue != 0 && TotalValue == Socket_1.Socket_Number + Socket_2.Socket_Number + Socket_3.Socket_Number) {
-            //Wrong Placement
-            Symbol_Puzzle_All.SetActive(false);
-
-
-
-        }
     }
 }

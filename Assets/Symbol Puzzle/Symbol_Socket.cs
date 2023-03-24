@@ -9,10 +9,12 @@ public class Symbol_Socket : MonoBehaviour
     public AudioClip End_Clip;
     public GameObject Fire_Effect_Prefab;
     GameObject Fire_Effect;
+    public bool Symbol_Attached = false;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Symbol"))
         {
+            Symbol_Attached = true;
             //Debug.Log("Collision with Symbol");
             other.transform.position = this.transform.position;
             this.Socket_Number = other.GetComponent<Symbol>().Symbol_Number;
@@ -25,7 +27,7 @@ public class Symbol_Socket : MonoBehaviour
             //Fire_Effect.GetComponent<ParticleSystem>().startColor = Color.red;
 
 
-            AudioSource Backtorund_AudioSource = GameObject.Find("Symbol Puzzle Efect").GetComponent<AudioSource>();
+            AudioSource Backtorund_AudioSource = GameObject.Find("(!)Symbol Puzzle Effect Audio Source").GetComponent<AudioSource>();
             Backtorund_AudioSource.PlayOneShot(End_Clip);
         }
     }
