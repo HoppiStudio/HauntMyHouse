@@ -27,7 +27,7 @@ public class Symbol_Socket : MonoBehaviour
             //Fire_Effect.GetComponent<ParticleSystem>().startColor = Color.red;
 
 
-            AudioSource Backtorund_AudioSource = GameObject.Find("Symbol Puzzle Efect").GetComponent<AudioSource>();
+            AudioSource Backtorund_AudioSource = GameObject.Find("(!)Symbol Puzzle Effect Audio Source").GetComponent<AudioSource>();
             Backtorund_AudioSource.PlayOneShot(End_Clip);
         }
     }
