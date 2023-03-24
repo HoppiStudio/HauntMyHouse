@@ -9,10 +9,12 @@ public class Symbol_Socket : MonoBehaviour
     public AudioClip End_Clip;
     public GameObject Fire_Effect_Prefab;
     GameObject Fire_Effect;
+    public bool Symbol_Attached = false;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Symbol"))
         {
+            Symbol_Attached = true;
             //Debug.Log("Collision with Symbol");
             other.transform.position = this.transform.position;
             this.Socket_Number = other.GetComponent<Symbol>().Symbol_Number;

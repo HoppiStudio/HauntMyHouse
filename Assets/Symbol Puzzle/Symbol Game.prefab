@@ -273,6 +273,7 @@ MonoBehaviour:
   End_Clip: {fileID: 8300000, guid: 2166388316f38984ea74e60bfb5e92c6, type: 3}
   Fire_Effect_Prefab: {fileID: 7387252691332115161, guid: 17d7332c21d4e194cb0e13686f6cf09e,
     type: 3}
+  Symbol_Attached: 0
 --- !u!33 &5565397317126592510
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -387,6 +388,7 @@ MonoBehaviour:
   End_Clip: {fileID: 8300000, guid: 2166388316f38984ea74e60bfb5e92c6, type: 3}
   Fire_Effect_Prefab: {fileID: 7387252691332115161, guid: 17d7332c21d4e194cb0e13686f6cf09e,
     type: 3}
+  Symbol_Attached: 0
 --- !u!33 &5565397317132549569
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -581,7 +583,7 @@ GameObject:
   - component: {fileID: 5565397317192178091}
   - component: {fileID: 5565397317192178092}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 8
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +789,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -843,7 +845,7 @@ Transform:
   - {fileID: 5565397318508073842}
   - {fileID: 5565397317741259218}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &6246101573646447911
 MonoBehaviour:
@@ -860,15 +862,16 @@ MonoBehaviour:
   completed: 0
   Symbol_Puzzle_All: {fileID: 5565397317226505212}
   TotalValue: 0
-  Symbol_1: {fileID: 5565397318431790521}
-  Symbol_2: {fileID: 5565397318424227673}
-  Symbol_3: {fileID: 5565397317803042554}
-  Symbol_4: {fileID: 5565397317888288929}
-  Symbol_5: {fileID: 5565397317975809198}
-  Symbol_6: {fileID: 5565397318596557964}
-  Symbol_7: {fileID: 5565397317192178102}
-  Symbol_8: {fileID: 5565397317962050714}
-  Symbol_9: {fileID: 5565397317264006831}
+  Symbol_Game_Prefab: {fileID: 5565397317226505212}
+  Symbol_1: {fileID: 5565397318424227673}
+  Symbol_2: {fileID: 5565397318431790521}
+  Symbol_3: {fileID: 5565397317975809198}
+  Symbol_4: {fileID: 5565397318596557964}
+  Symbol_5: {fileID: 5565397317888288929}
+  Symbol_6: {fileID: 5565397317264006831}
+  Symbol_7: {fileID: 5565397317962050714}
+  Symbol_8: {fileID: 5565397317192178102}
+  Symbol_9: {fileID: 5565397317803042554}
   Socket_1: {fileID: 5565397318935006394}
   Socket_2: {fileID: 5565397317126592511}
   Socket_3: {fileID: 5565397317132549570}
@@ -901,7 +904,7 @@ GameObject:
   - component: {fileID: 5565397317264006820}
   - component: {fileID: 5565397317264006821}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 6
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,7 +1110,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -1181,7 +1184,7 @@ GameObject:
   - component: {fileID: 5565397317803042559}
   - component: {fileID: 5565397317803042544}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 9
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1387,7 +1390,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -1536,7 +1539,7 @@ GameObject:
   - component: {fileID: 5565397317888288934}
   - component: {fileID: 5565397317888288935}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 5
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1742,7 +1745,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -1931,7 +1934,7 @@ GameObject:
   - component: {fileID: 5565397317962050719}
   - component: {fileID: 5565397317962050704}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 7
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2137,7 +2140,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -2175,7 +2178,7 @@ GameObject:
   - component: {fileID: 5565397317975809187}
   - component: {fileID: 5565397317975809188}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 3
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2381,7 +2384,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -2419,7 +2422,7 @@ GameObject:
   - component: {fileID: 5565397318424227678}
   - component: {fileID: 5565397318424227679}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 1
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2625,7 +2628,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -2663,7 +2666,7 @@ GameObject:
   - component: {fileID: 5565397318431790526}
   - component: {fileID: 5565397318431790527}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 2
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2869,7 +2872,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -3052,7 +3055,7 @@ GameObject:
   - component: {fileID: 5565397318596557953}
   - component: {fileID: 5565397318596557954}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: 4
   m_TagString: Symbol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3258,7 +3261,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -3331,6 +3334,7 @@ MonoBehaviour:
   End_Clip: {fileID: 8300000, guid: 2166388316f38984ea74e60bfb5e92c6, type: 3}
   Fire_Effect_Prefab: {fileID: 7387252691332115161, guid: 17d7332c21d4e194cb0e13686f6cf09e,
     type: 3}
+  Symbol_Attached: 0
 --- !u!33 &5565397318935006393
 MeshFilter:
   m_ObjectHideFlags: 0
