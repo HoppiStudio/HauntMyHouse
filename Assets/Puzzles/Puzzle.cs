@@ -21,5 +21,6 @@ namespace Puzzles
             Debug.Log(this + " <color=green>completed!</color>");
             OnPuzzleComplete?.Invoke();
         }
+
     }
 }

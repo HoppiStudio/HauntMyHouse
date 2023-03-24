@@ -81,6 +81,16 @@ namespace Puzzles
             }
         }
         
+        public void SpawnSymbolPuzzle_OnFail() 
+        {
+            blockoutCanvas.SetActive(false);
+            Instantiate(puzzlePrefabs[2]);
+
+            foreach (var rayInteractor in rayInteractors)
+            {
+                rayInteractor.SetActive(false);
+            }
+        }
         private void DisplayGameOverUi_OnTimerComplete()
         {
             gameOverCanvas.SetActive(true);

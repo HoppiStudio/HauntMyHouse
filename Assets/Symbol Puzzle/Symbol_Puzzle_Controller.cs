@@ -207,13 +207,26 @@ public class Symbol_Puzzle_Controller : Puzzle
                 {
                     Destroy(Animation_Objects[i]);
                 }
-                //Wrong Placement
-                Instantiate(Symbol_Game_Prefab, this.transform.position, Quaternion.identity);
+
+                //StartCoroutine(Respawn_Game());
+                //Instantiate(Symbol_Game_Prefab, this.transform.position, Quaternion.identity);
+                
+                FindObjectOfType<PuzzleManager>().SpawnSymbolPuzzle_OnFail();
+                
                 Destroy(this.gameObject);
+                
 
 
             }
         }
+        
+    }
+    
+    IEnumerator Respawn_Game()
+    { 
+        yield return new WaitForSeconds(.1f);
+        //Wrong Placement
+        Instantiate(Symbol_Game_Prefab, this.transform.position, Quaternion.identity);
 
     }
 }
