@@ -9,7 +9,7 @@ namespace Puzzles
     {
         [SerializeField] private GameObject blockoutCanvas;
         [SerializeField] private GameObject gameOverCanvas;
-        [SerializeField] private GameObject rayInteractor;
+        [SerializeField] private List<GameObject> rayInteractors;
         [SerializeField] private List<GameObject> puzzlePrefabs;
         [SerializeField] private AudioSource puzzleCompletedSound;
         private GameTimer _gameTimer; // Temporary, timer should probably be accessed statically 
@@ -35,7 +35,10 @@ namespace Puzzles
         {
             if (GameManager.GameStarted)
             {
-                rayInteractor.SetActive(visible);
+                foreach (var rayInteractor in rayInteractors)
+                {
+                    rayInteractor.SetActive(visible);
+                }
             }
         }
 
@@ -70,15 +73,23 @@ namespace Puzzles
         public void SpawnFirstPuzzle_OnContinuePressed() 
         {
             blockoutCanvas.SetActive(false);
-            rayInteractor.SetActive(false);
             Instantiate(puzzlePrefabs[Random.Range(0, puzzlePrefabs.Count)]);
+
+            foreach (var rayInteractor in rayInteractors)
+            {
+                rayInteractor.SetActive(false);
+            }
         }
         
         private void DisplayGameOverUi_OnTimerComplete()
         {
             gameOverCanvas.SetActive(true);
-            rayInteractor.SetActive(true);
             Destroy(FindObjectOfType<Puzzle>().gameObject);
+
+            foreach (var rayInteractor in rayInteractors)
+            {
+                rayInteractor.SetActive(true);
+            }
         }
     }
 }
