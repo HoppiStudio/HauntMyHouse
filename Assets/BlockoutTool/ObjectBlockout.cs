@@ -83,153 +83,24 @@ public class ObjectBlockout : MonoBehaviour
 
     private void CreateBlockoutFromVertices(Vector3[] positions)
     {
-        /*Vector3[] vertices = {
-            new Vector3 (0, 0, 0), // 0 bottom front left
-            new Vector3 (1, 0, 0), // 1 bottom front right
-            new Vector3 (1, 1, 0), // 2 top front right
-            new Vector3 (0, 1, 0), // 3 top front left
-            new Vector3 (0, 1, 1), // 4 top back left
-            new Vector3 (1, 1, 1), // 5 top back right
-            new Vector3 (1, 0, 1), // 6 bottom back right
-            new Vector3 (0, 0, 1), // 7 bottom back left
-        };*/
-        
-        // left to right
-        if(positions[0].x < positions[1].x)
-        {
-            // front to back
-            if (positions[0].z < positions[1].z)
-            {
-                // bottom to top
-                if (positions[2].y > positions[0].y)
-                {
-                    vertices = new Vector3[] {
-                        positions[0],
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        positions[1],
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                    };
-                }
-                // top to bottom
-                else
-                {
-                    vertices = new Vector3[] {
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        positions[0],
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        positions[1],
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                    };
-                }
-            }
-            // back to front
-            else
-            {
-                // bottom to top
-                if (positions[2].y > positions[0].y)
-                {
-                    vertices = new Vector3[] {
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        positions[1],
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        positions[0]
-                    };
-                }
-                // top to bottom
-                else
-                {
-                    vertices = new Vector3[] {
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        positions[1],
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        positions[0],
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                    };
-                }
-            }
-        }
-        // right to left
-        else
-        {
-            // front to back
-            if (positions[0].z < positions[1].z)
-            {
-                // bottom to top
-                if (positions[2].y > positions[0].y)
-                {
-                    vertices = new Vector3[] {
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        positions[0],
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        positions[1]
-                    };
-                }
-                // top to bottom
-                else
-                {
-                    vertices = new Vector3[] {
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        positions[0],
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        positions[1],
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                    };
-                }
-            }
-            // back to front
-            else
-            {
-                // bottom to top
-                if (positions[2].y > positions[0].y)
-                {
-                    vertices = new Vector3[] {
-                        positions[1],
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        positions[0],
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                    };
-                }
-                // top to bottom
-                else
-                {
-                    vertices = new Vector3[] {
-                        new Vector3(positions[1].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[2].y, positions[1].z),
-                        new Vector3(positions[0].x, positions[0].y, positions[1].z),
-                        positions[1],
-                        new Vector3(positions[1].x, positions[0].y, positions[0].z),
-                        positions[0],
-                        new Vector3(positions[0].x, positions[2].y, positions[0].z),
-                        new Vector3(positions[1].x, positions[2].y, positions[0].z),
-                    };
-                }
-            }
-        }
+        Vector3 minVertex = new Vector3(Mathf.Min(positions[0].x, positions[1].x, positions[2].x),
+            Mathf.Min(positions[0].y, positions[1].y, positions[2].y),
+            Mathf.Min(positions[0].z, positions[1].z, positions[2].z));
+
+        Vector3 maxVertex = new Vector3(Mathf.Max(positions[0].x, positions[1].x, positions[2].x),
+            Mathf.Max(positions[0].y, positions[1].y, positions[2].y),
+            Mathf.Max(positions[0].z, positions[1].z, positions[2].z));
+
+        vertices = new Vector3[] {
+            new Vector3 (minVertex.x, minVertex.y, minVertex.z),
+            new Vector3 (maxVertex.x, minVertex.y, minVertex.z),
+            new Vector3 (maxVertex.x, maxVertex.y, minVertex.z),
+            new Vector3 (minVertex.x, maxVertex.y, minVertex.z),
+            new Vector3 (minVertex.x, maxVertex.y, maxVertex.z),
+            new Vector3 (maxVertex.x, maxVertex.y, maxVertex.z),
+            new Vector3 (maxVertex.x, minVertex.y, maxVertex.z),
+            new Vector3 (minVertex.x, minVertex.y, maxVertex.z),
+        };
 
         int[] triangles = {
             0, 2, 1, //face front
@@ -247,6 +118,8 @@ public class ObjectBlockout : MonoBehaviour
         };
 
         GameObject blockout = new GameObject("blockout " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider));
+        blockout.transform.position = transform.position;
+        blockout.transform.rotation = transform.rotation;
         blockout.transform.SetParent(blockoutContainer.transform);
         blockouts.Push(blockout);
 
