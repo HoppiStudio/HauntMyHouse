@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace CandlePuzzle
@@ -33,10 +34,10 @@ namespace CandlePuzzle
     {
         public event Action OnCandlePlaced;
         public event Action OnCandleRemoved;
-        public Candle HasCandle { get; private set; }
+        public Candle PlacedCandle { get; private set; }
 
         [SerializeField] public Candle startingCandle;
-        [SerializeField] private PedestalColour currentPedestalColour;
+        [FormerlySerializedAs("currentPedestalColour")] [SerializeField] private PedestalColour pedestalColour;
 
         [Header("Reference Configuration")]
         [SerializeField] private Transform candleHolderPos;
@@ -45,7 +46,7 @@ namespace CandlePuzzle
         private InputActionManager _inputActionManager;
         private Candle _candleInRange;
         private bool _isCandleInRange;
-        private bool _isOccupied;
+        private bool _isHandInRange;
 
         private readonly Dictionary<PedestalColour, FlameColour> _pedestalToFlameColoursDict = new()
         {
@@ -75,24 +76,13 @@ namespace CandlePuzzle
 
         private void OnDisable()
         {
-            _inputActionManager.playerInputActions.Player.GrabLeft.canceled -= DoPlaceCandle;
-            _inputActionManager.playerInputActions.Player.GrabRight.canceled -= DoPlaceCandle;
+            _inputActionManager.playerInputActions.Player.GrabLeft.performed -= DoGrabAction;
+            _inputActionManager.playerInputActions.Player.GrabLeft.canceled -= DoGrabActionReleased;
+            _inputActionManager.playerInputActions.Player.GrabRight.performed -= DoGrabAction;
+            _inputActionManager.playerInputActions.Player.GrabRight.canceled -= DoGrabActionReleased;
         }
-    
-        private void DoPlaceCandle(InputAction.CallbackContext obj)
-        {
-            if(_isCandleInRange && !_isOccupied)
-            {
-                PlaceCandleOnPedestal();
-            }
-            else if (_isCandleInRange && _isOccupied)
-            {
-                RemoveCandleFromPedestal();
-                PlaceCandleOnPedestal();
-            }
-        }
-    
-        private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
+
+        private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[pedestalColour]);
 
         private void Start()
         {
@@ -104,25 +94,31 @@ namespace CandlePuzzle
             }
         
             _inputActionManager = InputActionManager.Instance;
-            _inputActionManager.playerInputActions.Player.GrabLeft.canceled += DoPlaceCandle;
-            _inputActionManager.playerInputActions.Player.GrabRight.canceled += DoPlaceCandle;
+            _inputActionManager.playerInputActions.Player.GrabLeft.performed += DoGrabAction;
+            _inputActionManager.playerInputActions.Player.GrabLeft.canceled += DoGrabActionReleased;
+            _inputActionManager.playerInputActions.Player.GrabRight.performed += DoGrabAction;
+            _inputActionManager.playerInputActions.Player.GrabRight.canceled += DoGrabActionReleased;
         }
-    
+
         private void OnTriggerStay(Collider other)
         {
-            if(other.GetComponent<Candle>() != null && !_isOccupied)
+            // if candle held over empty pedestal, highlight it
+            if(other.GetComponent<Candle>() != null && !PlacedCandle)
             {
                 var candle = other.GetComponent<Candle>();
-                if (candle.GetFlameColour() == _pedestalToFlameColoursDict[currentPedestalColour]) 
+                candle.Highlight(new Color(0,1,0,0.85f));
+                _candleInRange = candle;
+                _isCandleInRange = true;
+            }
+            
+            // if XR controller held over pedestal that has a candle, highlight it
+            if (other.GetComponent<XRController>() != null)
+            {
+                if (PlacedCandle != null)
                 {
-                    candle.Highlight(new Color(0,1,0,0.85f));
-                    _candleInRange = candle;
-                    _isCandleInRange = true;
+                    PlacedCandle.Highlight(new Color(0,1,0,0.85f));
                 }
-                else
-                {
-                    candle.Highlight(new Color(1,0,0,0.85f));
-                }
+                _isHandInRange = true;
             }
         }
 
@@ -134,37 +130,56 @@ namespace CandlePuzzle
                 candle.Unhighlight();
                 _isCandleInRange = false;
             }
+            
+            if(other.GetComponent<XRController>() != null)
+            {
+                if (PlacedCandle != null)
+                {
+                    PlacedCandle.Unhighlight();
+                }
+                _isHandInRange = false;
+            }
+        }
+        
+        private void DoGrabAction(InputAction.CallbackContext ctx)
+        {
+            // If pedestal has a candle placed on it and player tries to grab it, pick it up 
+            if (_isHandInRange && PlacedCandle)
+            {
+                print("<color=green>Pickup existing candle</color>");
+                RemoveCandleFromPedestal();
+            }
+        }
+
+        private void DoGrabActionReleased(InputAction.CallbackContext ctx)
+        {
+            if(_isCandleInRange && !PlacedCandle)
+            {
+                PlaceCandleOnPedestal();
+            }
         }
 
         private void PlaceCandleOnPedestal()
         {
-            flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
+            flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[pedestalColour]);
             _candleInRange.Unhighlight();
             _candleInRange.transform.position = candleHolderPos.position;
             _candleInRange.transform.rotation = Quaternion.LookRotation(Vector3.left);
             _candleInRange.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            Destroy(_candleInRange.GetComponent<XRGrabInteractable>());
+            _candleInRange.GetComponent<XRGrabInteractable>().enabled = false;
             OnCandlePlaced?.Invoke();
-            HasCandle = _candleInRange;
-            _isOccupied = true;
+            PlacedCandle = _candleInRange;
         }
 
         private void RemoveCandleFromPedestal()
         {
-            if (HasCandle == null)
-            {
-                return;
-            }
-            Destroy(HasCandle.gameObject);
+            PlacedCandle.GetComponent<XRGrabInteractable>().enabled = true;
+            PlacedCandle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            PlacedCandle = null;
+            flameIconSprite.ForEach(sprite => sprite.color = Color.white);
             OnCandleRemoved?.Invoke();
-            startingCandle = null;
-            _isOccupied = false;
-            /*_placedCandle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            _placedCandle.AddComponent<XRGrabInteractable>();
-            OnCandleRemoved?.Invoke();
-            startingCandle = null;
-            _isOccupied = false;*/
         }
+        
 
         public void SetPedestalShapeIcon(ShapeIcon shapeIcon)
         {
@@ -175,13 +190,13 @@ namespace CandlePuzzle
 
         public void SetPedestalColour(PedestalColour pedestalColour)
         {
-            currentPedestalColour = pedestalColour;
-            //flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[currentPedestalColour]);
+            this.pedestalColour = pedestalColour;
+            //flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[this.pedestalColour]);
         }
 
-        public PedestalColour GetPedestalColour()
+        public bool HasCorrectCandle()
         {
-            return currentPedestalColour;
+            return PlacedCandle.GetFlameColour() == _pedestalToFlameColoursDict[pedestalColour];
         }
     }
 }

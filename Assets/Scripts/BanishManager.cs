@@ -36,7 +36,7 @@ public class BanishManager : MonoBehaviour
 
     private void Update()
     {
-        if(_podiums.Count(podium => podium.HasCandle != null && podium.HasCandle.IsOnFire()) >= _podiums.Count && !_ghostsBanished)
+        if(_podiums.Count(podium => podium.PlacedCandle != null && podium.PlacedCandle.IsOnFire()) >= _podiums.Count && !_ghostsBanished)
         {
             OnGhostBanished?.Invoke();
             Destroy(FindObjectOfType<GhostController>().gameObject);
