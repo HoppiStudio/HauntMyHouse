@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
     public static bool GameStarted { get; private set; }
-    
-    [SerializeField] private GameTimer timer;
 
     private void Awake()
     {
@@ -43,12 +41,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameStarted = false;
-        timer.OnTimerComplete += GameOver;
+        GameTimer.Instance.OnTimerComplete += GameOver;
     }
 
     private void OnDisable()
     {
-        timer.OnTimerComplete -= GameOver;
+        GameTimer.Instance.OnTimerComplete -= GameOver;
     }
 
     public event Action OnGameStart;
@@ -57,6 +55,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("GAME STARTED");
         GameStarted = true;
         OnGameStart?.Invoke();
+        GameTimer.Instance.StartTimer();
     }
 
     public event Action OnGameOver;

@@ -160,12 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f23fb660eef7442b70fe3342a2e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedCandle: {fileID: 0}
-  currentPodiumColour: 0
+  startingCandle: {fileID: 0}
+  currentPedestalColour: 0
   candleHolderPos: {fileID: 4753863849675907961}
   flameIconSprite:
   - {fileID: 6183999615946604879}
   - {fileID: 5070491751057015835}
+  shapeIconSprites: []
 --- !u!1 &4753863849675907966
 GameObject:
   m_ObjectHideFlags: 0
