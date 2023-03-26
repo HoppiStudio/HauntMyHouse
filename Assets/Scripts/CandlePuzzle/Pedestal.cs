@@ -2,24 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace CandlePuzzle
 {
-    public enum PedestalColour
-    {
-        White,
-        Red,
-        Green,
-        DarkBlue,
-        Cyan,
-        Yellow,
-        Orange,
-        Purple,
-        Pink
-    }
-
     public enum ShapeIcon
     {
         Square = 0,
@@ -37,7 +23,7 @@ namespace CandlePuzzle
         public Candle PlacedCandle { get; private set; }
 
         [SerializeField] public Candle startingCandle;
-        [FormerlySerializedAs("currentPedestalColour")] [SerializeField] private PedestalColour pedestalColour;
+        [SerializeField] private PedestalColour pedestalColour;
 
         [Header("Reference Configuration")]
         [SerializeField] private Transform candleHolderPos;
@@ -48,32 +34,6 @@ namespace CandlePuzzle
         private bool _isCandleInRange;
         private bool _isHandInRange;
 
-        private readonly Dictionary<PedestalColour, FlameColour> _pedestalToFlameColoursDict = new()
-        {
-            {PedestalColour.White, FlameColour.White},
-            {PedestalColour.Red, FlameColour.Red},
-            {PedestalColour.Green, FlameColour.Green},
-            {PedestalColour.DarkBlue, FlameColour.DarkBlue},
-            {PedestalColour.Cyan, FlameColour.Cyan},
-            {PedestalColour.Yellow, FlameColour.Yellow},
-            {PedestalColour.Orange, FlameColour.Orange},
-            {PedestalColour.Purple, FlameColour.Purple},
-            {PedestalColour.Pink, FlameColour.Pink}
-        };
-
-        private readonly Dictionary<PedestalColour, Color> _flameIconColourDict = new()
-        {
-            {PedestalColour.White, Color.white},
-            {PedestalColour.Red, Color.red},
-            {PedestalColour.Green, Color.green},
-            {PedestalColour.DarkBlue, Color.blue},
-            {PedestalColour.Cyan, Color.cyan},
-            {PedestalColour.Yellow, Color.yellow},
-            {PedestalColour.Orange, new Color(1,0.5f,0)},
-            {PedestalColour.Purple, new Color(0.5f, 0, 1)},
-            {PedestalColour.Pink, Color.magenta}
-        };
-
         private void OnDisable()
         {
             _inputActionManager.playerInputActions.Player.GrabLeft.performed -= DoGrabAction;
@@ -82,7 +42,7 @@ namespace CandlePuzzle
             _inputActionManager.playerInputActions.Player.GrabRight.canceled -= DoGrabActionReleased;
         }
 
-        private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[pedestalColour]);
+        private void OnValidate() => flameIconSprite?.ForEach(sprite => sprite.color = ColourMappingUtility.GetColorFromPedestalColour(pedestalColour));
 
         private void Start()
         {
@@ -146,7 +106,6 @@ namespace CandlePuzzle
             // If pedestal has a candle placed on it and player tries to grab it, pick it up 
             if (_isHandInRange && PlacedCandle)
             {
-                print("<color=green>Pickup existing candle</color>");
                 RemoveCandleFromPedestal();
             }
         }
@@ -161,7 +120,8 @@ namespace CandlePuzzle
 
         private void PlaceCandleOnPedestal()
         {
-            flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[pedestalColour]);
+            //flameIconSprite?.ForEach(sprite => sprite.color = _pedestalColourToColorDict[pedestalColour]);
+            flameIconSprite?.ForEach(sprite => sprite.color = ColourMappingUtility.GetColorFromFlameColour(_candleInRange.GetFlameColour()));
             _candleInRange.Unhighlight();
             _candleInRange.transform.position = candleHolderPos.position;
             _candleInRange.transform.rotation = Quaternion.LookRotation(Vector3.left);
@@ -188,15 +148,15 @@ namespace CandlePuzzle
             shapeIconSprites[(int)shapeIcon].gameObject.SetActive(true);
         }
 
-        public void SetPedestalColour(PedestalColour pedestalColour)
+        public void SetPedestalColour(PedestalColour colour)
         {
-            this.pedestalColour = pedestalColour;
+            pedestalColour = colour;
             //flameIconSprite?.ForEach(sprite => sprite.color = _flameIconColourDict[this.pedestalColour]);
         }
 
         public bool HasCorrectCandle()
         {
-            return PlacedCandle.GetFlameColour() == _pedestalToFlameColoursDict[pedestalColour];
+            return PlacedCandle.GetFlameColour() == ColourMappingUtility.GetFlameColourFromPedestalColour(pedestalColour);
         }
     }
 }
