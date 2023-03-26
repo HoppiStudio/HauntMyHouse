@@ -20,6 +20,7 @@ namespace Puzzles
         private void OnDisable()
         {
             PauseManager.Instance.OnPauseStateToggled -= SetRayInteractorVisibility_OnPauseState;
+            GameManager.Instance.OnGameStart -= SpawnFirstPuzzle;
             Puzzle.OnPuzzleComplete -= SpawnRandomPuzzle_OnPuzzleComplete;
             _gameTimer.OnTimerComplete -= DisplayGameOverUi_OnTimerComplete;
         }
@@ -27,6 +28,7 @@ namespace Puzzles
         private void Start()
         {
             PauseManager.Instance.OnPauseStateToggled += SetRayInteractorVisibility_OnPauseState;
+            GameManager.Instance.OnGameStart += SpawnFirstPuzzle;
             Puzzle.OnPuzzleComplete += SpawnRandomPuzzle_OnPuzzleComplete;
             _gameTimer.OnTimerComplete += DisplayGameOverUi_OnTimerComplete;
         }
@@ -70,9 +72,8 @@ namespace Puzzles
             puzzleCompletedSound.Play();
         }
         
-        public void SpawnFirstPuzzle_OnContinuePressed() 
+        public void SpawnFirstPuzzle() 
         {
-            blockoutCanvas.SetActive(false);
             Instantiate(puzzlePrefabs[Random.Range(0, puzzlePrefabs.Count)]);
 
             foreach (var rayInteractor in rayInteractors)
