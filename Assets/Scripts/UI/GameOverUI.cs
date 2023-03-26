@@ -5,7 +5,6 @@ using TMPro;
 
 public class GameOverUI : MonoBehaviour
 {
-    [SerializeField] private GameTimer timer;
     [SerializeField] private GameObject gameOverContainer;
     [SerializeField] private TMP_Text scoreText;
 
@@ -17,11 +16,6 @@ public class GameOverUI : MonoBehaviour
         {
             gameOverContainer.SetActive(false);
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     private void GameOverCanvas()

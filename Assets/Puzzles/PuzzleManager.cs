@@ -12,23 +12,20 @@ namespace Puzzles
         [SerializeField] private List<GameObject> rayInteractors;
         [SerializeField] private List<GameObject> puzzlePrefabs;
         [SerializeField] private AudioSource puzzleCompletedSound;
-        private GameTimer _gameTimer; // Temporary, timer should probably be accessed statically 
         private int _lastPuzzleIndex;
-
-        private void Awake() => _gameTimer = FindObjectOfType<GameTimer>();
 
         private void OnDisable()
         {
             PauseManager.Instance.OnPauseStateToggled -= SetRayInteractorVisibility_OnPauseState;
             Puzzle.OnPuzzleComplete -= SpawnRandomPuzzle_OnPuzzleComplete;
-            _gameTimer.OnTimerComplete -= DisplayGameOverUi_OnTimerComplete;
+            GameTimer.Instance.OnTimerComplete -= DisplayGameOverUi_OnTimerComplete;
         }
 
         private void Start()
         {
             PauseManager.Instance.OnPauseStateToggled += SetRayInteractorVisibility_OnPauseState;
             Puzzle.OnPuzzleComplete += SpawnRandomPuzzle_OnPuzzleComplete;
-            _gameTimer.OnTimerComplete += DisplayGameOverUi_OnTimerComplete;
+            GameTimer.Instance.OnTimerComplete += DisplayGameOverUi_OnTimerComplete;
         }
 
         private void SetRayInteractorVisibility_OnPauseState(bool visible)

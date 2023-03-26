@@ -6,7 +6,7 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance { get; private set; }
 
-    private InputActionManager inputActionManager;
+    private InputActionManager _inputActionManager;
 
     public bool Paused { get; private set; } = false;
 
@@ -25,9 +25,9 @@ public class PauseManager : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActionManager = InputActionManager.Instance;
+        _inputActionManager = InputActionManager.Instance;
 
-        inputActionManager.playerInputActions.Player.PauseUnpause.performed += DoPauseUnpause;
+        _inputActionManager.playerInputActions.Player.PauseUnpause.performed += DoPauseUnpause;
     }
 
     private void DoPauseUnpause(InputAction.CallbackContext obj)
@@ -40,10 +40,11 @@ public class PauseManager : MonoBehaviour
     {
         Paused = !Paused;
         OnPauseStateToggled?.Invoke(Paused);
+        GameTimer.Instance.PauseUnpauseTimer(Paused);
     }
 
     private void OnDisable()
     {
-        inputActionManager.playerInputActions.Player.PauseUnpause.performed -= DoPauseUnpause;
+        _inputActionManager.playerInputActions.Player.PauseUnpause.performed -= DoPauseUnpause;
     }
 }

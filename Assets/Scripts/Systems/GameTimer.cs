@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-
+    public static GameTimer Instance { get; private set; }
+    
     [SerializeField, Range(0, 59)] private int startMinutes;
     [SerializeField, Range(0, 59)] private int startSeconds;
 
@@ -22,19 +22,18 @@ public class GameTimer : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError($"There should only be one instance of {this}");
+            Destroy(this.gameObject);
+        }
+        
         timer = (startMinutes * 60) + startSeconds;
         TimerInMinsAndSecs();
-    }
-
-    private void Start()
-    {
-        GameManager.Instance.OnGameStart += StartTimer;
-        PauseManager.Instance.OnPauseStateToggled += PauseUnpauseTimer;
-    }
-
-    void Update()
-    {
-
     }
 
     public void StartTimer()
@@ -91,13 +90,7 @@ public class GameTimer : MonoBehaviour
         timeInSeconds = timer % 60;
     }
 
-    private void OnDisable()
-    {
-        GameManager.Instance.OnGameStart -= StartTimer;
-        PauseManager.Instance.OnPauseStateToggled -= PauseUnpauseTimer;
-    }
-
-    private void PauseUnpauseTimer(bool paused)
+    public void PauseUnpauseTimer(bool paused)
     {
         Paused = paused;
     }

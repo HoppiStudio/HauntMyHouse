@@ -3031,7 +3031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3122584a37775d4d98372ca6f68bf9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 1199675805}
 --- !u!114 &1519673251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3051,7 +3050,7 @@ MonoBehaviour:
   - {fileID: 974855189}
   puzzlePrefabs:
   - {fileID: 3112929374597572984, guid: 665c329969301de4e8fb2575a1ca564a, type: 3}
-  - {fileID: 5169735831446339348, guid: 83bbe6d4e00d22c4eae8ae4d3932841c, type: 3}
+  - {fileID: 1372878395220235789, guid: 0ae5e8d7ac7838c46b0fb0feceb7a7c1, type: 3}
   - {fileID: 5565397317226505212, guid: 420fada90beceb848bfee3de8bbc7410, type: 3}
   puzzleCompletedSound: {fileID: 476855734}
 --- !u!1 &1617682631
@@ -3299,10 +3298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c596b247e7eeba4eaf3fff1930177f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexPositions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   blockoutMaterial: {fileID: 2100000, guid: 873f64dbd47d70c4e9365bce21028f38, type: 2}
   controller: {fileID: 1111528205}
 --- !u!1 &2080853002
@@ -3356,7 +3351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed39efce86d91a409c2c7d9b174b5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 1199675805}
   timerText: {fileID: 686818178}
 --- !u!114 &2080853005
 MonoBehaviour:

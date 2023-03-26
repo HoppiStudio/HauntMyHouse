@@ -1,83 +1,55 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ObjectBlockout : MonoBehaviour
 {
-    private InputActionManager inputActionManager;
-
-    // vertices
-    [SerializeField] private Vector3[] vertexPositions = new Vector3[3];
-    private Vector3[] vertices;
-
-    // vertex spheres
-    //[SerializeField] private float vertexSphereScale = 0.1f;
-    //[SerializeField] private List<GameObject> vertexSpheres = new List<GameObject>();
-
     [SerializeField] private Material blockoutMaterial;
-
     [SerializeField] private XRController controller;
-
-    private GameObject blockoutContainer;
-    [SerializeField] private Stack<GameObject> blockouts = new Stack<GameObject>();
-
-    private int vertexIndex = 0;
+    private InputActionManager _inputActionManager;
+    private GameObject _blockoutContainer;
+    private Stack<GameObject> _blockouts = new();
+    private Vector3[] _vertices;
+    private Vector3[] _vertexPositions = new Vector3[3];
+    private int _vertexIndex;
 
     private void Start()
     {
-        blockoutContainer = new GameObject("Blockout Container");
+        _blockoutContainer = new GameObject("Blockout Container");
     }
 
     private void OnEnable()
     {
-        inputActionManager = InputActionManager.Instance;
+        _inputActionManager = InputActionManager.Instance;
 
-        inputActionManager.playerInputActions.Player.Blockout.performed += DoBlockout;
-        inputActionManager.playerInputActions.Player.UndoBlockout.performed += UndoBlockout;
+        _inputActionManager.playerInputActions.Player.Blockout.performed += DoBlockout;
+        _inputActionManager.playerInputActions.Player.UndoBlockout.performed += UndoBlockout;
     }
 
     private void OnDisable()
     {
-        inputActionManager.playerInputActions.Player.Blockout.performed -= DoBlockout;
-        inputActionManager.playerInputActions.Player.UndoBlockout.performed -= UndoBlockout;
+        _inputActionManager.playerInputActions.Player.Blockout.performed -= DoBlockout;
+        _inputActionManager.playerInputActions.Player.UndoBlockout.performed -= UndoBlockout;
     }
 
     private void DoBlockout(InputAction.CallbackContext obj)
     {
-        // Clear vertex Spheres if necessary
-        /*if (vertexIndex == 0 && vertexSpheres.Count == vertexPositions.Length)
-        {
-            for (int i = 0; i < vertexSpheres.Count; i++)
-            {
-                Destroy(vertexSpheres[i]);
-            }
-            vertexSpheres.Clear();
-        }*/
-
         // Set vertex position to position of controller in world space
-        vertexPositions[vertexIndex] = controller.transform.position;
+        _vertexPositions[_vertexIndex] = controller.transform.position;
 
-        // create sphere at vertex position
-        /*(GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.localScale = new Vector3(vertexSphereScale, vertexSphereScale, vertexSphereScale);
-        sphere.transform.position = vertexPositions[vertexIndex];
-        vertexSpheres.Add(sphere);*/
-
-        vertexIndex++;
+        _vertexIndex++;
 
         // If all needed vertices are placed then create blockout object
-        if (vertexIndex == vertexPositions.Length)
+        if (_vertexIndex == _vertexPositions.Length)
         {
-            CreateBlockoutFromVertices(vertexPositions);
-            vertexIndex = 0;
+            CreateBlockoutFromVertices(_vertexPositions);
         }
     }
     private void UndoBlockout(InputAction.CallbackContext obj)
     {
-        GameObject deletedObject = blockouts.Pop();
+        GameObject deletedObject = _blockouts.Pop();
         Destroy(deletedObject);
     }
 
@@ -91,7 +63,7 @@ public class ObjectBlockout : MonoBehaviour
             Mathf.Max(positions[0].y, positions[1].y, positions[2].y),
             Mathf.Max(positions[0].z, positions[1].z, positions[2].z));
 
-        vertices = new Vector3[] {
+        _vertices = new Vector3[] {
             new Vector3 (minVertex.x, minVertex.y, minVertex.z),
             new Vector3 (maxVertex.x, minVertex.y, minVertex.z),
             new Vector3 (maxVertex.x, maxVertex.y, minVertex.z),
@@ -120,12 +92,12 @@ public class ObjectBlockout : MonoBehaviour
         GameObject blockout = new GameObject("blockout " + (this.transform.childCount + 1).ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider));
         blockout.transform.position = transform.position;
         blockout.transform.rotation = transform.rotation;
-        blockout.transform.SetParent(blockoutContainer.transform);
-        blockouts.Push(blockout);
+        blockout.transform.SetParent(_blockoutContainer.transform);
+        _blockouts.Push(blockout);
 
         Mesh mesh = blockout.GetComponent<MeshFilter>().mesh;
         mesh.Clear();
-        mesh.vertices = vertices;
+        mesh.vertices = _vertices;
         mesh.triangles = triangles;
         mesh.Optimize();
         mesh.RecalculateNormals();
@@ -134,5 +106,7 @@ public class ObjectBlockout : MonoBehaviour
         blockout.GetComponent<MeshFilter>().mesh = mesh;
         blockout.GetComponent<MeshRenderer>().material = blockoutMaterial;
         blockout.GetComponent<MeshCollider>().sharedMesh = mesh;
+        
+        _vertexIndex = 0;
     }
 }

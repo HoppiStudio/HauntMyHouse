@@ -3,12 +3,11 @@ using TMPro;
 
 public class TimerUI : MonoBehaviour
 {
-    [SerializeField] private GameTimer timer;
     [SerializeField] private TMP_Text  timerText;
 
     private void OnEnable()
     {
-        timer.OnTimerValueChange += UpdateText;
+        GameTimer.Instance.OnTimerValueChange += UpdateText;
     }
 
     private void Start()
@@ -18,34 +17,34 @@ public class TimerUI : MonoBehaviour
 
     private void UpdateText()
     {
-        //Debug.Log($"{timer.timeInMinutes} : {timer.timeInSeconds}");
+        //Debug.Log($"{GameTimer.Instance.timeInMinutes} : {GameTimer.Instance.timeInSeconds}");
 
-        if (timer.timeInMinutes < 10)
+        if (GameTimer.Instance.timeInMinutes < 10)
         {
-            if (timer.timeInSeconds < 10)
+            if (GameTimer.Instance.timeInSeconds < 10)
             {
-                timerText.text = $"{timer.timeInMinutes}:0{timer.timeInSeconds}";
+                timerText.text = $"{GameTimer.Instance.timeInMinutes}:0{GameTimer.Instance.timeInSeconds}";
             }
             else
             {
-                timerText.text = $"{timer.timeInMinutes}:{timer.timeInSeconds}";
+                timerText.text = $"{GameTimer.Instance.timeInMinutes}:{GameTimer.Instance.timeInSeconds}";
             }
         }
         else
         {
-            if (timer.timeInSeconds < 10)
+            if (GameTimer.Instance.timeInSeconds < 10)
             {
-                timerText.text = $"{timer.timeInMinutes}:0{timer.timeInSeconds}";
+                timerText.text = $"{GameTimer.Instance.timeInMinutes}:0{GameTimer.Instance.timeInSeconds}";
             }
             else
             {
-                timerText.text = $"{timer.timeInMinutes}:{timer.timeInSeconds}";
+                timerText.text = $"{GameTimer.Instance.timeInMinutes}:{GameTimer.Instance.timeInSeconds}";
             }
         }
     }
 
     private void OnDisable()
     {
-        timer.OnTimerValueChange -= UpdateText;
+        GameTimer.Instance.OnTimerValueChange -= UpdateText;
     }
 }
