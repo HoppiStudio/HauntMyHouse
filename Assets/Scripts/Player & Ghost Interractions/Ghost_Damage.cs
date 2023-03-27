@@ -7,7 +7,7 @@ public class Ghost_Damage : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var Player_HP = other.GetComponent<IDamageable>();
-            Player_HP.Rechieve_Damage();
+            Player_HP.TakeDamage();
             Destroy(this.gameObject);
         }
     }

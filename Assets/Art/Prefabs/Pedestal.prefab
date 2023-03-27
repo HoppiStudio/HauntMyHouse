@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingCandle: {fileID: 0}
-  currentPedestalColour: 0
+  pedestalColour: 0
   candleHolderPos: {fileID: 4753863849675907961}
   flameIconSprite:
   - {fileID: 6183999615946604879}
