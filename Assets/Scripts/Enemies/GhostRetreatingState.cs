@@ -13,7 +13,11 @@
     
         public void OnStateEnter() {}
 
-        public void OnStateUpdate() {}
+        public void OnStateUpdate()
+        {
+            // if enemy reaches retreated position, observe player
+            //    _stateMachine.ChangeState(typeof(GhostObservingState));
+        }
 
         public void OnStateExit() {}
     }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67038189bce4e32aeca41d8bfb3c8a5, type: 3}
   m_Name: ShadowPerson
   m_EditorClassIdentifier: 
-  name: Shadow Person
+  enemyName: Shadow Person
   health: 100
-  prefab: {fileID: 0}
+  damage: 25
+  speed: 1

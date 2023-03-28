@@ -13,7 +13,11 @@
     
         public void OnStateEnter() {}
 
-        public void OnStateUpdate() {}
+        public void OnStateUpdate()
+        {
+            // if 2 mins have passed, attack player
+            //    _stateMachine.ChangeState(typeof(GhostAggressiveState));
+        }
 
         public void OnStateExit() {}
     }

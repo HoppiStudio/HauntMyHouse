@@ -6,26 +6,27 @@ namespace Enemies
 {
     public abstract class Enemy : MonoBehaviour, IDamageable
     {
+        public int Health { get; protected set; }
+        public IState CurrentState => _stateMachine.CurrentState;
+
         [SerializeField] private EnemyData enemyData;
         private readonly StateMachine _stateMachine = new();
-        private Dictionary<Type, IState> _cachedStatesDict;
 
         private void Awake()
         {
-            _cachedStatesDict = new Dictionary<Type, IState>
+            var statesDict = new Dictionary<Type, IState>
             {
                 {typeof(GhostObservingState), new GhostObservingState(this, _stateMachine)},
                 {typeof(GhostAggressiveState), new GhostAggressiveState(this, _stateMachine)},
                 {typeof(GhostRetreatingState), new GhostRetreatingState(this, _stateMachine)}
             };
-            _stateMachine.SetStates(_cachedStatesDict);
+            _stateMachine.SetStates(statesDict);
             _stateMachine.ChangeState(typeof(GhostObservingState));
         }
 
-        private void Update()
-        {
-            _stateMachine.Update();
-        }
+        private void Start() => Health = enemyData.health;
+
+        private void Update() => _stateMachine.Update();
 
         private void OnTriggerEnter(Collider other)
         {
@@ -36,14 +37,13 @@ namespace Enemies
             }
         }
 
-        public void MoveTowards(Vector3 position)
-        {
-            
-        }
+        public void MoveTowards(Vector3 targetPos) => Vector3.MoveTowards(transform.position, targetPos, enemyData.speed);
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(int amount) => Health -= amount;
+        
+        public void NextState()
         {
-            enemyData.health -= (int)amount;
+            _stateMachine.NextState();
         }
     }
 }

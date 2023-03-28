@@ -26,7 +26,9 @@ public class Player_HP : MonoBehaviour, IDamageable
 
     //Bool
     private bool Is_Damageable_Now = true;
-    public void TakeDamage(float amount) //For damageable
+   
+    public int Health { get; }
+    public void TakeDamage(int amount) //For damageable
     {
         if(Is_Damageable_Now == true)
         {
@@ -83,4 +85,5 @@ public class Player_HP : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(3f);
         Is_Damageable_Now = true;
     }
+    
 }
