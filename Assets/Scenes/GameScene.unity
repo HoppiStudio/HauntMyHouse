@@ -2947,7 +2947,6 @@ GameObject:
   - component: {fileID: 1519673250}
   - component: {fileID: 1519673249}
   - component: {fileID: 1519673248}
-  - component: {fileID: 1519673247}
   - component: {fileID: 1519673251}
   m_Layer: 0
   m_Name: Managers
@@ -2981,18 +2980,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 837d9832e8c72da44bb028a2050b1480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1519673247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519673244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945e4dbc76e959d408f84e133fc4dcd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1519673248
@@ -4054,7 +4041,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4499142666839977234, guid: 1f71c798448a13a44bda40f16b785b08,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2013863923}
     - target: {fileID: 4499142666839977234, guid: 1f71c798448a13a44bda40f16b785b08,
