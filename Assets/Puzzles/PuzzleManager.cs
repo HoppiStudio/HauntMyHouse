@@ -7,6 +7,8 @@ namespace Puzzles
 {
     public class PuzzleManager : MonoBehaviour
     {
+        public static int PuzzlesCompleted { get; private set; }
+        
         [SerializeField] private GameObject blockoutCanvas;
         [SerializeField] private GameObject gameOverCanvas;
         [SerializeField] private List<GameObject> rayInteractors;
@@ -41,15 +43,8 @@ namespace Puzzles
 
         private void SpawnRandomPuzzle_OnPuzzleComplete()
         {
-            /*XRDirectInteractor[] xrDirectInteractors = FindObjectsOfType<XRDirectInteractor>();
-            foreach (XRDirectInteractor interactor in xrDirectInteractors)
-            {
-                if(interactor.attachTransform.GetChildCount() > 0)
-                {
-                    Destroy(interactor.attachTransform.GetChild(0).gameObject);
-                }
-            }*/
-
+            PuzzlesCompleted++;
+            
             foreach (var item in FindObjectsOfType<XRGrabInteractable>())
             {
                 Destroy(item.gameObject);

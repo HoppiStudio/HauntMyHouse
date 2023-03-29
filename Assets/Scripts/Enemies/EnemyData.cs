@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyData", menuName = "Scriptables/EnemyData", order = 1)]
-public class EnemyData : ScriptableObject
+namespace Enemies
 {
-    public string name;
-    public int health;
-    public GameObject prefab;
+    [CreateAssetMenu(fileName = "NewEnemyData", menuName = "Scriptables/EnemyData", order = 1)]
+    public class EnemyData : ScriptableObject
+    {
+        public string enemyName;
+        public int health;
+        public int damage;
+        public float speed;
+    }
 }

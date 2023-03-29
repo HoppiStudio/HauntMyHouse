@@ -109,7 +109,22 @@ namespace Puzzles
 
         private bool IsPuzzleCompleted()
         {
-            return podiums.All(podium => podium.HasCandle);
+            foreach (var podium in podiums)
+            {
+                // if podium doesn't have a candle
+                if (!podium.PlacedCandle)
+                {
+                    return false;
+                }
+                
+                // if podium has a candle but it is the wrong colour
+                if(!podium.HasCorrectCandle())
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

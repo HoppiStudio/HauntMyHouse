@@ -5,7 +5,7 @@ using AiDirector.Scripts.RulesSystem.RuleCalculators;
 using AiDirector.Scripts.Template;
 using UnityEngine;
 
-namespace AiDirector.Scripts
+namespace AiDirector
 {
     public class Director : MonoBehaviour
     {
@@ -89,10 +89,7 @@ namespace AiDirector.Scripts
             };
         }
 
-        private void Update()
-        {
-            _stateMachine.Update();
-        }
+        private void Update() => _stateMachine.Update();
 
         public void IncreasePerceivedIntensity() => StartCoroutine(IncreasePerceivedIntensityCoroutine());
         public void DecreasePerceivedIntensity() => StartCoroutine(DecreasePerceivedIntensityCoroutine());
@@ -140,7 +137,9 @@ namespace AiDirector.Scripts
 
         public Player GetPlayer() => player;
 
-        public IState GetDirectorState() => _stateMachine.GetCurrentState();
+        public Vector3 GetPlayerLocation() => player.transform.position + Vector3.up;
+
+        public IState GetDirectorState() => _stateMachine.CurrentState;
 
         public float GetPeakIntensityThreshold() => peakIntensityThreshold;
         public float GetDefaultRespiteDuration() => defaultRespiteDuration;

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Puzzles
 {
@@ -21,6 +20,5 @@ namespace Puzzles
             Debug.Log(this + " <color=green>completed!</color>");
             OnPuzzleComplete?.Invoke();
         }
-
     }
 }

@@ -25,7 +25,7 @@ public class DirectorPeakState : IState
             _director.PeakDuration = _director.GetDefaultPeakDuration(); 
             _stateMachine.ChangeState(typeof(DirectorPeakFadeState));
         }
-        Debug.Log($"Intensity State: <color=orange>PEAK</color>");
+        //Debug.Log($"Intensity State: <color=orange>PEAK</color>");
     }
 
     public void OnStateExit() {}

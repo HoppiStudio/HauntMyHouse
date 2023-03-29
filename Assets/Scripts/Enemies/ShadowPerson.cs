@@ -1,7 +1,4 @@
 ﻿namespace Enemies
 {
-    public class ShadowPerson : Enemy
-    {
-        
-    }
+    public class ShadowPerson : Enemy {}
 }

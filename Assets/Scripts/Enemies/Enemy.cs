@@ -4,26 +4,72 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, IDamageable
     {
+        public int Health { get; protected set; }
+        public IState CurrentState => _stateMachine.CurrentState;
+
         [SerializeField] private EnemyData enemyData;
-        private StateMachine _stateMachine = new();
-        private Dictionary<Type, IState> _cachedStatesDict;
+        private readonly StateMachine _stateMachine = new();
+        private Vector3 _startPos;
+        private bool _isCollidingWithPlayer; // temporary
 
         private void Awake()
         {
-            _cachedStatesDict = new Dictionary<Type, IState>
+            var statesDict = new Dictionary<Type, IState>
             {
-                {typeof(EnemyIdleState), new EnemyIdleState(this, _stateMachine)},
-                {typeof(EnemyHauntState), new EnemyHauntState(this, _stateMachine)},
+                {typeof(GhostObservingState), new GhostObservingState(this, _stateMachine)},
+                {typeof(GhostAggressiveState), new GhostAggressiveState(this, _stateMachine)},
+                {typeof(GhostRetreatingState), new GhostRetreatingState(this, _stateMachine)}
             };
-            _stateMachine.SetStates(_cachedStatesDict);
-            _stateMachine.ChangeState(typeof(EnemyIdleState));
+            _stateMachine.SetStates(statesDict);
+            _stateMachine.ChangeState(typeof(GhostObservingState));
         }
 
-        private void Update()
+        private void Start()
         {
-            _stateMachine.Update();
+            Health = enemyData.health;
+            _startPos = transform.position;
+        }
+
+        private void Update() => _stateMachine.Update();
+
+        private void OnTriggerEnter(Collider other)
+        {
+            IDamageable hit = other.GetComponent<IDamageable>();
+            if (hit != null)
+            {
+                hit.TakeDamage(enemyData.damage);
+            }
+
+            if (other.GetComponent<Player>() != null)
+            {
+                _isCollidingWithPlayer = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<Player>() != null)
+            {
+                _isCollidingWithPlayer = false;
+            }
+        }
+
+        public void MoveTowards(Vector3 targetPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, enemyData.speed * Time.deltaTime);
+        }
+
+        public Vector3 SpawnPosition() => _startPos;
+
+        public bool IsInPlayerBounds() => _isCollidingWithPlayer;
+
+        public void TakeDamage(int amount) => Health -= amount;
+        
+        public void NextState()
+        {
+            _stateMachine.NextState();
         }
     }
 }

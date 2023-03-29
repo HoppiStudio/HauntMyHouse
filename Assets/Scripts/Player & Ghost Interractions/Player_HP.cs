@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface IDamageable
-{
-    void Rechieve_Damage();
-}
-
 public class Player_HP : MonoBehaviour, IDamageable
 {
     //Max HP
@@ -31,7 +26,9 @@ public class Player_HP : MonoBehaviour, IDamageable
 
     //Bool
     private bool Is_Damageable_Now = true;
-    public void Rechieve_Damage() //For damageable
+   
+    public int Health { get; }
+    public void TakeDamage(int amount) //For damageable
     {
         if(Is_Damageable_Now == true)
         {
@@ -88,4 +85,5 @@ public class Player_HP : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(3f);
         Is_Damageable_Now = true;
     }
+    
 }
