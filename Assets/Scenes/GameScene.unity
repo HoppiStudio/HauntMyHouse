@@ -4049,31 +4049,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1519673250}
-    - target: {fileID: 4499142666839977234, guid: 1f71c798448a13a44bda40f16b785b08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1519673251}
-    - target: {fileID: 4499142666949515235, guid: 1f71c798448a13a44bda40f16b785b08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1519673247}
-    - target: {fileID: 4499142667083659092, guid: 1f71c798448a13a44bda40f16b785b08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1519673247}
-    - target: {fileID: 4499142667201955765, guid: 1f71c798448a13a44bda40f16b785b08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1519673247}
-    - target: {fileID: 4499142667221690991, guid: 1f71c798448a13a44bda40f16b785b08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1519673247}
     - target: {fileID: 4499142667743053362, guid: 1f71c798448a13a44bda40f16b785b08,
         type: 3}
       propertyPath: m_Name
@@ -4134,11 +4109,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4499142668352183063, guid: 1f71c798448a13a44bda40f16b785b08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1519673247}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f71c798448a13a44bda40f16b785b08, type: 3}
