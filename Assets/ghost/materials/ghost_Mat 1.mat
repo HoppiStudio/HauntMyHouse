@@ -41,7 +41,7 @@ Material:
     - _FrenselPower: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WobbleDistance: 1
+    - _WobbleDistance: 0.5
     - _WobbleFrequency: 2
     - _WobbleSpeed: 2
     m_Colors:

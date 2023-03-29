@@ -1,4 +1,5 @@
 ﻿using AiDirector;
+using UnityEngine;
 
 namespace Enemies
 {
@@ -17,10 +18,12 @@ namespace Enemies
 
         public void OnStateUpdate()
         {
-            //_enemy.MoveTowards(Director.Instance.GetPlayerLocation());
+            _enemy.MoveTowards(Director.Instance.GetPlayerLocation());
 
-            // If enemy reaches player and doesn't die, retreat
-            //    _stateMachine.ChangeState(typeof(GhostRetreatingState));
+            if (_enemy.IsInPlayerBounds())
+            {
+                _stateMachine.ChangeState(typeof(GhostRetreatingState));
+            }
         }
 
         public void OnStateExit() {}

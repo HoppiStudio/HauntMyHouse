@@ -15,4 +15,4 @@ MonoBehaviour:
   enemyName: Shadow Person
   health: 100
   damage: 25
-  speed: 1
+  speed: 0.75

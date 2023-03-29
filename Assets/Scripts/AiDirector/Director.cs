@@ -137,7 +137,7 @@ namespace AiDirector
 
         public Player GetPlayer() => player;
 
-        public Vector3 GetPlayerLocation() => player.transform.position;
+        public Vector3 GetPlayerLocation() => player.transform.position + Vector3.up;
 
         public IState GetDirectorState() => _stateMachine.CurrentState;
 

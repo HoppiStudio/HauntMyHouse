@@ -11,6 +11,8 @@ namespace Enemies
 
         [SerializeField] private EnemyData enemyData;
         private readonly StateMachine _stateMachine = new();
+        private Vector3 _startPos;
+        private bool _isCollidingWithPlayer; // temporary
 
         private void Awake()
         {
@@ -24,7 +26,11 @@ namespace Enemies
             _stateMachine.ChangeState(typeof(GhostObservingState));
         }
 
-        private void Start() => Health = enemyData.health;
+        private void Start()
+        {
+            Health = enemyData.health;
+            _startPos = transform.position;
+        }
 
         private void Update() => _stateMachine.Update();
 
@@ -35,9 +41,29 @@ namespace Enemies
             {
                 hit.TakeDamage(enemyData.damage);
             }
+
+            if (other.GetComponent<Player>() != null)
+            {
+                _isCollidingWithPlayer = true;
+            }
         }
 
-        public void MoveTowards(Vector3 targetPos) => Vector3.MoveTowards(transform.position, targetPos, enemyData.speed);
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<Player>() != null)
+            {
+                _isCollidingWithPlayer = false;
+            }
+        }
+
+        public void MoveTowards(Vector3 targetPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, enemyData.speed * Time.deltaTime);
+        }
+
+        public Vector3 SpawnPosition() => _startPos;
+
+        public bool IsInPlayerBounds() => _isCollidingWithPlayer;
 
         public void TakeDamage(int amount) => Health -= amount;
         

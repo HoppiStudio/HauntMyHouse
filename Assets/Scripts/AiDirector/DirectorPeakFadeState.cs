@@ -24,7 +24,7 @@ public class DirectorPeakFadeState : IState
             _director.MaxPopulationCount = _director.GetMaxRespitePopulation();
             _stateMachine.ChangeState(typeof(DirectorRespiteState));
         }
-        Debug.Log($"Intensity State: <color=orange>PEAKFADE</color>");
+        //Debug.Log($"Intensity State: <color=orange>PEAKFADE</color>");
     }
 
     public void OnStateExit() {}

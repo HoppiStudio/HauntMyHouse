@@ -1,4 +1,6 @@
-﻿namespace Enemies
+﻿using UnityEngine;
+
+namespace Enemies
 {
     public class GhostRetreatingState : IState
     {
@@ -15,8 +17,12 @@
 
         public void OnStateUpdate()
         {
-            // if enemy reaches retreated position, observe player
-            //    _stateMachine.ChangeState(typeof(GhostObservingState));
+            _enemy.MoveTowards(_enemy.SpawnPosition());
+
+            if (_enemy.transform.position == _enemy.SpawnPosition())
+            {
+                _stateMachine.ChangeState(typeof(GhostObservingState));
+            }
         }
 
         public void OnStateExit() {}
